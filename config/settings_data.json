@@ -8,7 +8,21 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {},
+  "current": {
+    "sections": {
+      "warehouse-header": {
+        "type": "warehouse-header",
+        "settings": {
+          "logo_width": 180,
+          "menu": "main-menu",
+          "logo_text": "Direct Pallet Racking",
+          "cta_label": "Get a Quote",
+          "cta_url": "#"
+        }
+      }
+    },
+    "content_for_index": []
+  },
   "presets": {
     "Default": {}
   }
