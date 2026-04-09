@@ -542,7 +542,7 @@
         "hidden_message": "Warehouse quote request",
         "consent_text": "I accept the",
         "terms_link_text": "Terms",
-        "terms_url": "",
+        "terms_url": "#",
         "image": "shopify://shop_images/contact-side.png",
         "image_alt": "Direct Pallet Racking specialist standing in a warehouse"
       }
