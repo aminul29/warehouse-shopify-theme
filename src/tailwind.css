@@ -90,7 +90,7 @@
     background-size: cover;
   }
 
-  .section-warehouse-faq {
+  .faq-section-bg {
     background-image: var(--faq-bg-image);
     background-position: top center;
     background-repeat: no-repeat;
