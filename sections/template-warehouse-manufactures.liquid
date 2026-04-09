@@ -1,0 +1,173 @@
+{% liquid
+  assign cta_alt = section.settings.cta_image.alt | default: section.settings.cta_heading
+%}
+
+<section
+  id="manufacturers"
+  class="manufacturers-section relative overflow-hidden bg-[#1493F5] py-20 sm:py-28"
+  aria-label="{{ section.settings.aria_label | escape }}"
+>
+  <div class="section-wrap relative">
+    <div class="mx-auto max-w-3xl text-center">
+      {% if section.settings.heading != blank %}
+        <h2 class="font-heading text-[40px] font-extrabold uppercase leading-[105%] text-center text-white">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="manufacturer-stats mt-14">
+        {% for block in section.blocks %}
+          <div class="metric-box" {{ block.shopify_attributes }}>
+            {% if block.settings.value != blank %}
+              <span class="metric-value">{{ block.settings.value }}</span>
+            {% endif %}
+            {% if block.settings.label != blank %}
+              <span class="metric-label">{{ block.settings.label }}</span>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="manufacturer-cta-shell mt-14 flex w-full max-w-[1158px] flex-col items-center gap-[38px] rounded-[20px] bg-black px-16 py-20 text-center">
+      {% if section.settings.cta_image != blank %}
+        {{
+          section.settings.cta_image
+          | image_url: width: 2200
+          | image_tag:
+            widths: '750, 1100, 1500, 1780, 2000, 2200',
+            sizes: '(min-width: 1280px) 1158px, 100vw',
+            alt: cta_alt,
+            class: 'absolute inset-0 h-full w-full object-cover',
+            loading: 'lazy'
+        }}
+      {% endif %}
+      <div class="absolute inset-0 bg-black/80"></div>
+
+      <div class="max-w-[580px] relative z-10 flex flex-col items-center text-center">
+        {% if section.settings.cta_heading != blank %}
+          <h3 class="font-heading text-[40px] font-extrabold uppercase leading-[105%] text-center text-white">
+            {{ section.settings.cta_heading }}
+          </h3>
+        {% endif %}
+
+        {% if section.settings.cta_body != blank %}
+          <p class="mt-5 text-base leading-7 text-white/85 sm:text-lg">{{ section.settings.cta_body }}</p>
+        {% endif %}
+
+        {% if section.settings.cta_button_label != blank and section.settings.cta_button_url != blank %}
+          <a
+            class="inline-flex items-center justify-center rounded-full bg-[#1493F5] px-10 py-3.5 text-base font-extrabold text-white hover:bg-[#0f79ca] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white mt-9"
+            href="{{ section.settings.cta_button_url }}"
+          >
+            {{ section.settings.cta_button_label }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Warehouse Manufacturers",
+  "tag": "section",
+  "class": "section-warehouse-manufacturers",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Manufacturers and metrics"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trusted Integrator for Leading Manufacturers"
+    },
+    {
+      "type": "image_picker",
+      "id": "cta_image",
+      "label": "CTA background image"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA heading",
+      "default": "Shop Online with Direct Pallet Racking"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_body",
+      "label": "CTA body",
+      "default": "Enjoy fast shipping on racking along with other parts and supplies."
+    },
+    {
+      "type": "text",
+      "id": "cta_button_label",
+      "label": "CTA button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_url",
+      "label": "CTA button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "metric",
+      "name": "Metric",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "1,000+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Detailed Drawings"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Warehouse Manufacturers",
+      "blocks": [
+        {
+          "type": "metric",
+          "settings": {
+            "value": "1,000+",
+            "label": "Detailed Drawings"
+          }
+        },
+        {
+          "type": "metric",
+          "settings": {
+            "value": "1,500+",
+            "label": "Projects Delivered"
+          }
+        },
+        {
+          "type": "metric",
+          "settings": {
+            "value": "48+",
+            "label": "States Covered"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

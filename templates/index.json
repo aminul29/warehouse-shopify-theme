@@ -172,7 +172,42 @@
         }
       },
       "block_order": ["service_1", "service_2", "service_3", "service_4", "service_5"]
+    },
+    "warehouse_manufacturers": {
+      "type": "template-warehouse-manufactures",
+      "settings": {
+        "aria_label": "Manufacturers and metrics",
+        "heading": "Trusted Integrator for Leading Manufacturers",
+        "cta_heading": "Shop Online with Direct Pallet Racking",
+        "cta_body": "Enjoy fast shipping on racking along with other parts and supplies.",
+        "cta_button_label": "Shop Now",
+        "cta_button_url": ""
+      },
+      "blocks": {
+        "metric_1": {
+          "type": "metric",
+          "settings": {
+            "value": "1,000+",
+            "label": "Detailed Drawings"
+          }
+        },
+        "metric_2": {
+          "type": "metric",
+          "settings": {
+            "value": "1,500+",
+            "label": "Projects Delivered"
+          }
+        },
+        "metric_3": {
+          "type": "metric",
+          "settings": {
+            "value": "48+",
+            "label": "States Covered"
+          }
+        }
+      },
+      "block_order": ["metric_1", "metric_2", "metric_3"]
     }
   },
-  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery", "warehouse_advantages", "warehouse_services"]
+  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery", "warehouse_advantages", "warehouse_services", "warehouse_manufacturers"]
 }
