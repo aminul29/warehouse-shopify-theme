@@ -57,7 +57,7 @@
 
     <div class="flex flex-col gap-4 pt-6 text-center text-sm lg:flex-row lg:items-center lg:justify-between lg:text-left">
       {% if section.settings.copyright_text != blank %}
-        <p>{{ section.settings.copyright_text | replace: '{year}', current_year }}</p>
+        <p>&copy; {{ current_year }} {{ section.settings.copyright_text }}</p>
       {% endif %}
 
       {% if legal_links != blank %}
@@ -130,7 +130,7 @@
       "type": "text",
       "id": "copyright_text",
       "label": "Copyright text",
-      "default": "&copy; {year} Direct Pallet Racking. All rights reserved."
+      "default": "Direct Pallet Racking. All rights reserved."
     }
   ]
 }

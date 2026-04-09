@@ -50,35 +50,45 @@
 
 {% javascript %}
   (() => {
-    const sectionId = '{{ section.id }}';
-    const root = document.getElementById('faq-list-' + sectionId);
-    if (!root) return;
+    const initFaqRoot = (root) => {
+      if (!root || root.dataset.faqInitialized === 'true') return;
+      root.dataset.faqInitialized = 'true';
 
-    const allowMultiple = root.dataset.allowMultiple === 'true';
-    const items = Array.from(root.querySelectorAll('.faq-item'));
+      const allowMultiple = root.dataset.allowMultiple === 'true';
+      const items = Array.from(root.querySelectorAll('.faq-item'));
 
-    const setOpenState = (item, isOpen) => {
-      item.dataset.open = isOpen ? 'true' : 'false';
-      const trigger = item.querySelector('.faq-trigger');
-      if (trigger) trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    };
+      const setOpenState = (item, isOpen) => {
+        item.dataset.open = isOpen ? 'true' : 'false';
+        const trigger = item.querySelector('.faq-trigger');
+        if (trigger) trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      };
 
-    const closeSiblings = (activeItem) => {
-      if (allowMultiple) return;
+      const closeSiblings = (activeItem) => {
+        if (allowMultiple) return;
+        items.forEach((item) => {
+          if (item !== activeItem) setOpenState(item, false);
+        });
+      };
+
       items.forEach((item) => {
-        if (item !== activeItem) setOpenState(item, false);
+        const trigger = item.querySelector('.faq-trigger');
+        if (!trigger) return;
+
+        trigger.addEventListener('click', () => {
+          const isCurrentlyOpen = item.dataset.open === 'true';
+          closeSiblings(item);
+          setOpenState(item, !isCurrentlyOpen);
+        });
       });
     };
 
-    items.forEach((item) => {
-      const trigger = item.querySelector('.faq-trigger');
-      if (!trigger) return;
+    const initFaqSections = (container = document) => {
+      container.querySelectorAll('.faq-list').forEach((root) => initFaqRoot(root));
+    };
 
-      trigger.addEventListener('click', () => {
-        const isCurrentlyOpen = item.dataset.open === 'true';
-        closeSiblings(item);
-        setOpenState(item, !isCurrentlyOpen);
-      });
+    initFaqSections();
+    document.addEventListener('shopify:section:load', (event) => {
+      initFaqSections(event.target);
     });
   })();
 {% endjavascript %}
