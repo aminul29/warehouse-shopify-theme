@@ -525,6 +525,7 @@
         "section_id": "faqs",
         "heading": "Frequently Asked Questions",
         "subheading": "Find answers to common questions about us.",
+        "faq_background_image": "shopify://shop_images/faq-bg.png",
         "allow_multiple_open": false,
         "first_item_open": false
       }
