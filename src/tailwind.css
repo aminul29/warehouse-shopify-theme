@@ -101,7 +101,7 @@
   }
 
   .eyebrow {
-    @apply text-xs font-extrabold uppercase tracking-[0.3em] text-sky-500;
+    @apply text-xs font-extrabold uppercase text-sky-500;
   }
 
   .section-title {
