@@ -15,26 +15,24 @@
 <footer
   class="bg-paper py-10"
   role="contentinfo"
-  aria-label="{{ section.settings.aria_label | escape }}"
->
+  aria-label="{{ section.settings.aria_label | escape }}">
   <div class="section-wrap">
     <div class="flex flex-col items-center justify-between gap-6 border-b border-slate-200 pb-8 lg:flex-row">
       {% if section.settings.logo_image != blank %}
         {{
           section.settings.logo_image
           | image_url: width: 400
-          | image_tag:
-            widths: '160, 240, 320, 400',
-            sizes: '(min-width: 1024px) 220px, 160px',
-            alt: section.settings.logo_alt | default: shop.name,
-            class: 'h-[52px] w-auto shrink-0 p-2'
+          | image_tag: widths: '160, 240, 320, 400', sizes: '(min-width: 1024px) 220px, 160px', alt: section.settings.logo_alt
+          | default: shop.name, class: 'h-[52px] w-auto shrink-0 p-2'
         }}
       {% elsif section.settings.logo_text != blank %}
         <p class="text-lg font-extrabold uppercase tracking-[0.06em] text-slate-900">{{ section.settings.logo_text }}</p>
       {% endif %}
 
       {% if primary_links != blank %}
-        <nav class="flex flex-wrap items-center justify-center gap-5 text-sm font-bold uppercase tracking-[0.12em] text-slate-700" aria-label="{{ section.settings.primary_nav_label | escape }}">
+        <nav
+          class="flex flex-wrap items-center justify-center gap-5 text-center font-['Aptos'] text-[18px] leading-[22px] font-normal text-[#111]"
+          aria-label="{{ section.settings.primavry_nav_label | escape }}">
           {% for link in primary_links %}
             <a href="{{ link.url }}">{{ link.title }}</a>
           {% endfor %}
