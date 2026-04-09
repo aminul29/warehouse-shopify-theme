@@ -1,0 +1,245 @@
+{% liquid
+  assign first_tab_id = ''
+  if section.blocks.size > 0
+    assign first_tab_id = section.blocks.first.id
+  endif
+%}
+
+<section
+  id="products"
+  class="bg-paper py-20 sm:py-28"
+  aria-label="{{ section.settings.aria_label | escape }}"
+  {% if first_tab_id != blank %}
+    x-data="{ activeTab: '{{ first_tab_id }}' }"
+  {% endif %}
+>
+  <div class="mx-auto max-w-[1290px] px-0">
+    <div class="text-center">
+      {% if section.settings.heading != blank %}
+        <h2 class="section-title mt-4">{{ section.settings.heading }}</h2>
+      {% endif %}
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="mt-[65px]">
+        <div
+          id="product-tabs-{{ section.id }}"
+          class="flex w-full flex-wrap justify-between gap-x-6 gap-y-4 border-b border-slate-200 pb-0"
+          role="tablist"
+          aria-label="{{ section.settings.tabs_aria_label | escape }}"
+        >
+          {% for block in section.blocks %}
+            {% assign tab_button_id = 'tab-' | append: section.id | append: '-' | append: block.id %}
+            {% assign tab_panel_id = 'panel-' | append: section.id | append: '-' | append: block.id %}
+            <button
+              type="button"
+              class="tab-button"
+              id="{{ tab_button_id }}"
+              role="tab"
+              x-on:click="activeTab = '{{ block.id }}'"
+              x-bind:tabindex="activeTab === '{{ block.id }}' ? '0' : '-1'"
+              x-bind:aria-selected="activeTab === '{{ block.id }}' ? 'true' : 'false'"
+              aria-controls="{{ tab_panel_id }}"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.tab_label | default: block.settings.title }}
+            </button>
+          {% endfor %}
+        </div>
+
+        <div id="product-tab-panel-{{ section.id }}" class="w-full rounded-[28px] pt-10">
+          {% for block in section.blocks %}
+            {% liquid
+              assign tab_button_id = 'tab-' | append: section.id | append: '-' | append: block.id
+              assign tab_panel_id = 'panel-' | append: section.id | append: '-' | append: block.id
+              assign image_alt = block.settings.image.alt | default: block.settings.title
+              assign bullets = block.settings.bullets | newline_to_br | split: '<br />'
+            %}
+            <div
+              id="{{ tab_panel_id }}"
+              role="tabpanel"
+              aria-labelledby="{{ tab_button_id }}"
+              class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:items-stretch"
+              x-show="activeTab === '{{ block.id }}'"
+              x-transition.opacity.duration.150ms
+              x-bind:aria-hidden="activeTab === '{{ block.id }}' ? 'false' : 'true'"
+            >
+              <div>
+                {% if block.settings.title != blank %}
+                  <h3 class="mt-4 font-heading text-4xl uppercase leading-none sm:text-5xl">
+                    {{ block.settings.title }}
+                  </h3>
+                {% endif %}
+
+                {% if block.settings.body != blank %}
+                  <p class="mt-6 text-base leading-8">{{ block.settings.body }}</p>
+                {% endif %}
+
+                {% if block.settings.bullets != blank %}
+                  <ul class="mt-6 grid gap-3 text-sm font-semibold text-slate-800">
+                    {% for bullet in bullets %}
+                      {% assign item = bullet | strip %}
+                      {% if item != blank %}
+                        <li class="flex items-start gap-3">
+                          <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#1493F5]"></span>
+                          <span>{{ item }}</span>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+
+                {% if block.settings.button_label != blank and block.settings.button_url != blank %}
+                  <a class="btn-primary mt-8" href="{{ block.settings.button_url }}">
+                    {{ block.settings.button_label }}
+                  </a>
+                {% endif %}
+              </div>
+
+              <div class="h-full overflow-hidden rounded-[24px] bg-slate-100 shadow-[0_24px_50px_rgba(17,17,17,0.14)]">
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1600
+                    | image_tag:
+                      widths: '540, 720, 960, 1280, 1600',
+                      sizes: '(min-width: 1024px) 520px, 100vw',
+                      alt: image_alt,
+                      class: 'h-full w-full object-cover',
+                      loading: 'lazy'
+                  }}
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Warehouse Services",
+  "tag": "section",
+  "class": "section-warehouse-services",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Products and services"
+    },
+    {
+      "type": "text",
+      "id": "tabs_aria_label",
+      "label": "Tabs accessibility label",
+      "default": "Products and services tabs"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Products & Services"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Tab label",
+          "default": "Selective Pallet Racking"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Panel title",
+          "default": "Selective Pallet Racking"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Panel description",
+          "default": "Our selective pallet systems are designed for fast decision-making, wide SKU access, and dependable inventory turns."
+        },
+        {
+          "type": "textarea",
+          "id": "bullets",
+          "label": "Bullet points (one per line)",
+          "default": "Fast quoting and drawing turnaround\nDesigned for accessibility and throughput\nIdeal for mixed inventory and evolving warehouse layouts"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Panel image"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Get a Quote Today"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Warehouse Services",
+      "blocks": [
+        {
+          "type": "service",
+          "settings": {
+            "tab_label": "Selective Pallet Racking",
+            "title": "Selective Pallet Racking"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "tab_label": "Cantilever Racking",
+            "title": "Cantilever Racking",
+            "bullets": "Configured for long and awkward materials\nImproves loading access and aisle efficiency\nScales cleanly as inventory volume changes"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "tab_label": "Dynamic Racking",
+            "title": "Dynamic Racking",
+            "bullets": "Supports FIFO and high-turn inventory\nReduces unnecessary travel time\nImproves space use without sacrificing speed"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "tab_label": "Industrial Shelving",
+            "title": "Industrial Shelving",
+            "bullets": "Great for parts rooms and smaller SKUs\nSupports clean, scalable pick paths\nPairs well with mezzanines and workstations"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "tab_label": "Expert Installations",
+            "title": "Expert Installations",
+            "bullets": "Installations, reconfigurations, and repairs\nPermit-aware coordination and sequencing\nFast deployment with experienced crews"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

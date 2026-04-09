@@ -106,7 +106,73 @@
         }
       },
       "block_order": ["advantage_1", "advantage_2", "advantage_3"]
+    },
+    "warehouse_services": {
+      "type": "template-warehouse-services",
+      "settings": {
+        "aria_label": "Products and services",
+        "tabs_aria_label": "Products and services tabs",
+        "heading": "Products & Services"
+      },
+      "blocks": {
+        "service_1": {
+          "type": "service",
+          "settings": {
+            "tab_label": "Selective Pallet Racking",
+            "title": "Selective Pallet Racking",
+            "body": "Tired of waiting weeks just for a quote? Our selective pallet systems are designed for fast decision-making, wide SKU access, and dependable inventory turns.",
+            "bullets": "Fast quoting and drawing turnaround\nDesigned for accessibility and throughput\nIdeal for mixed inventory and evolving warehouse layouts",
+            "button_label": "Get a Quote Today",
+            "button_url": ""
+          }
+        },
+        "service_2": {
+          "type": "service",
+          "settings": {
+            "tab_label": "Cantilever Racking",
+            "title": "Cantilever Racking",
+            "body": "Store long, bulky, or irregular material with a layout that stays organized under heavy demand.",
+            "bullets": "Configured for long and awkward materials\nImproves loading access and aisle efficiency\nScales cleanly as inventory volume changes",
+            "button_label": "Get a Quote Today",
+            "button_url": ""
+          }
+        },
+        "service_3": {
+          "type": "service",
+          "settings": {
+            "tab_label": "Dynamic Racking",
+            "title": "Dynamic Racking",
+            "body": "Increase density and keep product moving with flow-based systems that support FIFO operations.",
+            "bullets": "Supports FIFO and high-turn inventory\nReduces unnecessary travel time\nImproves space use without sacrificing speed",
+            "button_label": "Get a Quote Today",
+            "button_url": ""
+          }
+        },
+        "service_4": {
+          "type": "service",
+          "settings": {
+            "tab_label": "Industrial Shelving",
+            "title": "Industrial Shelving",
+            "body": "Our shelving solutions create order where manual processes usually break down.",
+            "bullets": "Great for parts rooms and smaller SKUs\nSupports clean, scalable pick paths\nPairs well with mezzanines and workstations",
+            "button_label": "Get a Quote Today",
+            "button_url": ""
+          }
+        },
+        "service_5": {
+          "type": "service",
+          "settings": {
+            "tab_label": "Expert Installations",
+            "title": "Expert Installations",
+            "body": "Our crews deliver clean execution, clear communication, and safe project control.",
+            "bullets": "Installations, reconfigurations, and repairs\nPermit-aware coordination and sequencing\nFast deployment with experienced crews",
+            "button_label": "Get a Quote Today",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": ["service_1", "service_2", "service_3", "service_4", "service_5"]
     }
   },
-  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery", "warehouse_advantages"]
+  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery", "warehouse_advantages", "warehouse_services"]
 }
