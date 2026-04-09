@@ -67,6 +67,151 @@
         "subheading": "With a broad level of expertise, DPR can serve as the single point of contact for your warehouse project."
       }
     },
+    "warehouse_resources": {
+      "type": "template-warehouse-resources",
+      "settings": {
+        "aria_label": "Resources",
+        "section_id": "resources",
+        "heading": "What You Get with Direct Pallet Racking",
+        "subheading": "When you partner with us, you're not just getting a product. You're getting a full-service solution designed to elevate your warehouse operations. Here's what you can expect:"
+      },
+      "blocks": {
+        "resource_1": {
+          "type": "resource",
+          "settings": {
+            "card_width": "regular",
+            "title": "Fast Quotes in 24 Hours",
+            "body": "No waiting weeks for a quote. Get your customized quote fast so you can start planning immediately."
+          }
+        },
+        "resource_2": {
+          "type": "resource",
+          "settings": {
+            "card_width": "regular",
+            "title": "Detailed Drawings in 24 Hours",
+            "body": "Visualize your system with precise CAD drawings, delivered within a day."
+          }
+        },
+        "resource_3": {
+          "type": "resource",
+          "settings": {
+            "card_width": "regular",
+            "title": "Installation in a Week",
+            "body": "We'll have your system installed and fully operational faster than anyone else in the industry."
+          }
+        },
+        "resource_4": {
+          "type": "resource",
+          "settings": {
+            "card_width": "regular",
+            "title": "Always In-Stock Products",
+            "body": "No more waiting on backorders. Our racking systems are always available and ready to go."
+          }
+        },
+        "resource_5": {
+          "type": "resource",
+          "settings": {
+            "card_width": "wide",
+            "title": "Custom Solutions for Your Needs",
+            "body": "Whether it's pallet racks, cantilever, or dynamic systems, we tailor everything to fit your specific storage challenges."
+          }
+        },
+        "resource_6": {
+          "type": "resource",
+          "settings": {
+            "card_width": "wide",
+            "title": "Top-Notch Safety and Durability",
+            "body": "Our racking systems are built tough to withstand heavy loads and long-term use, ensuring maximum safety and performance."
+          }
+        },
+        "resource_7": {
+          "type": "resource",
+          "settings": {
+            "card_width": "wide",
+            "title": "Expert Guidance From Start to Finish",
+            "body": "From consultation to installation, our team handles every detail with expertise and efficiency."
+          }
+        }
+      },
+      "block_order": ["resource_1", "resource_2", "resource_3", "resource_4", "resource_5", "resource_6", "resource_7"]
+    },
+    "warehouse_faq": {
+      "type": "template-warehouse-faq",
+      "settings": {
+        "aria_label": "Frequently asked questions",
+        "section_id": "faqs",
+        "heading": "Frequently Asked Questions",
+        "subheading": "Find answers to common questions about us.",
+        "allow_multiple_open": false,
+        "first_item_open": false
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer used inventory?",
+            "answer": "Yes. Availability changes frequently, but we can source used inventory when it aligns with your scope, timing, and quality requirements."
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you only provide racking systems?",
+            "answer": "No. We support warehouse design, product selection, installation, repairs, and broader storage strategy so you can keep one partner from concept to execution."
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does it take a long time to get permits for racking installations?",
+            "answer": "Permit timelines vary by jurisdiction, but we help streamline the process with fast drawings and permit-aware planning so approvals do not become a hidden blocker."
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you outsource any of your work?",
+            "answer": "We coordinate experienced specialists when required, but we stay accountable for the full scope, schedule, and communication throughout the project."
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can you help with warehouse automation and optimization?",
+            "answer": "Yes. We regularly support clients with automation-ready layouts, density improvements, and system recommendations tied to throughput and labor goals."
+          }
+        },
+        "faq_6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you charge for drawings?",
+            "answer": "That depends on project scope and stage, but our process is built to get you the clarity you need quickly. We can outline exactly what is included before work starts."
+          }
+        },
+        "faq_7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer warranties on your racking systems?",
+            "answer": "Yes. Warranty coverage depends on the product and installation scope. We will provide the applicable coverage terms during quoting."
+          }
+        },
+        "faq_8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How soon can you install new projects?",
+            "answer": "For many scopes, we can move from quote to install far faster than traditional providers. Final timing depends on site readiness, permits, and project size."
+          }
+        },
+        "faq_9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Where are you located? Do you work only in Texas or do you offer national service?",
+            "answer": "We support projects nationwide. If your operation is outside Texas, we can still assess the site, plan the system, and coordinate delivery and install."
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6", "faq_7", "faq_8", "faq_9"]
+    },
     "warehouse_delivery": {
       "type": "template-warehouse-delivery",
       "settings": {
@@ -234,6 +379,8 @@
   "order": [
     "warehouse_hero",
     "warehouse_solutions",
+    "warehouse_resources",
+    "warehouse_faq",
     "warehouse_delivery",
     "warehouse_advantages",
     "warehouse_services",
