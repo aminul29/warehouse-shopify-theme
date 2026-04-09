@@ -22,17 +22,44 @@
         "secondary_button_url": ""
       }
     },
-    "featured-collection": {
-      "type": "featured-collection",
+    "warehouse_solutions": {
+      "type": "template-warehouse-solution",
       "settings": {
-        "title": "Featured Collection",
-        "featured_collection": "all",
-        "product_per_page": 4
-      }
+        "aria_label": "Warehouse solutions",
+        "heading": "Comprehensive Warehouse Solutions",
+        "subheading": "With a broad level of expertise, DPR can serve as the single point of contact for your warehouse project."
+      },
+      "blocks": {
+        "solution_1": {
+          "type": "solution",
+          "settings": {
+            "title": "Warehouse Design",
+            "body": "Expert space-planning consultation designed around your layout, throughput, and inventory profile.",
+            "button_label": "Explore",
+            "button_url": ""
+          }
+        },
+        "solution_2": {
+          "type": "solution",
+          "settings": {
+            "title": "Racking & Storage",
+            "body": "A broad selection of products to build a customized storage system that fits now and scales later.",
+            "button_label": "Explore",
+            "button_url": ""
+          }
+        },
+        "solution_3": {
+          "type": "solution",
+          "settings": {
+            "title": "Installation",
+            "body": "Installation services for projects of every size, including repairs, adjustments, and phased rollouts.",
+            "button_label": "Explore",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": ["solution_1", "solution_2", "solution_3"]
     }
   },
-  "order": [
-    "warehouse_hero",
-    "featured-collection"
-  ]
+  "order": ["warehouse_hero", "warehouse_solutions"]
 }
