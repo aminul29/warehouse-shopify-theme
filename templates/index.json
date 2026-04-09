@@ -324,30 +324,33 @@
           "type": "solution_item",
           "settings": {
             "layout": "side",
+            "image": "shopify://shop_images/explore-asrs.png",
             "title": "ASRS",
             "body": "Automated storage and retrieval systems built to increase density, accuracy, and throughput.",
             "button_label": "Learn More",
-            "button_url": ""
+            "button_url": "#"
           }
         },
         "solution_item_2": {
           "type": "solution_item",
           "settings": {
             "layout": "feature",
+            "image": "shopify://shop_images/explore-automation.png",
             "title": "Innovative Automated Solutions",
             "body": "Integrated systems that reduce manual friction and support scalable fulfillment performance.",
             "button_label": "Learn More",
-            "button_url": ""
+            "button_url": "#"
           }
         },
         "solution_item_3": {
           "type": "solution_item",
           "settings": {
             "layout": "side",
+            "image": "shopify://shop_images/explore-maintenance.png",
             "title": "Mobile Racking Systems",
             "body": "High-density racking solutions that reduce aisle waste and maximize usable warehouse capacity.",
             "button_label": "Learn More",
-            "button_url": ""
+            "button_url": "#"
           }
         }
       },
