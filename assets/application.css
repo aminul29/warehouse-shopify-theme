@@ -3120,15 +3120,14 @@
     pointer-events: none;
     position: absolute;
     top: calc(1/2 * 100%);
-    right: -132px;
-    display: none;
-    width: 360px;
+    right: calc(var(--spacing) * 0);
+    width: 54em;
     --tw-translate-y: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
-    opacity: 12%;
-    @media (width >= 64rem) {
-      display: block;
-    }
+    --tw-scale-x: calc(100% * -1);
+    scale: var(--tw-scale-x) var(--tw-scale-y);
+    --tw-grayscale: grayscale(100%);
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
   .cta-panel {
     position: relative;

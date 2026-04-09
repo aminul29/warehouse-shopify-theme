@@ -333,7 +333,7 @@
   }
 
   .cta-bg-pattern {
-    @apply pointer-events-none absolute right-[-132px] top-1/2 hidden w-[360px] -translate-y-1/2 opacity-12 lg:block;
+    @apply pointer-events-none absolute right-0 top-1/2 w-[54em] -translate-y-1/2 -scale-x-100 grayscale;
   }
 
   .cta-panel {
