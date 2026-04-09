@@ -235,10 +235,11 @@
       "settings": {
         "aria_label": "Manufacturers and metrics",
         "heading": "Trusted Integrator for Leading Manufacturers",
+        "cta_image": "shopify://shop_images/metrics-bg.png",
         "cta_heading": "Shop Online with Direct Pallet Racking",
         "cta_body": "Enjoy fast shipping on racking along with other parts and supplies.",
         "cta_button_label": "Shop Now",
-        "cta_button_url": ""
+        "cta_button_url": "#"
       }
     },
     "warehouse_service_promotion": {
