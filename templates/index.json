@@ -266,6 +266,7 @@
         "testimonial_1": {
           "type": "testimonial",
           "settings": {
+            "photo": "shopify://shop_images/testimonial-1.png",
             "rating": 5,
             "quote": "Great service from Direct Pallet Racking. Fast and effective communication.",
             "author": "Patrick, Operations Manager"
@@ -274,6 +275,7 @@
         "testimonial_2": {
           "type": "testimonial",
           "settings": {
+            "photo": "shopify://shop_images/service-racking_4a1052b8-2191-44c6-a1b0-877c347dfa75.png",
             "rating": 5,
             "quote": "Direct Pallet Racking delivered exactly what we needed: fast, efficient, and reliable.",
             "author": "Robbie, Branch Manager"
@@ -282,6 +284,7 @@
         "testimonial_3": {
           "type": "testimonial",
           "settings": {
+            "photo": "shopify://shop_images/testimonial-3.png",
             "rating": 5,
             "quote": "Working with Direct Pallet Racking was a game changer for our warehouse.",
             "author": "Josh, Distribution Manager"
