@@ -15,9 +15,23 @@
         "settings": {
           "logo_width": 180,
           "menu": "main-menu",
-          "logo_text": "Direct Pallet Racking",
+          "logo_text": "888-979-9824",
           "cta_label": "Get a Quote",
           "cta_url": "#"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "aria_label": "Footer",
+          "logo_alt": "Direct Pallet Racking",
+          "logo_text": "Direct Pallet Racking",
+          "primary_nav_label": "Footer navigation",
+          "primary_menu": "main-menu",
+          "legal_menu": "",
+          "phone_text": "888-979-9824",
+          "phone_url": "",
+          "copyright_text": "Direct Pallet Racking. All rights reserved."
         }
       }
     },
