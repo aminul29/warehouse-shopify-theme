@@ -246,6 +246,7 @@
       "type": "template-warehouse-service-promotion",
       "settings": {
         "aria_label": "Service promotion",
+        "problem_image": "shopify://shop_images/problem-card.png",
         "problem_heading": "Long Buying Processes and Lead Times Are Holding You Back",
         "problem_paragraph_1": "In the warehouse industry, time is money. Yet many businesses face unnecessary delays when trying to secure the right storage solutions.",
         "problem_paragraph_2": "Between drawn-out quoting processes, multiple back-and-forths, and suppliers who are slow to act, companies find themselves stuck waiting for weeks before they can even begin solving their storage problems.",
@@ -253,8 +254,9 @@
         "solution_heading": "The Real Cost of Delayed Action",
         "solution_paragraph_1": "When your storage systems are delayed, your entire operation slows down. Inventory piles up, workflows become inefficient, and your team is forced to work around limitations that should have been solved long ago.",
         "solution_paragraph_2": "Every extra day spent waiting means lost productivity and revenue. In today's competitive market, businesses can't afford to delay warehouse optimization.",
+        "solution_image": "shopify://shop_images/solution-card.jpg",
         "button_label": "Get a Quote Today",
-        "button_url": ""
+        "button_url": "#"
       }
     },
     "warehouse_testimonial": {
