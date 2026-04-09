@@ -3464,7 +3464,10 @@
   }
   .contact-form {
     display: grid;
-    gap: calc(var(--spacing) * 1);
+    gap: var(--contact-field-gap, 24px);
+  }
+  .contact-form > .grid {
+    gap: var(--contact-field-gap, 24px);
   }
   .field-label {
     font-size: var(--text-sm);
@@ -3584,6 +3587,13 @@
     box-shadow: 0 28px 70px rgba(0, 0, 0, 0.34);
   }
   .contact-image {
+    display: block;
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .contact-image-shell > img {
     display: block;
     height: 100%;
     min-height: 100%;

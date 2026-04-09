@@ -504,7 +504,12 @@
   }
 
   .contact-form {
-    @apply grid gap-1;
+    @apply grid;
+    gap: var(--contact-field-gap, 24px);
+  }
+
+  .contact-form > .grid {
+    gap: var(--contact-field-gap, 24px);
   }
 
   .field-label {
@@ -537,6 +542,10 @@
   }
 
   .contact-image {
+    @apply block h-full min-h-full w-full object-cover;
+  }
+
+  .contact-image-shell > img {
     @apply block h-full min-h-full w-full object-cover;
   }
 

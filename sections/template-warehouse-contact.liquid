@@ -34,6 +34,8 @@
         <p class="mt-3 max-w-3xl font-normal text-white">{{ section.settings.paragraph_2 }}</p>
       {% endif %}
 
+      {% assign contact_form_style = '--contact-field-gap: ' | append: section.settings.form_field_gap | append: 'px;' %}
+      <div style="{{ contact_form_style }}">
       {% form 'contact', id: form_id, class: 'contact-form mt-12', novalidate: 'novalidate' %}
         {% if form.posted_successfully? %}
           <p id="form-status-{{ section.id }}" class="mb-5 text-sm font-semibold text-emerald-300" aria-live="polite">
@@ -149,6 +151,7 @@
           <p id="form-status-fallback-{{ section.id }}" class="text-sm font-semibold text-white/75" aria-live="polite"></p>
         </div>
       {% endform %}
+      </div>
     </div>
 
     <div class="contact-image-shell">
@@ -161,6 +164,7 @@
             sizes: '(min-width: 1024px) 46vw, 100vw',
             alt: section.settings.image_alt | default: section.settings.heading,
             class: 'contact-image',
+            style: 'display:block;width:100%;height:100%;min-height:100%;object-fit:cover;',
             loading: 'lazy'
         }}
       {% endif %}
@@ -218,6 +222,16 @@
       "id": "button_label",
       "label": "Button label",
       "default": "Submit Request"
+    },
+    {
+      "type": "range",
+      "id": "form_field_gap",
+      "label": "Form field gap",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
     },
     {
       "type": "text",
