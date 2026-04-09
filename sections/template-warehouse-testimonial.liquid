@@ -1,0 +1,175 @@
+{% liquid
+  assign deco_alt = section.settings.background_shape.alt | default: section.settings.heading
+%}
+
+<section
+  id="testimonials"
+  class="relative overflow-hidden bg-[#FBFBFB] py-20 sm:py-28"
+  aria-label="{{ section.settings.aria_label | escape }}"
+>
+  {% if section.settings.background_shape != blank %}
+    {{
+      section.settings.background_shape
+      | image_url: width: 1200
+      | image_tag:
+        widths: '520, 760, 980, 1200',
+        sizes: '(min-width: 1024px) 520px, 0px',
+        alt: deco_alt,
+        class: 'pointer-events-none absolute bottom-0 right-0 hidden w-[520px] max-w-none opacity-35 lg:block',
+        loading: 'lazy'
+    }}
+  {% endif %}
+
+  <div class="mx-auto max-w-[1312px] px-5 sm:px-6 lg:px-0">
+    <div class="text-center">
+      {% if section.settings.heading != blank %}
+        <h2 class="font-heading text-[46px] font-extrabold uppercase leading-[105%] text-center text-[#111]">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div id="testimonial-grid-{{ section.id }}" class="mt-[42px] grid gap-8 lg:grid-cols-3">
+        {% for block in section.blocks %}
+          {% liquid
+            assign photo_alt = block.settings.photo.alt | default: block.settings.author
+            assign stars = block.settings.rating
+          %}
+          <article class="flex min-h-[557px] flex-col overflow-hidden rounded-[20px] bg-[#FFF] shadow-[0_4px_30px_rgba(0,0,0,0.1)]" {{ block.shopify_attributes }}>
+            {% if block.settings.photo != blank %}
+              {{
+                block.settings.photo
+                | image_url: width: 1200
+                | image_tag:
+                  widths: '540, 720, 960, 1200',
+                  sizes: '(min-width: 1024px) 33vw, 100vw',
+                  alt: photo_alt,
+                  class: 'h-[286px] w-full object-cover',
+                  loading: 'lazy'
+              }}
+            {% endif %}
+
+            <div class="flex flex-1 flex-col px-8 pb-8 pt-[28px]">
+              <div class="flex gap-1 text-[27px] leading-none text-[#E7BE1D]" aria-label="{{ stars }} out of 5 stars">
+                {% for i in (1..5) %}
+                  {% if i <= stars %}
+                    <span aria-hidden="true">★</span>
+                  {% else %}
+                    <span aria-hidden="true" class="text-[#E7BE1D]/35">★</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              {% if block.settings.quote != blank %}
+                <p class="mt-[10px] text-[18px] leading-[1.4] text-[#111]">"{{ block.settings.quote }}"</p>
+              {% endif %}
+
+              {% if block.settings.author != blank %}
+                <p class="mt-auto pt-[18px] text-[20px] font-semibold leading-[1.5] text-[#111]">
+                  {{ block.settings.author }}
+                </p>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Warehouse Testimonials",
+  "tag": "section",
+  "class": "section-warehouse-testimonials",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Testimonials"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Testimonials"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_shape",
+      "label": "Decorative background shape"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Photo"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Great service from Direct Pallet Racking. Fast and effective communication."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Patrick, Operations Manager"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Warehouse Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Great service from Direct Pallet Racking. Fast and effective communication.",
+            "author": "Patrick, Operations Manager"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Direct Pallet Racking delivered exactly what we needed: fast, efficient, and reliable.",
+            "author": "Robbie, Branch Manager"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Working with Direct Pallet Racking was a game changer for our warehouse.",
+            "author": "Josh, Distribution Manager"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

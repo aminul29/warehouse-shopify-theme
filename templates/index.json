@@ -222,7 +222,41 @@
         "button_label": "Get a Quote Today",
         "button_url": ""
       }
+    },
+    "warehouse_testimonials": {
+      "type": "template-warehouse-testimonial",
+      "settings": {
+        "aria_label": "Testimonials",
+        "heading": "Testimonials"
+      },
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Great service from Direct Pallet Racking. Fast and effective communication.",
+            "author": "Patrick, Operations Manager"
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Direct Pallet Racking delivered exactly what we needed: fast, efficient, and reliable.",
+            "author": "Robbie, Branch Manager"
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Working with Direct Pallet Racking was a game changer for our warehouse.",
+            "author": "Josh, Distribution Manager"
+          }
+        }
+      },
+      "block_order": ["testimonial_1", "testimonial_2", "testimonial_3"]
     }
   },
-  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery", "warehouse_advantages", "warehouse_services", "warehouse_manufacturers", "warehouse_service_promotion"]
+  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery", "warehouse_advantages", "warehouse_services", "warehouse_manufacturers", "warehouse_service_promotion", "warehouse_testimonials"]
 }
