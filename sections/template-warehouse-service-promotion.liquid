@@ -1,6 +1,12 @@
 {% liquid
   assign problem_alt = section.settings.problem_image.alt | default: section.settings.problem_heading
   assign solution_alt = section.settings.solution_image.alt | default: section.settings.solution_heading
+  assign divider_bg_url = blank
+  if section.settings.divider_background_image != blank
+    assign divider_bg_url = section.settings.divider_background_image | image_url: width: 720
+  else
+    assign divider_bg_url = 'hexagon-section-bg.png' | asset_url
+  endif
 %}
 
 <section
@@ -37,7 +43,12 @@
     </article>
 
     {% if section.settings.divider_copy != blank %}
-      <div class="services-divider">
+      <div
+        class="services-divider"
+        {% if divider_bg_url != blank %}
+          style="--services-divider-bg-image: url('{{ divider_bg_url }}');"
+        {% endif %}
+      >
         <p class="services-divider-copy">{{ section.settings.divider_copy }}</p>
       </div>
     {% endif %}
@@ -119,6 +130,11 @@
       "id": "divider_copy",
       "label": "Divider copy",
       "default": "These slow processes don't just waste time. They cost you productivity, revenue, and valuable opportunities."
+    },
+    {
+      "type": "image_picker",
+      "id": "divider_background_image",
+      "label": "Divider background image"
     },
     {
       "type": "textarea",

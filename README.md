@@ -2,7 +2,7 @@
 
 A modern Shopify theme developed as a practice project by Md Aminul. This project demonstrates my skills in Shopify theme development and implementation of Online Store 2.0 features with TailwindCSS.
 
-[View on GitHub](https://github.com/aminul29/mhd-udemy-shopify)
+[View on GitHub](https://github.com/aminul29/)
 
 ## Project Overview
 

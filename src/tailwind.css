@@ -322,9 +322,9 @@
   .services-divider::before {
     content: "";
     @apply pointer-events-none absolute left-[-120px] top-1/2 h-[360px] w-[360px] -translate-y-1/2 bg-no-repeat opacity-18;
-    background-image: url("../assets/images/Hexagon section bg.png");
-    background-position: left center;
-    background-size: 360px auto;
+    background-image: var(--services-divider-bg-image);
+    background-position: 0;
+    background-size: 360px;
     filter: brightness(0) saturate(100%);
   }
 
