@@ -1,0 +1,174 @@
+<section
+  id="{{ section.settings.section_id | default: 'resources' | handleize }}"
+  class="bg-white py-20 sm:py-28"
+  aria-label="{{ section.settings.aria_label | escape }}"
+>
+  <div class="section-wrap">
+    <div class="mx-auto flex w-[630px] max-w-full flex-col items-center justify-center gap-[15px] text-center">
+      {% if section.settings.heading != blank %}
+        <h2 class="section-title text-slate-950">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="text-center font-['Aptos'] text-[20px] font-normal leading-[140%] text-[#111]">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div id="benefit-grid-{{ section.id }}" class="resources-grid mt-14">
+        {% for block in section.blocks %}
+          {% liquid
+            assign card_class = 'resources-card'
+            if block.settings.card_width == 'wide'
+              assign card_class = card_class | append: ' resources-card-wide'
+            endif
+          %}
+          <article class="{{ card_class }}" {{ block.shopify_attributes }}>
+            {% if block.settings.title != blank %}
+              <h3 class="font-heading text-[24px] font-extrabold uppercase leading-[105%] text-[#111]">
+                {{ block.settings.title }}
+              </h3>
+            {% endif %}
+
+            {% if block.settings.body != blank %}
+              <p class="mt-5 text-base leading-8">{{ block.settings.body }}</p>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Warehouse Resources",
+  "tag": "section",
+  "class": "section-warehouse-resources",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Resources"
+    },
+    {
+      "type": "text",
+      "id": "section_id",
+      "label": "Section ID (for CSS anchor links)",
+      "default": "resources"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What You Get with Direct Pallet Racking"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "When you partner with us, you're not just getting a product. You're getting a full-service solution designed to elevate your warehouse operations. Here's what you can expect:"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "resource",
+      "name": "Resource item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "card_width",
+          "label": "Card width",
+          "default": "regular",
+          "options": [
+            { "value": "regular", "label": "Regular" },
+            { "value": "wide", "label": "Wide" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Fast Quotes in 24 Hours"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Description",
+          "default": "No waiting weeks for a quote. Get your customized quote fast so you can start planning immediately."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Warehouse Resources",
+      "blocks": [
+        {
+          "type": "resource",
+          "settings": {
+            "card_width": "regular",
+            "title": "Fast Quotes in 24 Hours",
+            "body": "No waiting weeks for a quote. Get your customized quote fast so you can start planning immediately."
+          }
+        },
+        {
+          "type": "resource",
+          "settings": {
+            "card_width": "regular",
+            "title": "Detailed Drawings in 24 Hours",
+            "body": "Visualize your system with precise CAD drawings, delivered within a day."
+          }
+        },
+        {
+          "type": "resource",
+          "settings": {
+            "card_width": "regular",
+            "title": "Installation in a Week",
+            "body": "We'll have your system installed and fully operational faster than anyone else in the industry."
+          }
+        },
+        {
+          "type": "resource",
+          "settings": {
+            "card_width": "regular",
+            "title": "Always In-Stock Products",
+            "body": "No more waiting on backorders. Our racking systems are always available and ready to go."
+          }
+        },
+        {
+          "type": "resource",
+          "settings": {
+            "card_width": "wide",
+            "title": "Custom Solutions for Your Needs",
+            "body": "Whether it's pallet racks, cantilever, or dynamic systems, we tailor everything to fit your specific storage challenges."
+          }
+        },
+        {
+          "type": "resource",
+          "settings": {
+            "card_width": "wide",
+            "title": "Top-Notch Safety and Durability",
+            "body": "Our racking systems are built tough to withstand heavy loads and long-term use, ensuring maximum safety and performance."
+          }
+        },
+        {
+          "type": "resource",
+          "settings": {
+            "card_width": "wide",
+            "title": "Expert Guidance From Start to Finish",
+            "body": "From consultation to installation, our team handles every detail with expertise and efficiency."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

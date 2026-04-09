@@ -60,6 +60,74 @@
       },
       "block_order": ["solution_1", "solution_2", "solution_3"]
     },
+    "warehouse_resources": {
+      "type": "template-warehouse-resources",
+      "settings": {
+        "aria_label": "Resources",
+        "section_id": "resources",
+        "heading": "What You Get with Direct Pallet Racking",
+        "subheading": "When you partner with us, you're not just getting a product. You're getting a full-service solution designed to elevate your warehouse operations. Here's what you can expect:"
+      },
+      "blocks": {
+        "resource_1": {
+          "type": "resource",
+          "settings": {
+            "card_width": "regular",
+            "title": "Fast Quotes in 24 Hours",
+            "body": "No waiting weeks for a quote. Get your customized quote fast so you can start planning immediately."
+          }
+        },
+        "resource_2": {
+          "type": "resource",
+          "settings": {
+            "card_width": "regular",
+            "title": "Detailed Drawings in 24 Hours",
+            "body": "Visualize your system with precise CAD drawings, delivered within a day."
+          }
+        },
+        "resource_3": {
+          "type": "resource",
+          "settings": {
+            "card_width": "regular",
+            "title": "Installation in a Week",
+            "body": "We'll have your system installed and fully operational faster than anyone else in the industry."
+          }
+        },
+        "resource_4": {
+          "type": "resource",
+          "settings": {
+            "card_width": "regular",
+            "title": "Always In-Stock Products",
+            "body": "No more waiting on backorders. Our racking systems are always available and ready to go."
+          }
+        },
+        "resource_5": {
+          "type": "resource",
+          "settings": {
+            "card_width": "wide",
+            "title": "Custom Solutions for Your Needs",
+            "body": "Whether it's pallet racks, cantilever, or dynamic systems, we tailor everything to fit your specific storage challenges."
+          }
+        },
+        "resource_6": {
+          "type": "resource",
+          "settings": {
+            "card_width": "wide",
+            "title": "Top-Notch Safety and Durability",
+            "body": "Our racking systems are built tough to withstand heavy loads and long-term use, ensuring maximum safety and performance."
+          }
+        },
+        "resource_7": {
+          "type": "resource",
+          "settings": {
+            "card_width": "wide",
+            "title": "Expert Guidance From Start to Finish",
+            "body": "From consultation to installation, our team handles every detail with expertise and efficiency."
+          }
+        }
+      },
+      "block_order": ["resource_1", "resource_2", "resource_3", "resource_4", "resource_5", "resource_6", "resource_7"]
+    },
     "warehouse_delivery": {
       "type": "template-warehouse-delivery",
       "settings": {
@@ -314,5 +382,5 @@
       "block_order": ["solution_item_1", "solution_item_2", "solution_item_3"]
     }
   },
-  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery", "warehouse_advantages", "warehouse_services", "warehouse_manufacturers", "warehouse_service_promotion", "warehouse_testimonials", "warehouse_cta", "warehouse_more_solutions"]
+  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_resources", "warehouse_delivery", "warehouse_advantages", "warehouse_services", "warehouse_manufacturers", "warehouse_service_promotion", "warehouse_testimonials", "warehouse_cta", "warehouse_more_solutions"]
 }
