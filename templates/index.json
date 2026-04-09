@@ -82,8 +82,8 @@
           "type": "advantage",
           "settings": {
             "eyebrow": "Speed",
-            "title": "No Downtime, Just Results",
-            "body": "With rapid design and installation, you'll experience minimal downtime. No delays, no stock issues, and no costly disruption while your team waits for a supplier to move.",
+            "title": "No Downtime,<br> Just Results",
+            "body": "With rapid design and installation, you’ll experience minimal downtime. No delays, no stock issues—get your racking faster and avoid costly disruptions. Get back to business quickly with optimized storage solutions that keep your operations running smoothly. Use Direct Pallet Racking to streamline your projects and stay ahead of the competition.",
             "media_image": "shopify://shop_images/feature-speed.png",
             "accent_image": "shopify://shop_images/Hexagon_section_bg.png",
             "accent_position": "left",
@@ -540,6 +540,7 @@
         "highlight_line": "Don't Settle for Less, Get the Best Solution Now.",
         "paragraph_2": "Contact us today for a free consultation, and let's start maximizing your warehouse efficiency right away. Your storage solutions are just one call away!",
         "button_label": "Submit Request",
+        "form_field_gap": 24,
         "success_message": "Thank you! We received your request and will contact you shortly.",
         "hidden_message": "Warehouse quote request",
         "consent_text": "I accept the",
