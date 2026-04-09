@@ -1,3 +1,7 @@
+{% liquid
+  assign hero_alt = section.settings.background_image.alt | default: section.settings.heading
+%}
+
 <section id="hero" class="relative isolate overflow-hidden" aria-label="{{ section.settings.aria_label | escape }}">
   {% if section.settings.background_image != blank %}
     {{
@@ -6,7 +10,9 @@
       | image_tag:
         widths: '750, 1100, 1500, 1780, 2000, 2400',
         sizes: '100vw',
-        alt: section.settings.background_image.alt | default: section.settings.heading,
+        alt: hero_alt,
+        loading: 'eager',
+        fetchpriority: 'high',
         class: 'absolute inset-0 h-full w-full object-cover'
     }}
   {% else %}
@@ -49,9 +55,6 @@
   "name": "Warehouse Hero",
   "tag": "section",
   "class": "section-warehouse-hero",
-  "enabled_on": {
-    "templates": ["index"]
-  },
   "settings": [
     {
       "type": "text",
