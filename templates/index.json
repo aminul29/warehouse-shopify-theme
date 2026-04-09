@@ -17,9 +17,9 @@
         "heading": "America's Leading Warehouse Storage Experts",
         "subheading": "Don't settle for less. Get the best racking solution now.",
         "primary_button_label": "Contact Us",
-        "primary_button_url": "",
+        "primary_button_url": "#",
         "secondary_button_label": "Shop Now",
-        "secondary_button_url": ""
+        "secondary_button_url": "#"
       }
     },
     "warehouse_solutions": {
@@ -69,12 +69,6 @@
     },
     "warehouse_resources": {
       "type": "template-warehouse-resources",
-      "settings": {
-        "aria_label": "Resources",
-        "section_id": "resources",
-        "heading": "What You Get with Direct Pallet Racking",
-        "subheading": "When you partner with us, you're not just getting a product. You're getting a full-service solution designed to elevate your warehouse operations. Here's what you can expect:"
-      },
       "blocks": {
         "resource_1": {
           "type": "resource",
@@ -133,18 +127,24 @@
           }
         }
       },
-      "block_order": ["resource_1", "resource_2", "resource_3", "resource_4", "resource_5", "resource_6", "resource_7"]
+      "block_order": [
+        "resource_1",
+        "resource_2",
+        "resource_3",
+        "resource_4",
+        "resource_5",
+        "resource_6",
+        "resource_7"
+      ],
+      "settings": {
+        "aria_label": "Resources",
+        "section_id": "resources",
+        "heading": "What You Get with Direct Pallet Racking",
+        "subheading": "When you partner with us, you're not just getting a product. You're getting a full-service solution designed to elevate your warehouse operations. Here's what you can expect:"
+      }
     },
     "warehouse_faq": {
       "type": "template-warehouse-faq",
-      "settings": {
-        "aria_label": "Frequently asked questions",
-        "section_id": "faqs",
-        "heading": "Frequently Asked Questions",
-        "subheading": "Find answers to common questions about us.",
-        "allow_multiple_open": false,
-        "first_item_open": false
-      },
       "blocks": {
         "faq_1": {
           "type": "faq_item",
@@ -210,7 +210,25 @@
           }
         }
       },
-      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6", "faq_7", "faq_8", "faq_9"]
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7",
+        "faq_8",
+        "faq_9"
+      ],
+      "settings": {
+        "aria_label": "Frequently asked questions",
+        "section_id": "faqs",
+        "heading": "Frequently Asked Questions",
+        "subheading": "Find answers to common questions about us.",
+        "allow_multiple_open": false,
+        "first_item_open": false
+      }
     },
     "warehouse_contact": {
       "type": "template-warehouse-contact",
@@ -226,7 +244,8 @@
         "hidden_message": "Warehouse quote request",
         "consent_text": "I accept the",
         "terms_link_text": "Terms",
-        "terms_url": ""
+        "terms_url": "",
+        "image_alt": "Direct Pallet Racking specialist standing in a warehouse"
       }
     },
     "warehouse_delivery": {
