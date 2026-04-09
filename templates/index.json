@@ -442,6 +442,20 @@
         "heading": "Testimonials"
       }
     },
+    "warehouse_cta": {
+      "type": "template-warehouse-cta",
+      "settings": {
+        "aria_label": "Call to action",
+        "eyebrow": "Need Assistance?",
+        "heading": "Our Warehouse Solutions Specialist Can Help",
+        "button_label": "Contact a Warehouse Solution Specialist",
+        "button_url": "#contact",
+        "show_phone": true,
+        "phone_prefix": "Or Call",
+        "phone_text": "888-979-9824",
+        "phone_url": ""
+      }
+    },
     "warehouse_solutions_slider": {
       "type": "template-warehouse-solutions-slider",
       "blocks": {
@@ -494,6 +508,7 @@
     "warehouse_manufacturers",
     "warehouse_service_promotion",
     "warehouse_testimonial",
+    "warehouse_cta",
     "warehouse_solutions_slider",
     "warehouse_resources",
     "warehouse_faq",
