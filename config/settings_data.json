@@ -24,6 +24,7 @@
         "type": "footer",
         "settings": {
           "aria_label": "Footer",
+          "logo_image": "shopify://shop_images/Logo-dark-font.png",
           "logo_alt": "Direct Pallet Racking",
           "logo_text": "Direct Pallet Racking",
           "primary_nav_label": "Footer navigation",
