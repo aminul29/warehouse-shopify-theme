@@ -212,6 +212,23 @@
       },
       "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6", "faq_7", "faq_8", "faq_9"]
     },
+    "warehouse_contact": {
+      "type": "template-warehouse-contact",
+      "settings": {
+        "aria_label": "Contact section",
+        "section_id": "contact",
+        "heading": "Don't Wait-Get the Best Solution Now!",
+        "paragraph_1": "Why settle for mediocre when you can work with the #1 in pallet racks? Time is money, and every day you wait is another day your warehouse isn't operating at full capacity. Don't waste weeks waiting on competitors when Direct Pallet Racking can design, quote, and install within a week. Get your warehouse optimized with the fastest, most reliable solution on the market.",
+        "highlight_line": "Don't Settle for Less, Get the Best Solution Now.",
+        "paragraph_2": "Contact us today for a free consultation, and let's start maximizing your warehouse efficiency right away. Your storage solutions are just one call away!",
+        "button_label": "Submit Request",
+        "success_message": "Thank you! We received your request and will contact you shortly.",
+        "hidden_message": "Warehouse quote request",
+        "consent_text": "I accept the",
+        "terms_link_text": "Terms",
+        "terms_url": ""
+      }
+    },
     "warehouse_delivery": {
       "type": "template-warehouse-delivery",
       "settings": {
@@ -381,6 +398,7 @@
     "warehouse_solutions",
     "warehouse_resources",
     "warehouse_faq",
+    "warehouse_contact",
     "warehouse_delivery",
     "warehouse_advantages",
     "warehouse_services",

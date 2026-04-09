@@ -1,0 +1,269 @@
+{% liquid
+  assign form_id = 'contact-form-' | append: section.id
+  assign first_name_id = 'ContactFirstName-' | append: section.id
+  assign last_name_id = 'ContactLastName-' | append: section.id
+  assign company_id = 'ContactCompany-' | append: section.id
+  assign job_title_id = 'ContactJobTitle-' | append: section.id
+  assign email_id = 'ContactEmail-' | append: section.id
+  assign phone_id = 'ContactPhone-' | append: section.id
+  assign consent_id = 'ContactConsent-' | append: section.id
+%}
+
+<section
+  id="{{ section.settings.section_id | default: 'contact' | handleize }}"
+  class="bg-[#111111] py-20 text-white sm:py-28"
+  aria-label="{{ section.settings.aria_label | escape }}"
+>
+  <div class="section-wrap contact-layout">
+    <div class="contact-copy-column">
+      {% if section.settings.heading != blank %}
+        <h2 class="font-heading text-[46px] uppercase leading-none text-white">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.paragraph_1 != blank %}
+        <p class="mt-6 max-w-3xl font-normal text-white">{{ section.settings.paragraph_1 }}</p>
+      {% endif %}
+
+      {% if section.settings.highlight_line != blank %}
+        <p class="mt-3 max-w-3xl font-semibold text-white">{{ section.settings.highlight_line }}</p>
+      {% endif %}
+
+      {% if section.settings.paragraph_2 != blank %}
+        <p class="mt-3 max-w-3xl font-normal text-white">{{ section.settings.paragraph_2 }}</p>
+      {% endif %}
+
+      {% form 'contact', id: form_id, class: 'contact-form mt-12', novalidate: 'novalidate' %}
+        {% if form.posted_successfully? %}
+          <p id="form-status-{{ section.id }}" class="mb-5 text-sm font-semibold text-emerald-300" aria-live="polite">
+            {{ section.settings.success_message }}
+          </p>
+        {% endif %}
+
+        {% if form.errors %}
+          <div class="mb-5 text-sm text-red-300">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="field">
+            <label class="field-label" for="{{ first_name_id }}">First name</label>
+            <input
+              class="field-input"
+              id="{{ first_name_id }}"
+              name="contact[first_name]"
+              type="text"
+              autocomplete="given-name"
+              value="{{ form.first_name | default: customer.first_name }}"
+            >
+          </div>
+          <div class="field">
+            <label class="field-label" for="{{ last_name_id }}">Last name</label>
+            <input
+              class="field-input"
+              id="{{ last_name_id }}"
+              name="contact[last_name]"
+              type="text"
+              autocomplete="family-name"
+              value="{{ form.last_name | default: customer.last_name }}"
+            >
+          </div>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="field">
+            <label class="field-label" for="{{ company_id }}">Company</label>
+            <input
+              class="field-input"
+              id="{{ company_id }}"
+              name="contact[company]"
+              type="text"
+              autocomplete="organization"
+            >
+          </div>
+          <div class="field">
+            <label class="field-label" for="{{ job_title_id }}">Job title</label>
+            <input
+              class="field-input"
+              id="{{ job_title_id }}"
+              name="contact[job_title]"
+              type="text"
+              autocomplete="organization-title"
+            >
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="{{ email_id }}">Business Email</label>
+          <input
+            class="field-input"
+            id="{{ email_id }}"
+            name="contact[email]"
+            type="email"
+            autocomplete="email"
+            autocorrect="off"
+            autocapitalize="off"
+            required
+            value="{{ form.email | default: customer.email }}"
+          >
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="{{ phone_id }}">Phone Number</label>
+          <input
+            class="field-input"
+            id="{{ phone_id }}"
+            name="contact[phone]"
+            type="tel"
+            autocomplete="tel"
+            value="{{ form.phone | default: customer.phone }}"
+          >
+        </div>
+
+        <input
+          type="hidden"
+          name="contact[body]"
+          value="{{ section.settings.hidden_message }}"
+        >
+
+        <label class="contact-consent" for="{{ consent_id }}">
+          <input
+            id="{{ consent_id }}"
+            name="contact[consent]"
+            type="checkbox"
+            class="contact-consent-input"
+            required
+          >
+          <span>
+            {{ section.settings.consent_text }}
+            {% if section.settings.terms_url != blank %}
+              <a href="{{ section.settings.terms_url }}" class="underline underline-offset-4">{{ section.settings.terms_link_text }}</a>
+            {% endif %}
+          </span>
+        </label>
+
+        <div class="flex flex-col items-start gap-4">
+          <button class="contact-submit-button" type="submit">{{ section.settings.button_label }}</button>
+          <p id="form-status-fallback-{{ section.id }}" class="text-sm font-semibold text-white/75" aria-live="polite"></p>
+        </div>
+      {% endform %}
+    </div>
+
+    <div class="contact-image-shell">
+      {% if section.settings.image != blank %}
+        {{
+          section.settings.image
+          | image_url: width: 1800
+          | image_tag:
+            widths: '540, 720, 960, 1280, 1600, 1800',
+            sizes: '(min-width: 1024px) 46vw, 100vw',
+            alt: section.settings.image_alt | default: section.settings.heading,
+            class: 'contact-image',
+            loading: 'lazy'
+        }}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Warehouse Contact",
+  "tag": "section",
+  "class": "section-warehouse-contact",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Contact section"
+    },
+    {
+      "type": "text",
+      "id": "section_id",
+      "label": "Section ID (for CSS anchor links)",
+      "default": "contact"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Don't Wait-Get the Best Solution Now!"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_1",
+      "label": "Paragraph 1",
+      "default": "Why settle for mediocre when you can work with the #1 in pallet racks? Time is money, and every day you wait is another day your warehouse isn't operating at full capacity. Don't waste weeks waiting on competitors when Direct Pallet Racking can design, quote, and install within a week. Get your warehouse optimized with the fastest, most reliable solution on the market."
+    },
+    {
+      "type": "text",
+      "id": "highlight_line",
+      "label": "Highlight line",
+      "default": "Don't Settle for Less, Get the Best Solution Now."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "Contact us today for a free consultation, and let's start maximizing your warehouse efficiency right away. Your storage solutions are just one call away!"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Submit Request"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you! We received your request and will contact you shortly."
+    },
+    {
+      "type": "text",
+      "id": "hidden_message",
+      "label": "Hidden message sent with form",
+      "default": "Warehouse quote request"
+    },
+    {
+      "type": "text",
+      "id": "consent_text",
+      "label": "Consent text",
+      "default": "I accept the"
+    },
+    {
+      "type": "text",
+      "id": "terms_link_text",
+      "label": "Terms link text",
+      "default": "Terms"
+    },
+    {
+      "type": "url",
+      "id": "terms_url",
+      "label": "Terms link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Side image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Side image alt text",
+      "default": "Direct Pallet Racking specialist standing in a warehouse"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Warehouse Contact"
+    }
+  ]
+}
+{% endschema %}
