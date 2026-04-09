@@ -30,11 +30,11 @@
             class: 'h-[52px] w-auto shrink-0 p-2'
         }}
       {% elsif section.settings.logo_text != blank %}
-        <p class="text-lg font-extrabold uppercase tracking-[0.06em] text-slate-900">{{ section.settings.logo_text }}</p>
+        <p class="text-lg font-extrabold uppercase text-slate-900">{{ section.settings.logo_text }}</p>
       {% endif %}
 
       {% if primary_links != blank %}
-        <nav class="flex flex-wrap items-center justify-center gap-5 text-sm font-bold uppercase tracking-[0.12em] text-slate-700" aria-label="{{ section.settings.primary_nav_label | escape }}">
+        <nav class="flex flex-wrap items-center justify-center gap-5 text-sm font-bold uppercase text-slate-700" aria-label="{{ section.settings.primary_nav_label | escape }}">
           {% for link in primary_links %}
             <a href="{{ link.url }}">{{ link.title }}</a>
           {% endfor %}
@@ -49,7 +49,7 @@
             assign phone_href = 'tel:' | append: sanitized_phone
           endif
         %}
-        <a class="text-sm font-extrabold tracking-[0.14em] text-slate-900" href="{{ phone_href }}">
+        <a class="text-sm font-extrabold text-slate-900" href="{{ phone_href }}">
           {{ section.settings.phone_text }}
         </a>
       {% endif %}
