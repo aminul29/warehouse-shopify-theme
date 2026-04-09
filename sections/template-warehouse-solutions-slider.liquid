@@ -176,14 +176,22 @@
       root.querySelectorAll('.explore-swiper').forEach((slider) => destroySlider(slider));
     };
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => initAll());
-    } else {
-      initAll();
-    }
+    const initWhenSwiperReady = (root = document, attemptsLeft = 60) => {
+      if (typeof Swiper === 'undefined') {
+        if (attemptsLeft <= 0) return;
+        window.setTimeout(() => initWhenSwiperReady(root, attemptsLeft - 1), 100);
+        return;
+      }
+      initAll(root);
+    };
+
+    initWhenSwiperReady();
+    window.addEventListener('load', () => {
+      initWhenSwiperReady();
+    });
 
     document.addEventListener('shopify:section:load', (event) => {
-      initAll(event.target);
+      initWhenSwiperReady(event.target);
     });
 
     document.addEventListener('shopify:section:unload', (event) => {
