@@ -31,7 +31,7 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <div id="{{ slider_id }}" class="swiper explore-swiper mt-12">
+      <div id="{{ slider_id }}" class="swiper explore-swiper mt-12" data-prev-id="{{ prev_id }}" data-next-id="{{ next_id }}">
         <div class="swiper-wrapper">
           {% for block in section.blocks %}
             {% liquid
@@ -109,24 +109,18 @@
 
 {% javascript %}
   (() => {
-    const sectionId = '{{ section.id }}';
-    const sliderSelector = '#explore-swiper-' + sectionId;
-    const prevSelector = '#explore-prev-' + sectionId;
-    const nextSelector = '#explore-next-' + sectionId;
-    let swiperInstance;
+    const swiperInstances = window.__warehouseExploreSwiperInstances || new Map();
+    window.__warehouseExploreSwiperInstances = swiperInstances;
 
-    const init = () => {
-      const slider = document.querySelector(sliderSelector);
-      if (!slider || typeof Swiper === 'undefined') return;
-      if (slider.dataset.swiperReady === 'true') return;
+    const createSwiperOptions = (slider) => {
+      const prevId = slider.dataset.prevId;
+      const nextId = slider.dataset.nextId;
+      const prevEl = prevId ? document.getElementById(prevId) : null;
+      const nextEl = nextId ? document.getElementById(nextId) : null;
 
-      swiperInstance = new Swiper(sliderSelector, {
+      const options = {
         slidesPerView: 1,
         spaceBetween: 20,
-        navigation: {
-          prevEl: prevSelector,
-          nextEl: nextSelector
-        },
         breakpoints: {
           768: {
             slidesPerView: 1.25,
@@ -137,23 +131,58 @@
             spaceBetween: 28
           }
         }
-      });
+      };
 
+      if (prevEl && nextEl) {
+        options.navigation = {
+          prevEl,
+          nextEl
+        };
+      }
+
+      return options;
+    };
+
+    const initSlider = (slider) => {
+      if (!slider || slider.dataset.swiperReady === 'true') return;
+      if (typeof Swiper === 'undefined') return;
+
+      const instance = new Swiper(slider, createSwiperOptions(slider));
+      swiperInstances.set(slider, instance);
       slider.dataset.swiperReady = 'true';
     };
 
-    const destroy = () => {
-      if (swiperInstance && typeof swiperInstance.destroy === 'function') {
-        swiperInstance.destroy(true, true);
+    const destroySlider = (slider) => {
+      if (!slider) return;
+      const instance = swiperInstances.get(slider);
+      if (instance && typeof instance.destroy === 'function') {
+        instance.destroy(true, true);
       }
-      const slider = document.querySelector(sliderSelector);
-      if (slider) slider.dataset.swiperReady = 'false';
-      swiperInstance = undefined;
+      swiperInstances.delete(slider);
+      slider.dataset.swiperReady = 'false';
     };
 
-    init();
-    document.addEventListener('shopify:section:load', init);
-    document.addEventListener('shopify:section:unload', destroy);
+    const initAll = (root = document) => {
+      root.querySelectorAll('.explore-swiper').forEach((slider) => initSlider(slider));
+    };
+
+    const destroyAll = (root = document) => {
+      root.querySelectorAll('.explore-swiper').forEach((slider) => destroySlider(slider));
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => initAll());
+    } else {
+      initAll();
+    }
+
+    document.addEventListener('shopify:section:load', (event) => {
+      initAll(event.target);
+    });
+
+    document.addEventListener('shopify:section:unload', (event) => {
+      destroyAll(event.target);
+    });
   })();
 {% endjavascript %}
 
