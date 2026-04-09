@@ -71,6 +71,7 @@
       "type": "template-warehouse-delivery",
       "settings": {
         "aria_label": "Delivery banner",
+        "image": "shopify://shop_images/delivery-truck.png",
         "heading": "Next Day Delivery at the Speed You Need"
       }
     },
