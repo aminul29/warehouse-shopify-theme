@@ -66,7 +66,47 @@
         "aria_label": "Delivery banner",
         "heading": "Next Day Delivery at the Speed You Need"
       }
+    },
+    "warehouse_advantages": {
+      "type": "template-warehouse-advantages",
+      "settings": {
+        "aria_label": "Warehouse advantages",
+        "show_top_gradient": true
+      },
+      "blocks": {
+        "advantage_1": {
+          "type": "advantage",
+          "settings": {
+            "eyebrow": "Speed",
+            "title": "No Downtime, Just Results",
+            "body": "With rapid design and installation, you'll experience minimal downtime. No delays, no stock issues, and no costly disruption while your team waits for a supplier to move.",
+            "accent_position": "left",
+            "reverse_layout": false
+          }
+        },
+        "advantage_2": {
+          "type": "advantage",
+          "settings": {
+            "eyebrow": "Experience",
+            "title": "Over 1,000 Successful Projects",
+            "body": "We've designed and installed storage solutions in more than 1,000 warehouses nationwide. That experience translates into fewer mistakes, faster decisions, and cleaner execution.",
+            "accent_position": "middle",
+            "reverse_layout": true
+          }
+        },
+        "advantage_3": {
+          "type": "advantage",
+          "settings": {
+            "eyebrow": "Expertise",
+            "title": "End-to-End Project Management",
+            "body": "From concept and permits to execution, we handle every step so your project stays on track. The result is a fast, seamless rollout without unnecessary complexity.",
+            "accent_position": "left_bottom",
+            "reverse_layout": false
+          }
+        }
+      },
+      "block_order": ["advantage_1", "advantage_2", "advantage_3"]
     }
   },
-  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery"]
+  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery", "warehouse_advantages"]
 }
