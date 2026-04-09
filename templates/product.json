@@ -1,0 +1,83 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "template": {
+      "type": "template-product",
+      "blocks": {
+        "vendor": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_selector": {
+          "type": "variant_selector",
+          "settings": {}
+        },
+        "quantity": {
+          "type": "quantity",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "checkout_buttons": {
+          "type": "checkout_buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_selector",
+        "quantity",
+        "description",
+        "checkout_buttons"
+      ],
+      "settings": {}
+    },
+    "1774227627faa7725f": {
+      "type": "apps",
+      "blocks": {
+        "dope_product_reccomendation_recommendations_yYramz": {
+          "type": "shopify://apps/dope-product-reccomendation/blocks/recommendations/019d1823-1f5f-7c0a-8d0d-de3c77285f36",
+          "settings": {
+            "heading": "Recommended for this product",
+            "layout_mode": "grid",
+            "max_items": 4,
+            "show_price": true,
+            "show_vendor": true,
+            "show_add_to_cart": true,
+            "background_color": "#f6f2ea",
+            "heading_color": "#1f1b16",
+            "button_color": "#1f7a5a"
+          }
+        }
+      },
+      "block_order": [
+        "dope_product_reccomendation_recommendations_yYramz"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "template",
+    "1774227627faa7725f"
+  ]
+}

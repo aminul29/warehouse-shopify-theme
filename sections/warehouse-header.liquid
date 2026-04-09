@@ -1,0 +1,154 @@
+{% liquid
+  assign main_menu = blank
+  assign menu_handle = section.settings.menu
+  if menu_handle != blank and linklists[menu_handle] != blank
+    assign main_menu = linklists[menu_handle].links
+  endif
+%}
+
+<header
+  class="inset-x-0 top-0 z-50 bg-[#111111] text-white"
+  style="display:block; min-height:99px; background:#111; color:#fff;"
+  x-data="{ mobileMenuOpen: false }"
+>
+  <div class="section-wrap relative">
+    <div class="flex min-h-20 items-center justify-between gap-6 py-5 lg:min-h-[99px]">
+      <div class="shrink-0">
+        {% if section.settings.logo_text != blank %}
+          <a href="{{ routes.root_url }}" class="shrink-0 text-lg font-bold">
+            {{ section.settings.logo_text }}
+          </a>
+        {% elsif section.settings.logo != blank %}
+          <a href="{{ routes.root_url }}" class="block" aria-label="{{ shop.name }}">
+            {{
+              section.settings.logo
+              | image_url: width: section.settings.logo_width
+              | image_tag:
+                widths: '120, 180, 240, 320',
+                width: section.settings.logo_width,
+                alt: shop.name,
+                class: 'h-auto w-auto max-w-full'
+            }}
+          </a>
+        {% else %}
+          <a href="{{ routes.root_url }}" class="block text-lg font-bold" aria-label="{{ shop.name }}">
+            {{ shop.name }}
+          </a>
+        {% endif %}
+      </div>
+
+      {% if main_menu != blank %}
+        <nav class="hidden items-center gap-6 lg:flex" aria-label="Primary">
+          {% for link in main_menu %}
+            <a class="top-nav-link" href="{{ link.url }}">{{ link.title }}</a>
+          {% endfor %}
+        </nav>
+      {% endif %}
+
+      <div class="hidden items-center gap-4 lg:flex">
+        {% if section.settings.cta_label != blank and section.settings.cta_url != blank %}
+          <a
+            class="btn-primary bg-[#1493F5] px-6 py-3 text-lg font-semibold"
+            href="{{ section.settings.cta_url }}"
+          >
+            {{ section.settings.cta_label }}
+          </a>
+        {% endif %}
+      </div>
+
+      <button
+        class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white lg:hidden"
+        type="button"
+        x-on:click="mobileMenuOpen = !mobileMenuOpen"
+        x-bind:aria-expanded="mobileMenuOpen.toString()"
+        aria-controls="MobileMenu-{{ section.id }}"
+        aria-label="Toggle menu"
+      >
+        <span class="sr-only">Toggle menu</span>
+        <svg
+          class="h-5 w-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path x-show="!mobileMenuOpen" d="M4 7h16M4 12h16M4 17h16"></path>
+          <path x-show="mobileMenuOpen" d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div
+      id="MobileMenu-{{ section.id }}"
+      class="pb-5 lg:hidden"
+      x-show="mobileMenuOpen"
+      x-cloak
+      x-transition.opacity.duration.150ms
+      x-on:click.outside="mobileMenuOpen = false"
+    >
+      <div class="rounded-[28px] bg-white p-3 text-slate-900 shadow-2xl shadow-black/25">
+        {% if main_menu != blank %}
+          {% for link in main_menu %}
+            <a class="mobile-nav-link" href="{{ link.url }}">{{ link.title }}</a>
+          {% endfor %}
+        {% endif %}
+
+        {% if section.settings.cta_label != blank and section.settings.cta_url != blank %}
+          <a class="mobile-nav-link" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }}</a>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Warehouse Header",
+  "tag": "section",
+  "class": "section-warehouse-header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 320,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 180
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "Direct Pallet Racking"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Get a Quote"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button link"
+    }
+  ]
+}
+{% endschema %}
