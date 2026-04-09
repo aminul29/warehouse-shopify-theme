@@ -15,19 +15,14 @@
 <footer
   class="bg-paper py-10"
   role="contentinfo"
-  aria-label="{{ section.settings.aria_label | escape }}"
->
+  aria-label="{{ section.settings.aria_label | escape }}">
   <div class="section-wrap">
     <div class="flex flex-col items-center justify-between gap-6 border-b border-slate-200 pb-8 lg:flex-row">
       {% if section.settings.logo_image != blank %}
         {{
           section.settings.logo_image
           | image_url: width: 400
-          | image_tag:
-            widths: '160, 240, 320, 400',
-            sizes: '(min-width: 1024px) 220px, 160px',
-            alt: section.settings.logo_alt | default: shop.name,
-            class: 'h-[52px] w-auto shrink-0 p-2'
+          | image_tag: widths: '160, 240, 320, 400', sizes: '(min-width: 1024px) 220px, 160px', alt: logo_alt_text, class: 'h-[52px] w-auto shrink-0 p-2'
         }}
       {% elsif section.settings.logo_text != blank %}
         <p class="text-lg font-extrabold uppercase text-slate-900">{{ section.settings.logo_text }}</p>
@@ -57,7 +52,10 @@
 
     <div class="flex flex-col gap-4 pt-6 text-center text-sm lg:flex-row lg:items-center lg:justify-between lg:text-left">
       {% if section.settings.copyright_text != blank %}
-        <p>&copy; {{ current_year }} {{ section.settings.copyright_text }}</p>
+        <p>
+          &copy; {{ current_year }}
+          {{ section.settings.copyright_text }}
+        </p>
       {% endif %}
 
       {% if legal_links != blank %}

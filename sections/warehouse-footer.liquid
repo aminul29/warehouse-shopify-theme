@@ -2,6 +2,7 @@
   assign current_year = 'now' | date: '%Y'
   assign primary_links = blank
   assign legal_links = blank
+  assign logo_alt_text = section.settings.logo_alt | default: shop.name
 
   if section.settings.primary_menu != blank and linklists[section.settings.primary_menu] != blank
     assign primary_links = linklists[section.settings.primary_menu].links
@@ -22,8 +23,11 @@
         {{
           section.settings.logo_image
           | image_url: width: 400
-          | image_tag: widths: '160, 240, 320, 400', sizes: '(min-width: 1024px) 220px, 160px', alt: section.settings.logo_alt
-          | default: shop.name, class: 'h-[52px] w-auto shrink-0 p-2'
+          | image_tag:
+            widths: '160, 240, 320, 400',
+            sizes: '(min-width: 1024px) 220px, 160px',
+            alt: logo_alt_text,
+            class: 'h-[52px] w-auto shrink-0 p-2'
         }}
       {% elsif section.settings.logo_text != blank %}
         <p class="text-lg font-extrabold uppercase text-slate-900">{{ section.settings.logo_text }}</p>

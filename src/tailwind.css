@@ -348,8 +348,8 @@
     @apply relative z-10 mx-auto max-w-3xl text-center text-base font-semibold leading-8 text-slate-700;
   }
 
-  .cta-bg-pattern {
-    @apply pointer-events-none absolute right-0 top-1/2 w-[54em] -translate-y-1/2 -scale-x-100 grayscale;
+  img.cta-bg-pattern.grayscale {
+    @apply absolute right-0 bottom-0 w-[40%];
   }
 
   .cta-panel {
@@ -561,6 +561,16 @@
 
   .slider-button {
     @apply inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur hover:bg-white hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-40;
+  }
+}
+
+@layer utilities {
+  .text-base {
+    font-family: "Aptos", ui-sans-serif, system-ui, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
   }
 }
 

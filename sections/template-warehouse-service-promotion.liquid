@@ -70,7 +70,12 @@
         {% endif %}
 
         {% if section.settings.button_label != blank and section.settings.button_url != blank %}
-          <a class="btn-primary mt-8" href="{{ section.settings.button_url }}">{{ section.settings.button_label }}</a>
+          <a
+            class="mt-8 inline-flex w-fit items-center justify-center gap-[10px] rounded-[70px] bg-[#1493F5] px-[50px] pt-[13px] pb-[14px] text-center text-[18px] font-semibold text-white hover:bg-[#0f79ca]"
+            href="{{ section.settings.button_url }}"
+          >
+            {{ section.settings.button_label }}
+          </a>
         {% endif %}
       </div>
 

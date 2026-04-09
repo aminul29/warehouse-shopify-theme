@@ -45,9 +45,9 @@
 
               assign heading_class = 'font-heading uppercase leading-none text-white transform-gpu transition-transform duration-500 ease-out group-hover:-translate-y-4'
               if block.settings.layout == 'feature'
-                assign heading_class = heading_class | append: ' text-4xl sm:text-5xl'
+                assign heading_class = heading_class | append: ' text-4xl sm:text-5xl lg:text-[40px]'
               else
-                assign heading_class = heading_class | append: ' text-3xl sm:text-4xl'
+                assign heading_class = heading_class | append: ' text-3xl sm:text-4xl lg:text-[40px]'
               endif
 
               assign overlay_class = 'explore-card-overlay transition duration-300 group-hover:bg-black/75'
@@ -86,7 +86,7 @@
                           <p class="text-base leading-8 text-white/85">{{ block.settings.body }}</p>
                         {% endif %}
                         {% if block.settings.button_label != blank %}
-                          <a class="explore-learn-button mt-8" href="{{ button_href }}">
+                          <a class="explore-learn-button mt-8 w-full" href="{{ button_href }}">
                             {{ block.settings.button_label }}
                           </a>
                         {% endif %}
