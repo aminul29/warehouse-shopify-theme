@@ -1,0 +1,157 @@
+{% liquid
+  assign pattern_alt = section.settings.pattern_image.alt | default: section.settings.heading
+  assign panel_alt = section.settings.panel_image.alt | default: section.settings.heading
+  assign phone_href = section.settings.phone_url
+  if phone_href == blank and section.settings.phone_text != blank
+    assign phone_digits = section.settings.phone_text | remove: ' ' | remove: '-' | remove: '(' | remove: ')' | remove: '.' | remove: '+'
+    assign phone_href = 'tel:' | append: phone_digits
+  endif
+%}
+
+<section
+  id="cta"
+  class="relative overflow-hidden bg-[#FBFBFB] pb-20 sm:pb-28"
+  aria-label="{{ section.settings.aria_label | escape }}"
+>
+  {% if section.settings.pattern_image != blank %}
+    {{
+      section.settings.pattern_image
+      | image_url: width: 1200
+      | image_tag:
+        widths: '520, 760, 980, 1200',
+        sizes: '(min-width: 1024px) 520px, 0px',
+        alt: pattern_alt,
+        class: 'cta-bg-pattern',
+        loading: 'lazy'
+    }}
+  {% endif %}
+
+  <div class="section-wrap relative">
+    <div class="cta-panel">
+      {% if section.settings.panel_image != blank %}
+        {{
+          section.settings.panel_image
+          | image_url: width: 2200
+          | image_tag:
+            widths: '750, 1100, 1500, 1780, 2000, 2200',
+            sizes: '(min-width: 1280px) 1158px, 100vw',
+            alt: panel_alt,
+            class: 'cta-panel-image',
+            loading: 'lazy'
+        }}
+      {% endif %}
+
+      <div class="cta-panel-overlay"></div>
+
+      <div class="relative z-10 flex min-h-[360px] flex-col items-center justify-center px-6 py-10 text-center sm:px-12">
+        {% if section.settings.eyebrow != blank %}
+          <p class="text-sm font-semibold text-white">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2 class="mt-4 w-[696px] text-center font-heading text-[40px] font-extrabold uppercase leading-[105%] text-white">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.button_label != blank and section.settings.button_url != blank %}
+          <a
+            class="inline-flex items-center justify-center rounded-full bg-[#1493F5] px-10 py-3.5 font-semibold text-white hover:bg-[#0f79ca] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white mt-8"
+            href="{{ section.settings.button_url }}"
+          >
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.show_phone and section.settings.phone_text != blank %}
+          <p class="mt-5 text-white">
+            {{ section.settings.phone_prefix }}
+            <a class="text-sky-400 text-xl" href="{{ phone_href | default: routes.root_url }}">
+              {{ section.settings.phone_text }}
+            </a>
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Warehouse CTA",
+  "tag": "section",
+  "class": "section-warehouse-cta",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Call to action"
+    },
+    {
+      "type": "image_picker",
+      "id": "pattern_image",
+      "label": "Background pattern image"
+    },
+    {
+      "type": "image_picker",
+      "id": "panel_image",
+      "label": "Panel background image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Need Assistance?"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Warehouse Solutions Specialist Can Help"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Contact a Warehouse Solution Specialist"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone",
+      "label": "Show phone row",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "phone_prefix",
+      "label": "Phone prefix text",
+      "default": "Or Call"
+    },
+    {
+      "type": "text",
+      "id": "phone_text",
+      "label": "Phone number text",
+      "default": "888-979-9824"
+    },
+    {
+      "type": "url",
+      "id": "phone_url",
+      "label": "Phone link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Warehouse CTA"
+    }
+  ]
+}
+{% endschema %}
