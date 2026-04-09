@@ -24,15 +24,11 @@
     },
     "warehouse_solutions": {
       "type": "template-warehouse-solution",
-      "settings": {
-        "aria_label": "Warehouse solutions",
-        "heading": "Comprehensive Warehouse Solutions",
-        "subheading": "With a broad level of expertise, DPR can serve as the single point of contact for your warehouse project."
-      },
       "blocks": {
         "solution_1": {
           "type": "solution",
           "settings": {
+            "icon": "shopify://shop_images/warehouse-design.png",
             "title": "Warehouse Design",
             "body": "Expert space-planning consultation designed around your layout, throughput, and inventory profile.",
             "button_label": "Explore",
@@ -42,6 +38,7 @@
         "solution_2": {
           "type": "solution",
           "settings": {
+            "icon": "shopify://shop_images/racking-storage.png",
             "title": "Racking & Storage",
             "body": "A broad selection of products to build a customized storage system that fits now and scales later.",
             "button_label": "Explore",
@@ -51,6 +48,7 @@
         "solution_3": {
           "type": "solution",
           "settings": {
+            "icon": "shopify://shop_images/installation.png",
             "title": "Installation",
             "body": "Installation services for projects of every size, including repairs, adjustments, and phased rollouts.",
             "button_label": "Explore",
@@ -58,75 +56,16 @@
           }
         }
       },
-      "block_order": ["solution_1", "solution_2", "solution_3"]
-    },
-    "warehouse_resources": {
-      "type": "template-warehouse-resources",
+      "block_order": [
+        "solution_1",
+        "solution_2",
+        "solution_3"
+      ],
       "settings": {
-        "aria_label": "Resources",
-        "section_id": "resources",
-        "heading": "What You Get with Direct Pallet Racking",
-        "subheading": "When you partner with us, you're not just getting a product. You're getting a full-service solution designed to elevate your warehouse operations. Here's what you can expect:"
-      },
-      "blocks": {
-        "resource_1": {
-          "type": "resource",
-          "settings": {
-            "card_width": "regular",
-            "title": "Fast Quotes in 24 Hours",
-            "body": "No waiting weeks for a quote. Get your customized quote fast so you can start planning immediately."
-          }
-        },
-        "resource_2": {
-          "type": "resource",
-          "settings": {
-            "card_width": "regular",
-            "title": "Detailed Drawings in 24 Hours",
-            "body": "Visualize your system with precise CAD drawings, delivered within a day."
-          }
-        },
-        "resource_3": {
-          "type": "resource",
-          "settings": {
-            "card_width": "regular",
-            "title": "Installation in a Week",
-            "body": "We'll have your system installed and fully operational faster than anyone else in the industry."
-          }
-        },
-        "resource_4": {
-          "type": "resource",
-          "settings": {
-            "card_width": "regular",
-            "title": "Always In-Stock Products",
-            "body": "No more waiting on backorders. Our racking systems are always available and ready to go."
-          }
-        },
-        "resource_5": {
-          "type": "resource",
-          "settings": {
-            "card_width": "wide",
-            "title": "Custom Solutions for Your Needs",
-            "body": "Whether it's pallet racks, cantilever, or dynamic systems, we tailor everything to fit your specific storage challenges."
-          }
-        },
-        "resource_6": {
-          "type": "resource",
-          "settings": {
-            "card_width": "wide",
-            "title": "Top-Notch Safety and Durability",
-            "body": "Our racking systems are built tough to withstand heavy loads and long-term use, ensuring maximum safety and performance."
-          }
-        },
-        "resource_7": {
-          "type": "resource",
-          "settings": {
-            "card_width": "wide",
-            "title": "Expert Guidance From Start to Finish",
-            "body": "From consultation to installation, our team handles every detail with expertise and efficiency."
-          }
-        }
-      },
-      "block_order": ["resource_1", "resource_2", "resource_3", "resource_4", "resource_5", "resource_6", "resource_7"]
+        "aria_label": "Warehouse solutions",
+        "heading": "Comprehensive Warehouse Solutions",
+        "subheading": "With a broad level of expertise, DPR can serve as the single point of contact for your warehouse project."
+      }
     },
     "warehouse_delivery": {
       "type": "template-warehouse-delivery",
@@ -137,10 +76,6 @@
     },
     "warehouse_advantages": {
       "type": "template-warehouse-advantages",
-      "settings": {
-        "aria_label": "Warehouse advantages",
-        "show_top_gradient": true
-      },
       "blocks": {
         "advantage_1": {
           "type": "advantage",
@@ -173,15 +108,18 @@
           }
         }
       },
-      "block_order": ["advantage_1", "advantage_2", "advantage_3"]
+      "block_order": [
+        "advantage_1",
+        "advantage_2",
+        "advantage_3"
+      ],
+      "settings": {
+        "aria_label": "Warehouse advantages",
+        "show_top_gradient": true
+      }
     },
     "warehouse_services": {
       "type": "template-warehouse-services",
-      "settings": {
-        "aria_label": "Products and services",
-        "tabs_aria_label": "Products and services tabs",
-        "heading": "Products & Services"
-      },
       "blocks": {
         "service_1": {
           "type": "service",
@@ -239,18 +177,21 @@
           }
         }
       },
-      "block_order": ["service_1", "service_2", "service_3", "service_4", "service_5"]
+      "block_order": [
+        "service_1",
+        "service_2",
+        "service_3",
+        "service_4",
+        "service_5"
+      ],
+      "settings": {
+        "aria_label": "Products and services",
+        "tabs_aria_label": "Products and services tabs",
+        "heading": "Products & Services"
+      }
     },
     "warehouse_manufacturers": {
       "type": "template-warehouse-manufactures",
-      "settings": {
-        "aria_label": "Manufacturers and metrics",
-        "heading": "Trusted Integrator for Leading Manufacturers",
-        "cta_heading": "Shop Online with Direct Pallet Racking",
-        "cta_body": "Enjoy fast shipping on racking along with other parts and supplies.",
-        "cta_button_label": "Shop Now",
-        "cta_button_url": ""
-      },
       "blocks": {
         "metric_1": {
           "type": "metric",
@@ -274,113 +215,27 @@
           }
         }
       },
-      "block_order": ["metric_1", "metric_2", "metric_3"]
-    },
-    "warehouse_service_promotion": {
-      "type": "template-warehouse-service-promotion",
+      "block_order": [
+        "metric_1",
+        "metric_2",
+        "metric_3"
+      ],
       "settings": {
-        "aria_label": "Service promotion",
-        "problem_heading": "Long Buying Processes and Lead Times Are Holding You Back",
-        "problem_paragraph_1": "In the warehouse industry, time is money. Yet many businesses face unnecessary delays when trying to secure the right storage solutions.",
-        "problem_paragraph_2": "Between drawn-out quoting processes, multiple back-and-forths, and suppliers who are slow to act, companies find themselves stuck waiting for weeks before they can even begin solving their storage problems.",
-        "divider_copy": "These slow processes don't just waste time. They cost you productivity, revenue, and valuable opportunities.",
-        "solution_heading": "How Direct Pallet Racking Solves It",
-        "solution_paragraph_1": "At Direct Pallet Racking, we provide quotes in a day and deliver detailed drawings within 24 hours.",
-        "solution_paragraph_2": "With us, you get speed, efficiency, and reliability to keep your warehouse moving forward without missing a beat.",
-        "button_label": "Get a Quote Today",
-        "button_url": ""
+        "aria_label": "Manufacturers and metrics",
+        "heading": "Trusted Integrator for Leading Manufacturers",
+        "cta_heading": "Shop Online with Direct Pallet Racking",
+        "cta_body": "Enjoy fast shipping on racking along with other parts and supplies.",
+        "cta_button_label": "Shop Now",
+        "cta_button_url": ""
       }
-    },
-    "warehouse_testimonials": {
-      "type": "template-warehouse-testimonial",
-      "settings": {
-        "aria_label": "Testimonials",
-        "heading": "Testimonials"
-      },
-      "blocks": {
-        "testimonial_1": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "Great service from Direct Pallet Racking. Fast and effective communication.",
-            "author": "Patrick, Operations Manager"
-          }
-        },
-        "testimonial_2": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "Direct Pallet Racking delivered exactly what we needed: fast, efficient, and reliable.",
-            "author": "Robbie, Branch Manager"
-          }
-        },
-        "testimonial_3": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "Working with Direct Pallet Racking was a game changer for our warehouse.",
-            "author": "Josh, Distribution Manager"
-          }
-        }
-      },
-      "block_order": ["testimonial_1", "testimonial_2", "testimonial_3"]
-    },
-    "warehouse_cta": {
-      "type": "template-warehouse-cta",
-      "settings": {
-        "aria_label": "Call to action",
-        "eyebrow": "Need Assistance?",
-        "heading": "Our Warehouse Solutions Specialist Can Help",
-        "button_label": "Contact a Warehouse Solution Specialist",
-        "button_url": "",
-        "show_phone": true,
-        "phone_prefix": "Or Call",
-        "phone_text": "888-979-9824",
-        "phone_url": ""
-      }
-    },
-    "warehouse_more_solutions": {
-      "type": "template-warehouse-solutions",
-      "settings": {
-        "aria_label": "Explore more solutions",
-        "section_id": "more-solutions",
-        "heading": "Explore More Solutions",
-        "show_navigation": true
-      },
-      "blocks": {
-        "solution_item_1": {
-          "type": "solution_item",
-          "settings": {
-            "layout": "side",
-            "title": "ASRS",
-            "body": "Automated storage and retrieval systems built to increase density, accuracy, and throughput.",
-            "button_label": "Learn More",
-            "button_url": ""
-          }
-        },
-        "solution_item_2": {
-          "type": "solution_item",
-          "settings": {
-            "layout": "feature",
-            "title": "Innovative Automated Solutions",
-            "body": "Integrated systems that reduce manual friction and support scalable fulfillment performance.",
-            "button_label": "Learn More",
-            "button_url": ""
-          }
-        },
-        "solution_item_3": {
-          "type": "solution_item",
-          "settings": {
-            "layout": "side",
-            "title": "Mobile Racking Systems",
-            "body": "High-density racking solutions that reduce aisle waste and maximize usable warehouse capacity.",
-            "button_label": "Learn More",
-            "button_url": ""
-          }
-        }
-      },
-      "block_order": ["solution_item_1", "solution_item_2", "solution_item_3"]
     }
   },
-  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_resources", "warehouse_delivery", "warehouse_advantages", "warehouse_services", "warehouse_manufacturers", "warehouse_service_promotion", "warehouse_testimonials", "warehouse_cta", "warehouse_more_solutions"]
+  "order": [
+    "warehouse_hero",
+    "warehouse_solutions",
+    "warehouse_delivery",
+    "warehouse_advantages",
+    "warehouse_services",
+    "warehouse_manufacturers"
+  ]
 }
