@@ -32,7 +32,7 @@
             "title": "Warehouse Design",
             "body": "Expert space-planning consultation designed around your layout, throughput, and inventory profile.",
             "button_label": "Explore",
-            "button_url": ""
+            "button_url": "#"
           }
         },
         "solution_2": {
@@ -42,7 +42,7 @@
             "title": "Racking & Storage",
             "body": "A broad selection of products to build a customized storage system that fits now and scales later.",
             "button_label": "Explore",
-            "button_url": ""
+            "button_url": "#"
           }
         },
         "solution_3": {
@@ -52,7 +52,7 @@
             "title": "Installation",
             "body": "Installation services for projects of every size, including repairs, adjustments, and phased rollouts.",
             "button_label": "Explore",
-            "button_url": ""
+            "button_url": "#"
           }
         }
       },
