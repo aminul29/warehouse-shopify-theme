@@ -49,6 +49,13 @@
               else
                 assign heading_class = heading_class | append: ' text-3xl sm:text-4xl'
               endif
+
+              assign overlay_class = 'explore-card-overlay transition duration-300 group-hover:bg-black/75'
+              if block.settings.layout == 'feature'
+                assign overlay_class = overlay_class | append: ' bg-black/35'
+              endif
+
+              assign button_href = block.settings.button_url | default: '#contact'
             %}
 
             <div class="swiper-slide" {{ block.shopify_attributes }}>
@@ -66,7 +73,7 @@
                   }}
                 {% endif %}
 
-                <div class="explore-card-overlay transition duration-300 group-hover:bg-black/75"></div>
+                <div class="{{ overlay_class }}"></div>
                 <div class="absolute inset-0 z-10 flex flex-col justify-end p-6 sm:p-8">
                   <div class="w-full max-w-md">
                     {% if block.settings.title != blank %}
@@ -78,8 +85,8 @@
                         {% if block.settings.body != blank %}
                           <p class="text-base leading-8 text-white/85">{{ block.settings.body }}</p>
                         {% endif %}
-                        {% if block.settings.button_label != blank and block.settings.button_url != blank %}
-                          <a class="explore-learn-button mt-8" href="{{ block.settings.button_url }}">
+                        {% if block.settings.button_label != blank %}
+                          <a class="explore-learn-button mt-8" href="{{ button_href }}">
                             {{ block.settings.button_label }}
                           </a>
                         {% endif %}
@@ -119,16 +126,15 @@
       const nextEl = nextId ? document.getElementById(nextId) : null;
 
       const options = {
-        slidesPerView: 1,
-        spaceBetween: 20,
+        slidesPerView: 1.08,
+        spaceBetween: 24,
+        speed: 700,
         breakpoints: {
-          768: {
-            slidesPerView: 1.25,
-            spaceBetween: 24
+          640: {
+            slidesPerView: 1.45
           },
-          1280: {
-            slidesPerView: 1.5,
-            spaceBetween: 28
+          1024: {
+            slidesPerView: 2.35
           }
         }
       };
