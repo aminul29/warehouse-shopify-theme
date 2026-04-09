@@ -1,0 +1,211 @@
+{% liquid
+  assign current_year = 'now' | date: '%Y'
+%}
+
+<footer
+  class="bg-paper py-10"
+  role="contentinfo"
+  aria-label="{{ section.settings.aria_label | escape }}"
+>
+  <div class="section-wrap">
+    <div class="flex flex-col items-center justify-between gap-6 border-b border-slate-200 pb-8 lg:flex-row">
+      {% if section.settings.logo_image != blank %}
+        {{
+          section.settings.logo_image
+          | image_url: width: 400
+          | image_tag:
+            widths: '160, 240, 320, 400',
+            sizes: '(min-width: 1024px) 220px, 160px',
+            alt: section.settings.logo_alt | default: shop.name,
+            class: 'h-[52px] w-auto shrink-0 p-2'
+        }}
+      {% elsif section.settings.logo_text != blank %}
+        <p class="text-lg font-extrabold uppercase tracking-[0.06em] text-slate-900">{{ section.settings.logo_text }}</p>
+      {% endif %}
+
+      {% assign nav_blocks = section.blocks | where: 'type', 'nav_link' %}
+      {% if nav_blocks.size > 0 %}
+        <nav class="flex flex-wrap items-center justify-center gap-5 text-sm font-bold uppercase tracking-[0.12em] text-slate-700" aria-label="{{ section.settings.primary_nav_label | escape }}">
+          {% for block in nav_blocks %}
+            {% if block.settings.label != blank and block.settings.url != blank %}
+              <a href="{{ block.settings.url }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+            {% endif %}
+          {% endfor %}
+        </nav>
+      {% endif %}
+
+      {% if section.settings.phone_text != blank %}
+        {% liquid
+          assign phone_href = section.settings.phone_url
+          if phone_href == blank
+            assign sanitized_phone = section.settings.phone_text | remove: ' ' | remove: '-' | remove: '(' | remove: ')' | remove: '.'
+            assign phone_href = 'tel:' | append: sanitized_phone
+          endif
+        %}
+        <a class="text-sm font-extrabold tracking-[0.14em] text-slate-900" href="{{ phone_href }}">
+          {{ section.settings.phone_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="flex flex-col gap-4 pt-6 text-center text-sm lg:flex-row lg:items-center lg:justify-between lg:text-left">
+      {% if section.settings.copyright_text != blank %}
+        <p>{{ section.settings.copyright_text | replace: '{year}', current_year }}</p>
+      {% endif %}
+
+      {% assign legal_blocks = section.blocks | where: 'type', 'legal_link' %}
+      {% if legal_blocks.size > 0 %}
+        <div class="flex flex-wrap justify-center gap-4 lg:justify-end">
+          {% for block in legal_blocks %}
+            {% if block.settings.label != blank and block.settings.url != blank %}
+              <a href="{{ block.settings.url }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Warehouse Footer",
+  "tag": "section",
+  "class": "section-warehouse-footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Footer"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image"
+    },
+    {
+      "type": "text",
+      "id": "logo_alt",
+      "label": "Logo image alt text",
+      "default": "Direct Pallet Racking"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text fallback",
+      "default": "Direct Pallet Racking"
+    },
+    {
+      "type": "text",
+      "id": "primary_nav_label",
+      "label": "Primary navigation accessibility label",
+      "default": "Footer navigation"
+    },
+    {
+      "type": "text",
+      "id": "phone_text",
+      "label": "Phone text",
+      "default": "888-979-9824"
+    },
+    {
+      "type": "url",
+      "id": "phone_url",
+      "label": "Phone link override"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "default": "© {year} Direct Pallet Racking. All rights reserved."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Primary nav link",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Solutions"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "legal_link",
+      "name": "Legal link",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Privacy Policy"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Warehouse Footer",
+      "blocks": [
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "Solutions"
+          }
+        },
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "Products"
+          }
+        },
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "Services"
+          }
+        },
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "Resources"
+          }
+        },
+        {
+          "type": "legal_link",
+          "settings": {
+            "label": "Privacy Policy"
+          }
+        },
+        {
+          "type": "legal_link",
+          "settings": {
+            "label": "Terms of Service"
+          }
+        },
+        {
+          "type": "legal_link",
+          "settings": {
+            "label": "Cookies Settings"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
