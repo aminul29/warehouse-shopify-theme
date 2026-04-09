@@ -500,7 +500,7 @@
   }
 
   .contact-copy-column {
-    @apply max-w-[640px];
+    @apply h-full max-w-[640px];
   }
 
   .contact-form {
@@ -532,12 +532,12 @@
   }
 
   .contact-image-shell {
-    @apply h-full overflow-hidden rounded-[20px];
+    @apply h-full min-h-full self-stretch overflow-hidden rounded-[20px];
     box-shadow: 0 28px 70px rgba(0, 0, 0, 0.34);
   }
 
   .contact-image {
-    @apply h-full w-full object-cover;
+    @apply block h-full min-h-full w-full object-cover;
   }
 
   .slider-button {
