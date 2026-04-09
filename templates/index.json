@@ -56,11 +56,297 @@
           }
         }
       },
-      "block_order": ["solution_1", "solution_2", "solution_3"],
+      "block_order": [
+        "solution_1",
+        "solution_2",
+        "solution_3"
+      ],
       "settings": {
         "aria_label": "Warehouse solutions",
         "heading": "Comprehensive Warehouse Solutions",
         "subheading": "With a broad level of expertise, DPR can serve as the single point of contact for your warehouse project."
+      }
+    },
+    "warehouse_delivery": {
+      "type": "template-warehouse-delivery",
+      "settings": {
+        "aria_label": "Delivery banner",
+        "image": "shopify://shop_images/delivery-truck.png",
+        "heading": "Next Day Delivery at the Speed You Need"
+      }
+    },
+    "warehouse_advantages": {
+      "type": "template-warehouse-advantages",
+      "blocks": {
+        "advantage_1": {
+          "type": "advantage",
+          "settings": {
+            "eyebrow": "Speed",
+            "title": "No Downtime, Just Results",
+            "body": "With rapid design and installation, you'll experience minimal downtime. No delays, no stock issues, and no costly disruption while your team waits for a supplier to move.",
+            "media_image": "shopify://shop_images/feature-speed.png",
+            "accent_image": "shopify://shop_images/Hexagon_section_bg.png",
+            "accent_position": "left",
+            "reverse_layout": false
+          }
+        },
+        "advantage_2": {
+          "type": "advantage",
+          "settings": {
+            "eyebrow": "Experience",
+            "title": "Over 1,000 Successful Projects",
+            "body": "We've designed and installed storage solutions in more than 1,000 warehouses nationwide. That experience translates into fewer mistakes, faster decisions, and cleaner execution.",
+            "media_image": "shopify://shop_images/feature-experience.png",
+            "accent_image": "shopify://shop_images/Hexagon_section_bg.png",
+            "accent_position": "middle",
+            "reverse_layout": true
+          }
+        },
+        "advantage_3": {
+          "type": "advantage",
+          "settings": {
+            "eyebrow": "Expertise",
+            "title": "End-to-End Project Management",
+            "body": "From concept and permits to execution, we handle every step so your project stays on track. The result is a fast, seamless rollout without unnecessary complexity.",
+            "media_image": "shopify://shop_images/feature-expertise.png",
+            "accent_image": "shopify://shop_images/Hexagon_section_bg.png",
+            "accent_position": "left_bottom",
+            "reverse_layout": false
+          }
+        }
+      },
+      "block_order": [
+        "advantage_1",
+        "advantage_2",
+        "advantage_3"
+      ],
+      "settings": {
+        "aria_label": "Warehouse advantages",
+        "show_top_gradient": true
+      }
+    },
+    "warehouse_services": {
+      "type": "template-warehouse-services",
+      "blocks": {
+        "service_1": {
+          "type": "service",
+          "settings": {
+            "tab_label": "Selective Pallet Racking",
+            "title": "Selective Pallet Racking",
+            "body": "Tired of waiting weeks just for a quote? Our selective pallet systems are designed for fast decision-making, wide SKU access, and dependable inventory turns.",
+            "bullets": "Fast quoting and drawing turnaround\nDesigned for accessibility and throughput\nIdeal for mixed inventory and evolving warehouse layouts",
+            "button_label": "Get a Quote Today",
+            "button_url": ""
+          }
+        },
+        "service_2": {
+          "type": "service",
+          "settings": {
+            "tab_label": "Cantilever Racking",
+            "title": "Cantilever Racking",
+            "body": "Store long, bulky, or irregular material with a layout that stays organized under heavy demand.",
+            "bullets": "Configured for long and awkward materials\nImproves loading access and aisle efficiency\nScales cleanly as inventory volume changes",
+            "button_label": "Get a Quote Today",
+            "button_url": ""
+          }
+        },
+        "service_3": {
+          "type": "service",
+          "settings": {
+            "tab_label": "Dynamic Racking",
+            "title": "Dynamic Racking",
+            "body": "Increase density and keep product moving with flow-based systems that support FIFO operations.",
+            "bullets": "Supports FIFO and high-turn inventory\nReduces unnecessary travel time\nImproves space use without sacrificing speed",
+            "button_label": "Get a Quote Today",
+            "button_url": ""
+          }
+        },
+        "service_4": {
+          "type": "service",
+          "settings": {
+            "tab_label": "Industrial Shelving",
+            "title": "Industrial Shelving",
+            "body": "Our shelving solutions create order where manual processes usually break down.",
+            "bullets": "Great for parts rooms and smaller SKUs\nSupports clean, scalable pick paths\nPairs well with mezzanines and workstations",
+            "button_label": "Get a Quote Today",
+            "button_url": ""
+          }
+        },
+        "service_5": {
+          "type": "service",
+          "settings": {
+            "tab_label": "Expert Installations",
+            "title": "Expert Installations",
+            "body": "Our crews deliver clean execution, clear communication, and safe project control.",
+            "bullets": "Installations, reconfigurations, and repairs\nPermit-aware coordination and sequencing\nFast deployment with experienced crews",
+            "button_label": "Get a Quote Today",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "service_1",
+        "service_2",
+        "service_3",
+        "service_4",
+        "service_5"
+      ],
+      "settings": {
+        "aria_label": "Products and services",
+        "tabs_aria_label": "Products and services tabs",
+        "heading": "Products & Services"
+      }
+    },
+    "warehouse_manufacturers": {
+      "type": "template-warehouse-manufactures",
+      "blocks": {
+        "metric_1": {
+          "type": "metric",
+          "settings": {
+            "value": "1,000+",
+            "label": "Detailed Drawings"
+          }
+        },
+        "metric_2": {
+          "type": "metric",
+          "settings": {
+            "value": "1,500+",
+            "label": "Projects Delivered"
+          }
+        },
+        "metric_3": {
+          "type": "metric",
+          "settings": {
+            "value": "48+",
+            "label": "States Covered"
+          }
+        }
+      },
+      "block_order": [
+        "metric_1",
+        "metric_2",
+        "metric_3"
+      ],
+      "settings": {
+        "aria_label": "Manufacturers and metrics",
+        "heading": "Trusted Integrator for Leading Manufacturers",
+        "cta_heading": "Shop Online with Direct Pallet Racking",
+        "cta_body": "Enjoy fast shipping on racking along with other parts and supplies.",
+        "cta_button_label": "Shop Now",
+        "cta_button_url": ""
+      }
+    },
+    "warehouse_service_promotion": {
+      "type": "template-warehouse-service-promotion",
+      "settings": {
+        "aria_label": "Service promotion",
+        "problem_heading": "Long Buying Processes and Lead Times Are Holding You Back",
+        "problem_paragraph_1": "In the warehouse industry, time is money. Yet many businesses face unnecessary delays when trying to secure the right storage solutions.",
+        "problem_paragraph_2": "Between drawn-out quoting processes, multiple back-and-forths, and suppliers who are slow to act, companies find themselves stuck waiting for weeks before they can even begin solving their storage problems.",
+        "divider_copy": "This isn't just inconvenient-it's costly.",
+        "solution_heading": "The Real Cost of Delayed Action",
+        "solution_paragraph_1": "When your storage systems are delayed, your entire operation slows down. Inventory piles up, workflows become inefficient, and your team is forced to work around limitations that should have been solved long ago.",
+        "solution_paragraph_2": "Every extra day spent waiting means lost productivity and revenue. In today's competitive market, businesses can't afford to delay warehouse optimization.",
+        "button_label": "Get a Quote Today",
+        "button_url": ""
+      }
+    },
+    "warehouse_testimonial": {
+      "type": "template-warehouse-testimonial",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Great service from Direct Pallet Racking. Fast and effective communication.",
+            "author": "Patrick, Operations Manager"
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Direct Pallet Racking delivered exactly what we needed: fast, efficient, and reliable.",
+            "author": "Robbie, Branch Manager"
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Working with Direct Pallet Racking was a game changer for our warehouse.",
+            "author": "Josh, Distribution Manager"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3"
+      ],
+      "settings": {
+        "aria_label": "Testimonials",
+        "heading": "Testimonials"
+      }
+    },
+    "warehouse_cta": {
+      "type": "template-warehouse-cta",
+      "settings": {
+        "aria_label": "Call to action",
+        "eyebrow": "Need Assistance?",
+        "heading": "Our Warehouse Solutions Specialist Can Help",
+        "button_label": "Contact a Warehouse Solution Specialist",
+        "button_url": "#contact",
+        "show_phone": true,
+        "phone_prefix": "Or Call",
+        "phone_text": "888-979-9824",
+        "phone_url": ""
+      }
+    },
+    "warehouse_solutions_slider": {
+      "type": "template-warehouse-solutions-slider",
+      "blocks": {
+        "solution_item_1": {
+          "type": "solution_item",
+          "settings": {
+            "layout": "side",
+            "title": "ASRS",
+            "body": "Automated storage and retrieval systems built to increase density, accuracy, and throughput.",
+            "button_label": "Learn More",
+            "button_url": ""
+          }
+        },
+        "solution_item_2": {
+          "type": "solution_item",
+          "settings": {
+            "layout": "feature",
+            "title": "Innovative Automated Solutions",
+            "body": "Integrated systems that reduce manual friction and support scalable fulfillment performance.",
+            "button_label": "Learn More",
+            "button_url": ""
+          }
+        },
+        "solution_item_3": {
+          "type": "solution_item",
+          "settings": {
+            "layout": "side",
+            "title": "Mobile Racking Systems",
+            "body": "High-density racking solutions that reduce aisle waste and maximize usable warehouse capacity.",
+            "button_label": "Learn More",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "solution_item_1",
+        "solution_item_2",
+        "solution_item_3"
+      ],
+      "settings": {
+        "aria_label": "Explore more solutions",
+        "section_id": "more-solutions",
+        "heading": "Explore More Solutions",
+        "show_navigation": true
       }
     },
     "warehouse_resources": {
@@ -242,260 +528,6 @@
         "terms_link_text": "Terms",
         "terms_url": "",
         "image_alt": "Direct Pallet Racking specialist standing in a warehouse"
-      }
-    },
-    "warehouse_delivery": {
-      "type": "template-warehouse-delivery",
-      "settings": {
-        "aria_label": "Delivery banner",
-        "image": "shopify://shop_images/delivery-truck.png",
-        "heading": "Next Day Delivery at the Speed You Need"
-      }
-    },
-    "warehouse_advantages": {
-      "type": "template-warehouse-advantages",
-      "blocks": {
-        "advantage_1": {
-          "type": "advantage",
-          "settings": {
-            "eyebrow": "Speed",
-            "title": "No Downtime, Just Results",
-            "body": "With rapid design and installation, you'll experience minimal downtime. No delays, no stock issues, and no costly disruption while your team waits for a supplier to move.",
-            "accent_position": "left",
-            "reverse_layout": false
-          }
-        },
-        "advantage_2": {
-          "type": "advantage",
-          "settings": {
-            "eyebrow": "Experience",
-            "title": "Over 1,000 Successful Projects",
-            "body": "We've designed and installed storage solutions in more than 1,000 warehouses nationwide. That experience translates into fewer mistakes, faster decisions, and cleaner execution.",
-            "accent_position": "middle",
-            "reverse_layout": true
-          }
-        },
-        "advantage_3": {
-          "type": "advantage",
-          "settings": {
-            "eyebrow": "Expertise",
-            "title": "End-to-End Project Management",
-            "body": "From concept and permits to execution, we handle every step so your project stays on track. The result is a fast, seamless rollout without unnecessary complexity.",
-            "accent_position": "left_bottom",
-            "reverse_layout": false
-          }
-        }
-      },
-      "block_order": ["advantage_1", "advantage_2", "advantage_3"],
-      "settings": {
-        "aria_label": "Warehouse advantages",
-        "show_top_gradient": true
-      }
-    },
-    "warehouse_services": {
-      "type": "template-warehouse-services",
-      "blocks": {
-        "service_1": {
-          "type": "service",
-          "settings": {
-            "tab_label": "Selective Pallet Racking",
-            "title": "Selective Pallet Racking",
-            "body": "Tired of waiting weeks just for a quote? Our selective pallet systems are designed for fast decision-making, wide SKU access, and dependable inventory turns.",
-            "bullets": "Fast quoting and drawing turnaround\nDesigned for accessibility and throughput\nIdeal for mixed inventory and evolving warehouse layouts",
-            "button_label": "Get a Quote Today",
-            "button_url": ""
-          }
-        },
-        "service_2": {
-          "type": "service",
-          "settings": {
-            "tab_label": "Cantilever Racking",
-            "title": "Cantilever Racking",
-            "body": "Store long, bulky, or irregular material with a layout that stays organized under heavy demand.",
-            "bullets": "Configured for long and awkward materials\nImproves loading access and aisle efficiency\nScales cleanly as inventory volume changes",
-            "button_label": "Get a Quote Today",
-            "button_url": ""
-          }
-        },
-        "service_3": {
-          "type": "service",
-          "settings": {
-            "tab_label": "Dynamic Racking",
-            "title": "Dynamic Racking",
-            "body": "Increase density and keep product moving with flow-based systems that support FIFO operations.",
-            "bullets": "Supports FIFO and high-turn inventory\nReduces unnecessary travel time\nImproves space use without sacrificing speed",
-            "button_label": "Get a Quote Today",
-            "button_url": ""
-          }
-        },
-        "service_4": {
-          "type": "service",
-          "settings": {
-            "tab_label": "Industrial Shelving",
-            "title": "Industrial Shelving",
-            "body": "Our shelving solutions create order where manual processes usually break down.",
-            "bullets": "Great for parts rooms and smaller SKUs\nSupports clean, scalable pick paths\nPairs well with mezzanines and workstations",
-            "button_label": "Get a Quote Today",
-            "button_url": ""
-          }
-        },
-        "service_5": {
-          "type": "service",
-          "settings": {
-            "tab_label": "Expert Installations",
-            "title": "Expert Installations",
-            "body": "Our crews deliver clean execution, clear communication, and safe project control.",
-            "bullets": "Installations, reconfigurations, and repairs\nPermit-aware coordination and sequencing\nFast deployment with experienced crews",
-            "button_label": "Get a Quote Today",
-            "button_url": ""
-          }
-        }
-      },
-      "block_order": ["service_1", "service_2", "service_3", "service_4", "service_5"],
-      "settings": {
-        "aria_label": "Products and services",
-        "tabs_aria_label": "Products and services tabs",
-        "heading": "Products & Services"
-      }
-    },
-    "warehouse_manufacturers": {
-      "type": "template-warehouse-manufactures",
-      "blocks": {
-        "metric_1": {
-          "type": "metric",
-          "settings": {
-            "value": "1,000+",
-            "label": "Detailed Drawings"
-          }
-        },
-        "metric_2": {
-          "type": "metric",
-          "settings": {
-            "value": "1,500+",
-            "label": "Projects Delivered"
-          }
-        },
-        "metric_3": {
-          "type": "metric",
-          "settings": {
-            "value": "48+",
-            "label": "States Covered"
-          }
-        }
-      },
-      "block_order": ["metric_1", "metric_2", "metric_3"],
-      "settings": {
-        "aria_label": "Manufacturers and metrics",
-        "heading": "Trusted Integrator for Leading Manufacturers",
-        "cta_heading": "Shop Online with Direct Pallet Racking",
-        "cta_body": "Enjoy fast shipping on racking along with other parts and supplies.",
-        "cta_button_label": "Shop Now",
-        "cta_button_url": ""
-      }
-    },
-    "warehouse_service_promotion": {
-      "type": "template-warehouse-service-promotion",
-      "settings": {
-        "aria_label": "Service promotion",
-        "problem_heading": "Long Buying Processes and Lead Times Are Holding You Back",
-        "problem_paragraph_1": "In the warehouse industry, time is money. Yet many businesses face unnecessary delays when trying to secure the right storage solutions.",
-        "problem_paragraph_2": "Between drawn-out quoting processes, multiple back-and-forths, and suppliers who are slow to act, companies find themselves stuck waiting for weeks before they can even begin solving their storage problems.",
-        "divider_copy": "This isn't just inconvenient-it's costly.",
-        "solution_heading": "The Real Cost of Delayed Action",
-        "solution_paragraph_1": "When your storage systems are delayed, your entire operation slows down. Inventory piles up, workflows become inefficient, and your team is forced to work around limitations that should have been solved long ago.",
-        "solution_paragraph_2": "Every extra day spent waiting means lost productivity and revenue. In today's competitive market, businesses can't afford to delay warehouse optimization.",
-        "button_label": "Get a Quote Today",
-        "button_url": ""
-      }
-    },
-    "warehouse_testimonial": {
-      "type": "template-warehouse-testimonial",
-      "blocks": {
-        "testimonial_1": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "Great service from Direct Pallet Racking. Fast and effective communication.",
-            "author": "Patrick, Operations Manager"
-          }
-        },
-        "testimonial_2": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "Direct Pallet Racking delivered exactly what we needed: fast, efficient, and reliable.",
-            "author": "Robbie, Branch Manager"
-          }
-        },
-        "testimonial_3": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "Working with Direct Pallet Racking was a game changer for our warehouse.",
-            "author": "Josh, Distribution Manager"
-          }
-        }
-      },
-      "block_order": ["testimonial_1", "testimonial_2", "testimonial_3"],
-      "settings": {
-        "aria_label": "Testimonials",
-        "heading": "Testimonials"
-      }
-    },
-    "warehouse_cta": {
-      "type": "template-warehouse-cta",
-      "settings": {
-        "aria_label": "Call to action",
-        "eyebrow": "Need Assistance?",
-        "heading": "Our Warehouse Solutions Specialist Can Help",
-        "button_label": "Contact a Warehouse Solution Specialist",
-        "button_url": "#contact",
-        "show_phone": true,
-        "phone_prefix": "Or Call",
-        "phone_text": "888-979-9824",
-        "phone_url": ""
-      }
-    },
-    "warehouse_solutions_slider": {
-      "type": "template-warehouse-solutions-slider",
-      "blocks": {
-        "solution_item_1": {
-          "type": "solution_item",
-          "settings": {
-            "layout": "side",
-            "title": "ASRS",
-            "body": "Automated storage and retrieval systems built to increase density, accuracy, and throughput.",
-            "button_label": "Learn More",
-            "button_url": ""
-          }
-        },
-        "solution_item_2": {
-          "type": "solution_item",
-          "settings": {
-            "layout": "feature",
-            "title": "Innovative Automated Solutions",
-            "body": "Integrated systems that reduce manual friction and support scalable fulfillment performance.",
-            "button_label": "Learn More",
-            "button_url": ""
-          }
-        },
-        "solution_item_3": {
-          "type": "solution_item",
-          "settings": {
-            "layout": "side",
-            "title": "Mobile Racking Systems",
-            "body": "High-density racking solutions that reduce aisle waste and maximize usable warehouse capacity.",
-            "button_label": "Learn More",
-            "button_url": ""
-          }
-        }
-      },
-      "block_order": ["solution_item_1", "solution_item_2", "solution_item_3"],
-      "settings": {
-        "aria_label": "Explore more solutions",
-        "section_id": "more-solutions",
-        "heading": "Explore More Solutions",
-        "show_navigation": true
       }
     }
   },
