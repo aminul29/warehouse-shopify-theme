@@ -79,7 +79,7 @@
   }
 
   .manufacturers-section {
-    background-image: url("../assets/images/blue-bg-hexagon-right.jpg");
+    background-image: var(--manufacturers-bg-image, url("../assets/images/blue-bg-hexagon-right.jpg"));
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -161,7 +161,7 @@
     text-align: center;
     vertical-align: middle;
     background-color: #1493f5;
-    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-[#1493F5] px-6 py-3 sm:px-8 sm:py-3.5 lg:px-[50px] uppercase text-white shadow-lg shadow-[#1493F5]/25 hover:bg-[#0f79ca] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1493F5];
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-[#1493F5] px-6 py-3 sm:px-8 sm:py-3.5 lg:px-[50px] text-white hover:bg-[#0f79ca] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1493F5];
   }
 
   .btn-secondary {
@@ -181,7 +181,7 @@
   }
 
   .top-nav-link {
-    @apply text-[18px] font-normal uppercase text-white/90 hover:text-white;
+    @apply text-[18px] font-normal text-white/90 hover:text-white;
   }
 
   .mobile-nav-link {
@@ -215,11 +215,11 @@
   }
 
   .tab-button {
-    @apply relative whitespace-nowrap border-b-2 border-transparent pb-4 text-sm font-bold uppercase text-slate-500 hover:text-slate-900;
+    @apply relative whitespace-nowrap border-b-2 border-transparent pb-4 opacity-50 hover:text-slate-900;
   }
 
   .tab-button[aria-selected="true"] {
-    @apply border-sky-500 text-sky-500;
+    @apply border-sky-500 text-sky-500 opacity-100;
   }
 
   .metric-box {
@@ -232,7 +232,7 @@
   }
 
   .metric-label {
-    @apply mt-3 block text-base font-medium text-white/88;
+    @apply mt-3 block text-lg font-normal text-white/88;
   }
 
   .btn-white {
@@ -317,6 +317,18 @@
 
   .services-copy {
     @apply flex h-full max-w-[640px] flex-col justify-center;
+  }
+
+  .services-richtext p {
+    @apply m-0;
+  }
+
+  .services-richtext p + p {
+    @apply mt-4;
+  }
+
+  .services-richtext br {
+    @apply mt-3 block;
   }
 
   .services-divider {

@@ -5,24 +5,18 @@
 <section
   id="delivery"
   class="bg-[#1493F5] py-8 text-white sm:py-10"
-  aria-label="{{ section.settings.aria_label | escape }}"
->
-  <div class="section-wrap flex flex-col items-center justify-center gap-5 text-center sm:flex-row sm:gap-8">
+  aria-label="{{ section.settings.aria_label | escape }}">
+  <div class="section-wrap flex flex-col items-center justify-center gap-7 text-center sm:flex-row sm:gap-10">
     {% if section.settings.image != blank %}
       {{
         section.settings.image
         | image_url: width: 640
-        | image_tag:
-          widths: '180, 240, 320, 480, 640',
-          sizes: '(min-width: 1024px) 370px, (min-width: 640px) 240px, 44vw',
-          alt: delivery_alt,
-          class: 'delivery-truck',
-          loading: 'lazy'
+        | image_tag: widths: '180, 240, 320, 480, 640', sizes: '(min-width: 1024px) 370px, (min-width: 640px) 240px, 44vw', alt: delivery_alt, class: 'delivery-truck', loading: 'lazy'
       }}
     {% endif %}
 
     {% if section.settings.heading != blank %}
-      <h2 class="section-title max-w-[20ch] text-white sm:max-w-3xl sm:text-left">
+      <h2 class="section-title max-w-[20ch] text-white sm:max-w-2xl sm:text-left text-[52px]">
         {{ section.settings.heading }}
       </h2>
     {% endif %}

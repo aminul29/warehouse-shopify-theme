@@ -53,7 +53,6 @@
               assign tab_button_id = 'tab-' | append: section.id | append: '-' | append: block.id
               assign tab_panel_id = 'panel-' | append: section.id | append: '-' | append: block.id
               assign image_alt = block.settings.image.alt | default: block.settings.title
-              assign bullets = block.settings.bullets | newline_to_br | split: '<br />'
             %}
             <div
               id="{{ tab_panel_id }}"
@@ -66,31 +65,17 @@
             >
               <div>
                 {% if block.settings.title != blank %}
-                  <h3 class="mt-4 font-heading text-4xl uppercase leading-none sm:text-5xl">
+                  <h3 class="mt-4 font-heading text-2xl uppercase leading-none sm:text-2xl">
                     {{ block.settings.title }}
                   </h3>
                 {% endif %}
 
                 {% if block.settings.body != blank %}
-                  <p class="mt-6 text-base leading-8">{{ block.settings.body }}</p>
-                {% endif %}
-
-                {% if block.settings.bullets != blank %}
-                  <ul class="mt-6 grid gap-3 text-sm font-semibold text-slate-800">
-                    {% for bullet in bullets %}
-                      {% assign item = bullet | strip %}
-                      {% if item != blank %}
-                        <li class="flex items-start gap-3">
-                          <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#1493F5]"></span>
-                          <span>{{ item }}</span>
-                        </li>
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
+                  <div class="services-richtext mt-6 text-base leading-8">{{ block.settings.body }}</div>
                 {% endif %}
 
                 {% if block.settings.button_label != blank and block.settings.button_url != blank %}
-                  <a class="btn-primary mt-8" href="{{ block.settings.button_url }}">
+                  <a class="btn-primary mt-[44px]" href="{{ block.settings.button_url }}">
                     {{ block.settings.button_label }}
                   </a>
                 {% endif %}
@@ -164,16 +149,10 @@
           "default": "Selective Pallet Racking"
         },
         {
-          "type": "textarea",
+          "type": "richtext",
           "id": "body",
           "label": "Panel description",
-          "default": "Our selective pallet systems are designed for fast decision-making, wide SKU access, and dependable inventory turns."
-        },
-        {
-          "type": "textarea",
-          "id": "bullets",
-          "label": "Bullet points (one per line)",
-          "default": "Fast quoting and drawing turnaround\nDesigned for accessibility and throughput\nIdeal for mixed inventory and evolving warehouse layouts"
+          "default": "<p>Our selective pallet systems are designed for fast decision-making, wide SKU access, and dependable inventory turns.</p>"
         },
         {
           "type": "image_picker",
@@ -210,32 +189,28 @@
           "type": "service",
           "settings": {
             "tab_label": "Cantilever Racking",
-            "title": "Cantilever Racking",
-            "bullets": "Configured for long and awkward materials\nImproves loading access and aisle efficiency\nScales cleanly as inventory volume changes"
+            "title": "Cantilever Racking"
           }
         },
         {
           "type": "service",
           "settings": {
             "tab_label": "Dynamic Racking",
-            "title": "Dynamic Racking",
-            "bullets": "Supports FIFO and high-turn inventory\nReduces unnecessary travel time\nImproves space use without sacrificing speed"
+            "title": "Dynamic Racking"
           }
         },
         {
           "type": "service",
           "settings": {
             "tab_label": "Industrial Shelving",
-            "title": "Industrial Shelving",
-            "bullets": "Great for parts rooms and smaller SKUs\nSupports clean, scalable pick paths\nPairs well with mezzanines and workstations"
+            "title": "Industrial Shelving"
           }
         },
         {
           "type": "service",
           "settings": {
             "tab_label": "Expert Installations",
-            "title": "Expert Installations",
-            "bullets": "Installations, reconfigurations, and repairs\nPermit-aware coordination and sequencing\nFast deployment with experienced crews"
+            "title": "Expert Installations"
           }
         }
       ]

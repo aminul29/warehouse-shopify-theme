@@ -1,8 +1,7 @@
 <section
   id="advantages"
   class="relative overflow-hidden bg-white py-20 sm:py-28"
-  aria-label="{{ section.settings.aria_label | escape }}"
->
+  aria-label="{{ section.settings.aria_label | escape }}">
   {% if section.settings.show_top_gradient %}
     <div class="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-slate-50 to-transparent"></div>
   {% endif %}
@@ -36,12 +35,7 @@
             {{
               block.settings.accent_image
               | image_url: width: 900
-              | image_tag:
-                widths: '320, 640, 900',
-                sizes: '(min-width: 1024px) 320px, 180px',
-                alt: accent_alt,
-                class: accent_class,
-                loading: 'lazy'
+              | image_tag: widths: '320, 640, 900', sizes: '(min-width: 1024px) 320px, 180px', alt: accent_alt, class: accent_class, loading: 'lazy'
             }}
           {% endif %}
 
@@ -55,12 +49,7 @@
             {{
               block.settings.media_image
               | image_url: width: 1600
-              | image_tag:
-                widths: '540, 720, 960, 1280, 1600',
-                sizes: '(min-width: 1024px) 40vw, 100vw',
-                alt: media_alt,
-                class: media_class,
-                loading: 'lazy'
+              | image_tag: widths: '540, 720, 960, 1280, 1600', sizes: '(min-width: 1024px) 40vw, 100vw', alt: media_alt, class: media_class, loading: 'lazy'
             }}
           {% endif %}
 
@@ -73,7 +62,7 @@
                 <h2 class="mt-4 text-left font-heading text-[40px] font-extrabold uppercase leading-[105%] text-[#111]">{{ block.settings.title }}</h2>
               {% endif %}
               {% if block.settings.body != blank %}
-                <p class="mt-6 max-w-2xl text-base leading-8">{{ block.settings.body }}</p>
+                <p class="mt-6 max-w-2xl leading-8">{{ block.settings.body }}</p>
               {% endif %}
             </div>
           {% else %}
@@ -85,7 +74,7 @@
                 <h2 class="mt-4 text-left font-heading text-[40px] font-extrabold uppercase leading-[105%] text-[#111]">{{ block.settings.title }}</h2>
               {% endif %}
               {% if block.settings.body != blank %}
-                <p class="mt-6 max-w-2xl text-base leading-8">{{ block.settings.body }}</p>
+                <p class="mt-6 max-w-2xl leading-8">{{ block.settings.body }}</p>
               {% endif %}
             </div>
           {% endif %}

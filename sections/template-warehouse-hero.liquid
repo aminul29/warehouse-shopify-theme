@@ -7,13 +7,7 @@
     {{
       section.settings.background_image
       | image_url: width: 2400
-      | image_tag:
-        widths: '750, 1100, 1500, 1780, 2000, 2400',
-        sizes: '100vw',
-        alt: hero_alt,
-        loading: 'eager',
-        fetchpriority: 'high',
-        class: 'absolute inset-0 h-full w-full object-cover'
+      | image_tag: widths: '750, 1100, 1500, 1780, 2000, 2400', sizes: '100vw', alt: hero_alt, loading: 'eager', fetchpriority: 'high', class: 'absolute inset-0 h-full w-full object-cover'
     }}
   {% else %}
     <div class="absolute inset-0 bg-slate-900"></div>
@@ -32,7 +26,7 @@
       {% endif %}
 
       {% if section.settings.primary_button_label != blank or section.settings.secondary_button_label != blank %}
-        <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <div class="mt-15 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           {% if section.settings.primary_button_label != blank and section.settings.primary_button_url != blank %}
             <a class="btn-primary" href="{{ section.settings.primary_button_url }}">
               {{ section.settings.primary_button_label }}

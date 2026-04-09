@@ -1,14 +1,21 @@
 {% liquid
   assign cta_alt = section.settings.cta_image.alt | default: section.settings.cta_heading
+  assign section_bg_image_url = blank
+  if section.settings.section_background_image != blank
+    assign section_bg_image_url = section.settings.section_background_image | image_url: width: 2400
+  endif
 %}
 
 <section
   id="manufacturers"
   class="manufacturers-section relative overflow-hidden bg-[#1493F5] py-20 sm:py-28"
   aria-label="{{ section.settings.aria_label | escape }}"
+  {% if section_bg_image_url != blank %}
+    style="--manufacturers-bg-image: url('{{ section_bg_image_url }}');"
+  {% endif %}
 >
   <div class="section-wrap relative">
-    <div class="mx-auto max-w-3xl text-center">
+    <div class="mx-auto max-w-2xl text-center">
       {% if section.settings.heading != blank %}
         <h2 class="section-title text-white">
           {{ section.settings.heading }}
@@ -36,12 +43,7 @@
         {{
           section.settings.cta_image
           | image_url: width: 2200
-          | image_tag:
-            widths: '750, 1100, 1500, 1780, 2000, 2200',
-            sizes: '(min-width: 1280px) 1158px, 100vw',
-            alt: cta_alt,
-            class: 'absolute inset-0 h-full w-full object-cover',
-            loading: 'lazy'
+          | image_tag: widths: '750, 1100, 1500, 1780, 2000, 2200', sizes: '(min-width: 1280px) 1158px, 100vw', alt: cta_alt, class: 'absolute inset-0 h-full w-full object-cover', loading: 'lazy'
         }}
       {% endif %}
       <div class="absolute inset-0 bg-black/80"></div>
@@ -87,6 +89,11 @@
       "id": "heading",
       "label": "Heading",
       "default": "Trusted Integrator for Leading Manufacturers"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_background_image",
+      "label": "Section background image"
     },
     {
       "type": "image_picker",
