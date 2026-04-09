@@ -1,5 +1,15 @@
 {% liquid
   assign current_year = 'now' | date: '%Y'
+  assign primary_links = blank
+  assign legal_links = blank
+
+  if section.settings.primary_menu != blank and linklists[section.settings.primary_menu] != blank
+    assign primary_links = linklists[section.settings.primary_menu].links
+  endif
+
+  if section.settings.legal_menu != blank and linklists[section.settings.legal_menu] != blank
+    assign legal_links = linklists[section.settings.legal_menu].links
+  endif
 %}
 
 <footer
@@ -23,13 +33,10 @@
         <p class="text-lg font-extrabold uppercase tracking-[0.06em] text-slate-900">{{ section.settings.logo_text }}</p>
       {% endif %}
 
-      {% assign nav_blocks = section.blocks | where: 'type', 'nav_link' %}
-      {% if nav_blocks.size > 0 %}
+      {% if primary_links != blank %}
         <nav class="flex flex-wrap items-center justify-center gap-5 text-sm font-bold uppercase tracking-[0.12em] text-slate-700" aria-label="{{ section.settings.primary_nav_label | escape }}">
-          {% for block in nav_blocks %}
-            {% if block.settings.label != blank and block.settings.url != blank %}
-              <a href="{{ block.settings.url }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
-            {% endif %}
+          {% for link in primary_links %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
           {% endfor %}
         </nav>
       {% endif %}
@@ -53,13 +60,10 @@
         <p>{{ section.settings.copyright_text | replace: '{year}', current_year }}</p>
       {% endif %}
 
-      {% assign legal_blocks = section.blocks | where: 'type', 'legal_link' %}
-      {% if legal_blocks.size > 0 %}
+      {% if legal_links != blank %}
         <div class="flex flex-wrap justify-center gap-4 lg:justify-end">
-          {% for block in legal_blocks %}
-            {% if block.settings.label != blank and block.settings.url != blank %}
-              <a href="{{ block.settings.url }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
-            {% endif %}
+          {% for link in legal_links %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
           {% endfor %}
         </div>
       {% endif %}
@@ -103,6 +107,17 @@
       "default": "Footer navigation"
     },
     {
+      "type": "link_list",
+      "id": "primary_menu",
+      "label": "Primary menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "legal_menu",
+      "label": "Legal menu"
+    },
+    {
       "type": "text",
       "id": "phone_text",
       "label": "Phone text",
@@ -117,94 +132,7 @@
       "type": "text",
       "id": "copyright_text",
       "label": "Copyright text",
-      "default": "© {year} Direct Pallet Racking. All rights reserved."
-    }
-  ],
-  "blocks": [
-    {
-      "type": "nav_link",
-      "name": "Primary nav link",
-      "limit": 8,
-      "settings": [
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Label",
-          "default": "Solutions"
-        },
-        {
-          "type": "url",
-          "id": "url",
-          "label": "Link"
-        }
-      ]
-    },
-    {
-      "type": "legal_link",
-      "name": "Legal link",
-      "limit": 6,
-      "settings": [
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Label",
-          "default": "Privacy Policy"
-        },
-        {
-          "type": "url",
-          "id": "url",
-          "label": "Link"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Warehouse Footer",
-      "blocks": [
-        {
-          "type": "nav_link",
-          "settings": {
-            "label": "Solutions"
-          }
-        },
-        {
-          "type": "nav_link",
-          "settings": {
-            "label": "Products"
-          }
-        },
-        {
-          "type": "nav_link",
-          "settings": {
-            "label": "Services"
-          }
-        },
-        {
-          "type": "nav_link",
-          "settings": {
-            "label": "Resources"
-          }
-        },
-        {
-          "type": "legal_link",
-          "settings": {
-            "label": "Privacy Policy"
-          }
-        },
-        {
-          "type": "legal_link",
-          "settings": {
-            "label": "Terms of Service"
-          }
-        },
-        {
-          "type": "legal_link",
-          "settings": {
-            "label": "Cookies Settings"
-          }
-        }
-      ]
+      "default": "&copy; {year} Direct Pallet Racking. All rights reserved."
     }
   ]
 }
