@@ -705,11 +705,17 @@
   .max-w-7xl {
     max-width: var(--container-7xl);
   }
+  .max-w-\[20ch\] {
+    max-width: 20ch;
+  }
   .max-w-\[580px\] {
     max-width: 580px;
   }
   .max-w-\[650px\] {
     max-width: 650px;
+  }
+  .max-w-\[696px\] {
+    max-width: 696px;
   }
   .max-w-\[768px\] {
     max-width: 768px;
@@ -1307,9 +1313,6 @@
   .py-20 {
     padding-block: calc(var(--spacing) * 20);
   }
-  .py-\[35px\] {
-    padding-block: 35px;
-  }
   .pt-3 {
     padding-top: calc(var(--spacing) * 3);
   }
@@ -1417,6 +1420,9 @@
   }
   .text-\[27px\] {
     font-size: 27px;
+  }
+  .text-\[28px\] {
+    font-size: 28px;
   }
   .text-\[40px\] {
     font-size: 40px;
@@ -2181,6 +2187,11 @@
       width: auto;
     }
   }
+  .sm\:max-w-3xl {
+    @media (width >= 40rem) {
+      max-width: var(--container-3xl);
+    }
+  }
   .sm\:grid-cols-2 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2262,6 +2273,11 @@
   .sm\:pb-28 {
     @media (width >= 40rem) {
       padding-bottom: calc(var(--spacing) * 28);
+    }
+  }
+  .sm\:text-left {
+    @media (width >= 40rem) {
+      text-align: left;
     }
   }
   .sm\:text-3xl {
@@ -2555,6 +2571,12 @@
       text-align: left;
     }
   }
+  .lg\:text-5xl {
+    @media (width >= 64rem) {
+      font-size: var(--text-5xl);
+      line-height: var(--tw-leading, var(--text-5xl--line-height));
+    }
+  }
 }
 @font-face {
   font-family: "Trade Gothic Next LT Pro";
@@ -2579,6 +2601,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   body {
     background: white;
@@ -2587,6 +2610,7 @@
     font-size: 18px;
     letter-spacing: 0;
     font-weight: 400;
+    overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
@@ -2661,9 +2685,8 @@
   }
   .section-title {
     font-family: var(--font-heading);
-    font-size: 46px;
+    font-size: clamp(30px, 4.5vw, 46px);
     line-height: 105%;
-    line-height-trim: none;
     letter-spacing: 0;
     text-align: center;
     --tw-font-weight: var(--font-weight-extrabold);
@@ -2708,9 +2731,8 @@
     font-family: "Aptos", ui-sans-serif, system-ui, sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 18px;
+    font-size: clamp(16px, 2vw, 18px);
     line-height: 100%;
-    line-height-trim: none;
     letter-spacing: 0;
     text-align: center;
     vertical-align: middle;
@@ -2721,9 +2743,8 @@
     gap: calc(var(--spacing) * 2.5);
     border-radius: calc(infinity * 1px);
     background-color: #1493F5;
-    padding-inline: 50px;
-    padding-block: 13px;
-    padding-bottom: 14px;
+    padding-inline: calc(var(--spacing) * 6);
+    padding-block: calc(var(--spacing) * 3);
     --tw-tracking: var(--tracking-normal);
     letter-spacing: var(--tracking-normal);
     color: var(--color-white);
@@ -2749,14 +2770,22 @@
     &:focus-visible {
       outline-color: #1493F5;
     }
+    @media (width >= 40rem) {
+      padding-inline: calc(var(--spacing) * 8);
+    }
+    @media (width >= 40rem) {
+      padding-block: calc(var(--spacing) * 3.5);
+    }
+    @media (width >= 64rem) {
+      padding-inline: 50px;
+    }
   }
   .btn-secondary {
     font-family: "Aptos", ui-sans-serif, system-ui, sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 18px;
+    font-size: clamp(16px, 2vw, 18px);
     line-height: 100%;
-    line-height-trim: none;
     letter-spacing: 0;
     text-align: center;
     vertical-align: middle;
@@ -2772,9 +2801,8 @@
       border-color: color-mix(in oklab, var(--color-white) 80%, transparent);
     }
     background-color: var(--color-white);
-    padding-inline: 50px;
-    padding-block: 13px;
-    padding-bottom: 14px;
+    padding-inline: calc(var(--spacing) * 6);
+    padding-block: calc(var(--spacing) * 3);
     --tw-tracking: var(--tracking-normal);
     letter-spacing: var(--tracking-normal);
     color: var(--color-sky-500);
@@ -2798,6 +2826,15 @@
     }
     &:focus-visible {
       outline-color: var(--color-white);
+    }
+    @media (width >= 40rem) {
+      padding-inline: calc(var(--spacing) * 8);
+    }
+    @media (width >= 40rem) {
+      padding-block: calc(var(--spacing) * 3.5);
+    }
+    @media (width >= 64rem) {
+      padding-inline: 50px;
     }
   }
   .btn-ghost {
@@ -3016,9 +3053,10 @@
     }
   }
   .delivery-truck {
-    width: 370px;
-    height: 220px;
+    width: clamp(150px, 34vw, 370px);
+    height: auto;
     max-width: 100%;
+    max-height: 220px;
     object-fit: contain;
   }
   .feature-row-decorated {

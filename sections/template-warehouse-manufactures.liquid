@@ -10,7 +10,7 @@
   <div class="section-wrap relative">
     <div class="mx-auto max-w-3xl text-center">
       {% if section.settings.heading != blank %}
-        <h2 class="font-heading text-[40px] font-extrabold uppercase leading-[105%] text-center text-white">
+        <h2 class="section-title text-white">
           {{ section.settings.heading }}
         </h2>
       {% endif %}
@@ -58,10 +58,7 @@
         {% endif %}
 
         {% if section.settings.cta_button_label != blank and section.settings.cta_button_url != blank %}
-          <a
-            class="inline-flex items-center justify-center rounded-full bg-[#1493F5] px-10 py-3.5 text-base font-extrabold text-white hover:bg-[#0f79ca] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white mt-9"
-            href="{{ section.settings.cta_button_url }}"
-          >
+          <a class="btn-primary mt-9" href="{{ section.settings.cta_button_url }}">
             {{ section.settings.cta_button_label }}
           </a>
         {% endif %}
