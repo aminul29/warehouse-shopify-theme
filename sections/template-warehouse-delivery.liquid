@@ -1,0 +1,65 @@
+{% liquid
+  assign delivery_alt = section.settings.image.alt | default: section.settings.heading
+%}
+
+<section
+  id="delivery"
+  class="bg-[#1493F5] py-[35px] text-white sm:py-10"
+  aria-label="{{ section.settings.aria_label | escape }}"
+>
+  <div class="section-wrap flex flex-row items-center justify-center gap-8 text-center">
+    {% if section.settings.image != blank %}
+      {{
+        section.settings.image
+        | image_url: width: 320
+        | image_tag:
+          widths: '120, 180, 240, 320',
+          sizes: '(min-width: 640px) 180px, 120px',
+          alt: delivery_alt,
+          class: 'delivery-truck',
+          loading: 'lazy'
+      }}
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h2 class="max-w-3xl text-left font-heading text-4xl uppercase leading-none sm:text-5xl">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Warehouse Delivery Banner",
+  "tag": "section",
+  "class": "section-warehouse-delivery",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Delivery banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Truck image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Next Day Delivery at the Speed You Need"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Warehouse Delivery Banner"
+    }
+  ]
+}
+{% endschema %}

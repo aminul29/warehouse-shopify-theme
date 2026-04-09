@@ -59,7 +59,14 @@
         }
       },
       "block_order": ["solution_1", "solution_2", "solution_3"]
+    },
+    "warehouse_delivery": {
+      "type": "template-warehouse-delivery",
+      "settings": {
+        "aria_label": "Delivery banner",
+        "heading": "Next Day Delivery at the Speed You Need"
+      }
     }
   },
-  "order": ["warehouse_hero", "warehouse_solutions"]
+  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery"]
 }
