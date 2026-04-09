@@ -1,9 +1,19 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "warehouse_hero": {
       "type": "template-warehouse-hero",
       "settings": {
         "aria_label": "Hero section",
+        "background_image": "shopify://shop_images/service-racking.png",
         "heading": "America's Leading Warehouse Storage Experts",
         "subheading": "Don't settle for less. Get the best racking solution now.",
         "primary_button_label": "Contact Us",
@@ -15,9 +25,14 @@
     "featured-collection": {
       "type": "featured-collection",
       "settings": {
-        "featured_collection": "all"
+        "title": "Featured Collection",
+        "featured_collection": "all",
+        "product_per_page": 4
       }
     }
   },
-  "order": ["warehouse_hero", "featured-collection"]
+  "order": [
+    "warehouse_hero",
+    "featured-collection"
+  ]
 }
