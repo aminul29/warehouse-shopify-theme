@@ -6,8 +6,7 @@
 <section
   id="services"
   class="bg-white py-20 sm:py-28"
-  aria-label="{{ section.settings.aria_label | escape }}"
->
+  aria-label="{{ section.settings.aria_label | escape }}">
   <div class="section-wrap services-stack">
     <article class="services-row">
       <div class="services-media-shell">
@@ -15,12 +14,7 @@
           {{
             section.settings.problem_image
             | image_url: width: 1600
-            | image_tag:
-              widths: '540, 720, 960, 1280, 1600',
-              sizes: '(min-width: 1024px) 40vw, 100vw',
-              alt: problem_alt,
-              class: 'services-media',
-              loading: 'lazy'
+            | image_tag: widths: '540, 720, 960, 1280, 1600', sizes: '(min-width: 1024px) 40vw, 100vw', alt: problem_alt, class: 'services-media', loading: 'lazy'
           }}
         {% endif %}
       </div>
@@ -74,12 +68,7 @@
           {{
             section.settings.solution_image
             | image_url: width: 1600
-            | image_tag:
-              widths: '540, 720, 960, 1280, 1600',
-              sizes: '(min-width: 1024px) 40vw, 100vw',
-              alt: solution_alt,
-              class: 'services-media',
-              loading: 'lazy'
+            | image_tag: widths: '540, 720, 960, 1280, 1600', sizes: '(min-width: 1024px) 40vw, 100vw', alt: solution_alt, class: 'services-media', loading: 'lazy'
           }}
         {% endif %}
       </div>
@@ -89,7 +78,7 @@
 
 {% schema %}
 {
-  "name": "Warehouse Service Promotion",
+  "name": "Warehouse Service Promo",
   "tag": "section",
   "class": "section-warehouse-service-promotion",
   "enabled_on": {

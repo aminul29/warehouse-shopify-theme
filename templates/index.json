@@ -56,11 +56,7 @@
           }
         }
       },
-      "block_order": [
-        "solution_1",
-        "solution_2",
-        "solution_3"
-      ],
+      "block_order": ["solution_1", "solution_2", "solution_3"],
       "settings": {
         "aria_label": "Warehouse solutions",
         "heading": "Comprehensive Warehouse Solutions",
@@ -290,11 +286,7 @@
           }
         }
       },
-      "block_order": [
-        "advantage_1",
-        "advantage_2",
-        "advantage_3"
-      ],
+      "block_order": ["advantage_1", "advantage_2", "advantage_3"],
       "settings": {
         "aria_label": "Warehouse advantages",
         "show_top_gradient": true
@@ -359,13 +351,7 @@
           }
         }
       },
-      "block_order": [
-        "service_1",
-        "service_2",
-        "service_3",
-        "service_4",
-        "service_5"
-      ],
+      "block_order": ["service_1", "service_2", "service_3", "service_4", "service_5"],
       "settings": {
         "aria_label": "Products and services",
         "tabs_aria_label": "Products and services tabs",
@@ -397,11 +383,7 @@
           }
         }
       },
-      "block_order": [
-        "metric_1",
-        "metric_2",
-        "metric_3"
-      ],
+      "block_order": ["metric_1", "metric_2", "metric_3"],
       "settings": {
         "aria_label": "Manufacturers and metrics",
         "heading": "Trusted Integrator for Leading Manufacturers",
@@ -410,17 +392,111 @@
         "cta_button_label": "Shop Now",
         "cta_button_url": ""
       }
+    },
+    "warehouse_service_promotion": {
+      "type": "template-warehouse-service-promotion",
+      "settings": {
+        "aria_label": "Service promotion",
+        "problem_heading": "Long Buying Processes and Lead Times Are Holding You Back",
+        "problem_paragraph_1": "In the warehouse industry, time is money. Yet many businesses face unnecessary delays when trying to secure the right storage solutions.",
+        "problem_paragraph_2": "Between drawn-out quoting processes, multiple back-and-forths, and suppliers who are slow to act, companies find themselves stuck waiting for weeks before they can even begin solving their storage problems.",
+        "divider_copy": "This isn't just inconvenient-it's costly.",
+        "solution_heading": "The Real Cost of Delayed Action",
+        "solution_paragraph_1": "When your storage systems are delayed, your entire operation slows down. Inventory piles up, workflows become inefficient, and your team is forced to work around limitations that should have been solved long ago.",
+        "solution_paragraph_2": "Every extra day spent waiting means lost productivity and revenue. In today's competitive market, businesses can't afford to delay warehouse optimization.",
+        "button_label": "Get a Quote Today",
+        "button_url": ""
+      }
+    },
+    "warehouse_testimonial": {
+      "type": "template-warehouse-testimonial",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Great service from Direct Pallet Racking. Fast and effective communication.",
+            "author": "Patrick, Operations Manager"
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Direct Pallet Racking delivered exactly what we needed: fast, efficient, and reliable.",
+            "author": "Robbie, Branch Manager"
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Working with Direct Pallet Racking was a game changer for our warehouse.",
+            "author": "Josh, Distribution Manager"
+          }
+        }
+      },
+      "block_order": ["testimonial_1", "testimonial_2", "testimonial_3"],
+      "settings": {
+        "aria_label": "Testimonials",
+        "heading": "Testimonials"
+      }
+    },
+    "warehouse_solutions_slider": {
+      "type": "template-warehouse-solutions-slider",
+      "blocks": {
+        "solution_item_1": {
+          "type": "solution_item",
+          "settings": {
+            "layout": "side",
+            "title": "ASRS",
+            "body": "Automated storage and retrieval systems built to increase density, accuracy, and throughput.",
+            "button_label": "Learn More",
+            "button_url": ""
+          }
+        },
+        "solution_item_2": {
+          "type": "solution_item",
+          "settings": {
+            "layout": "feature",
+            "title": "Innovative Automated Solutions",
+            "body": "Integrated systems that reduce manual friction and support scalable fulfillment performance.",
+            "button_label": "Learn More",
+            "button_url": ""
+          }
+        },
+        "solution_item_3": {
+          "type": "solution_item",
+          "settings": {
+            "layout": "side",
+            "title": "Mobile Racking Systems",
+            "body": "High-density racking solutions that reduce aisle waste and maximize usable warehouse capacity.",
+            "button_label": "Learn More",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": ["solution_item_1", "solution_item_2", "solution_item_3"],
+      "settings": {
+        "aria_label": "Explore more solutions",
+        "section_id": "more-solutions",
+        "heading": "Explore More Solutions",
+        "show_navigation": true
+      }
     }
   },
   "order": [
     "warehouse_hero",
     "warehouse_solutions",
-    "warehouse_resources",
-    "warehouse_faq",
-    "warehouse_contact",
     "warehouse_delivery",
     "warehouse_advantages",
     "warehouse_services",
-    "warehouse_manufacturers"
+    "warehouse_manufacturers",
+    "warehouse_service_promotion",
+    "warehouse_testimonial",
+    "warehouse_solutions_slider",
+    "warehouse_resources",
+    "warehouse_faq",
+    "warehouse_contact"
   ]
 }
