@@ -363,6 +363,7 @@
         "aria_label": "Explore more solutions",
         "section_id": "more-solutions",
         "heading": "Explore More Solutions",
+        "pattern_image": "shopify://shop_images/Hexagon_section_bg.png",
         "show_navigation": true
       }
     },
