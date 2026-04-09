@@ -2,7 +2,7 @@
 
 A modern Shopify theme developed as a practice project by Md Aminul. This project demonstrates my skills in Shopify theme development and implementation of Online Store 2.0 features with TailwindCSS.
 
-[View on GitHub](https://github.com/aminul29/)
+[View on GitHub](https://github.com/aminul29/warehouse-shopify-theme)
 
 ## Project Overview
 
@@ -40,7 +40,7 @@ This theme was developed as a practice project while following the Shopify Theme
 To use this theme as a starting point:
 
 ```sh
-shopify theme init [ YOUR_THEME_NAME ] --clone-url https://github.com/aminul29/mhd-udemy-shopify.git
+shopify theme init [ YOUR_THEME_NAME ] --clone-url https://github.com/aminul29/warehouse-shopify-theme.git
 ```
 
 For Shopify CLI installation instructions, visit the [official documentation](https://shopify.dev/themes/tools/cli/installation).
