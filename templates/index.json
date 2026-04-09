@@ -207,7 +207,22 @@
         }
       },
       "block_order": ["metric_1", "metric_2", "metric_3"]
+    },
+    "warehouse_service_promotion": {
+      "type": "template-warehouse-service-promotion",
+      "settings": {
+        "aria_label": "Service promotion",
+        "problem_heading": "Long Buying Processes and Lead Times Are Holding You Back",
+        "problem_paragraph_1": "In the warehouse industry, time is money. Yet many businesses face unnecessary delays when trying to secure the right storage solutions.",
+        "problem_paragraph_2": "Between drawn-out quoting processes, multiple back-and-forths, and suppliers who are slow to act, companies find themselves stuck waiting for weeks before they can even begin solving their storage problems.",
+        "divider_copy": "These slow processes don't just waste time. They cost you productivity, revenue, and valuable opportunities.",
+        "solution_heading": "How Direct Pallet Racking Solves It",
+        "solution_paragraph_1": "At Direct Pallet Racking, we provide quotes in a day and deliver detailed drawings within 24 hours.",
+        "solution_paragraph_2": "With us, you get speed, efficiency, and reliability to keep your warehouse moving forward without missing a beat.",
+        "button_label": "Get a Quote Today",
+        "button_url": ""
+      }
     }
   },
-  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery", "warehouse_advantages", "warehouse_services", "warehouse_manufacturers"]
+  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery", "warehouse_advantages", "warehouse_services", "warehouse_manufacturers", "warehouse_service_promotion"]
 }

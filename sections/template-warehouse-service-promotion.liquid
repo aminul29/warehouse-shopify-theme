@@ -1,0 +1,175 @@
+{% liquid
+  assign problem_alt = section.settings.problem_image.alt | default: section.settings.problem_heading
+  assign solution_alt = section.settings.solution_image.alt | default: section.settings.solution_heading
+%}
+
+<section
+  id="services"
+  class="bg-white py-20 sm:py-28"
+  aria-label="{{ section.settings.aria_label | escape }}"
+>
+  <div class="section-wrap services-stack">
+    <article class="services-row">
+      <div class="services-media-shell">
+        {% if section.settings.problem_image != blank %}
+          {{
+            section.settings.problem_image
+            | image_url: width: 1600
+            | image_tag:
+              widths: '540, 720, 960, 1280, 1600',
+              sizes: '(min-width: 1024px) 40vw, 100vw',
+              alt: problem_alt,
+              class: 'services-media',
+              loading: 'lazy'
+          }}
+        {% endif %}
+      </div>
+
+      <div class="services-copy">
+        {% if section.settings.problem_heading != blank %}
+          <h2 class="font-heading text-[40px] font-extrabold uppercase leading-[105%] text-[#111]">
+            {{ section.settings.problem_heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.problem_paragraph_1 != blank %}
+          <p class="mt-6 text-base leading-8">{{ section.settings.problem_paragraph_1 }}</p>
+        {% endif %}
+
+        {% if section.settings.problem_paragraph_2 != blank %}
+          <p class="mt-5 text-base leading-8">{{ section.settings.problem_paragraph_2 }}</p>
+        {% endif %}
+      </div>
+    </article>
+
+    {% if section.settings.divider_copy != blank %}
+      <div class="services-divider">
+        <p class="services-divider-copy">{{ section.settings.divider_copy }}</p>
+      </div>
+    {% endif %}
+
+    <article class="services-row services-row-reverse">
+      <div class="services-copy">
+        {% if section.settings.solution_heading != blank %}
+          <h2 class="font-heading text-[40px] font-extrabold uppercase leading-[105%] text-[#111]">
+            {{ section.settings.solution_heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.solution_paragraph_1 != blank %}
+          <p class="mt-6 text-base leading-8">{{ section.settings.solution_paragraph_1 }}</p>
+        {% endif %}
+
+        {% if section.settings.solution_paragraph_2 != blank %}
+          <p class="mt-5 text-base leading-8">{{ section.settings.solution_paragraph_2 }}</p>
+        {% endif %}
+
+        {% if section.settings.button_label != blank and section.settings.button_url != blank %}
+          <a class="btn-primary mt-8" href="{{ section.settings.button_url }}">{{ section.settings.button_label }}</a>
+        {% endif %}
+      </div>
+
+      <div class="services-media-shell">
+        {% if section.settings.solution_image != blank %}
+          {{
+            section.settings.solution_image
+            | image_url: width: 1600
+            | image_tag:
+              widths: '540, 720, 960, 1280, 1600',
+              sizes: '(min-width: 1024px) 40vw, 100vw',
+              alt: solution_alt,
+              class: 'services-media',
+              loading: 'lazy'
+          }}
+        {% endif %}
+      </div>
+    </article>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Warehouse Service Promotion",
+  "tag": "section",
+  "class": "section-warehouse-service-promotion",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Service promotion"
+    },
+    {
+      "type": "image_picker",
+      "id": "problem_image",
+      "label": "Problem image"
+    },
+    {
+      "type": "textarea",
+      "id": "problem_heading",
+      "label": "Problem heading",
+      "default": "Long Buying Processes and Lead Times Are Holding You Back"
+    },
+    {
+      "type": "textarea",
+      "id": "problem_paragraph_1",
+      "label": "Problem paragraph 1",
+      "default": "In the warehouse industry, time is money. Yet many businesses face unnecessary delays when trying to secure the right storage solutions."
+    },
+    {
+      "type": "textarea",
+      "id": "problem_paragraph_2",
+      "label": "Problem paragraph 2",
+      "default": "Between drawn-out quoting processes, multiple back-and-forths, and suppliers who are slow to act, companies find themselves stuck waiting for weeks before they can even begin solving their storage problems."
+    },
+    {
+      "type": "textarea",
+      "id": "divider_copy",
+      "label": "Divider copy",
+      "default": "These slow processes don't just waste time. They cost you productivity, revenue, and valuable opportunities."
+    },
+    {
+      "type": "textarea",
+      "id": "solution_heading",
+      "label": "Solution heading",
+      "default": "How Direct Pallet Racking Solves It"
+    },
+    {
+      "type": "textarea",
+      "id": "solution_paragraph_1",
+      "label": "Solution paragraph 1",
+      "default": "At Direct Pallet Racking, we provide quotes in a day and deliver detailed drawings within 24 hours."
+    },
+    {
+      "type": "textarea",
+      "id": "solution_paragraph_2",
+      "label": "Solution paragraph 2",
+      "default": "With us, you get speed, efficiency, and reliability to keep your warehouse moving forward without missing a beat."
+    },
+    {
+      "type": "image_picker",
+      "id": "solution_image",
+      "label": "Solution image"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Get a Quote Today"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Warehouse Service Promotion"
+    }
+  ]
+}
+{% endschema %}
