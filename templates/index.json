@@ -270,7 +270,49 @@
         "phone_text": "888-979-9824",
         "phone_url": ""
       }
+    },
+    "warehouse_more_solutions": {
+      "type": "template-warehouse-solutions",
+      "settings": {
+        "aria_label": "Explore more solutions",
+        "section_id": "more-solutions",
+        "heading": "Explore More Solutions",
+        "show_navigation": true
+      },
+      "blocks": {
+        "solution_item_1": {
+          "type": "solution_item",
+          "settings": {
+            "layout": "side",
+            "title": "ASRS",
+            "body": "Automated storage and retrieval systems built to increase density, accuracy, and throughput.",
+            "button_label": "Learn More",
+            "button_url": ""
+          }
+        },
+        "solution_item_2": {
+          "type": "solution_item",
+          "settings": {
+            "layout": "feature",
+            "title": "Innovative Automated Solutions",
+            "body": "Integrated systems that reduce manual friction and support scalable fulfillment performance.",
+            "button_label": "Learn More",
+            "button_url": ""
+          }
+        },
+        "solution_item_3": {
+          "type": "solution_item",
+          "settings": {
+            "layout": "side",
+            "title": "Mobile Racking Systems",
+            "body": "High-density racking solutions that reduce aisle waste and maximize usable warehouse capacity.",
+            "button_label": "Learn More",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": ["solution_item_1", "solution_item_2", "solution_item_3"]
     }
   },
-  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery", "warehouse_advantages", "warehouse_services", "warehouse_manufacturers", "warehouse_service_promotion", "warehouse_testimonials", "warehouse_cta"]
+  "order": ["warehouse_hero", "warehouse_solutions", "warehouse_delivery", "warehouse_advantages", "warehouse_services", "warehouse_manufacturers", "warehouse_service_promotion", "warehouse_testimonials", "warehouse_cta", "warehouse_more_solutions"]
 }

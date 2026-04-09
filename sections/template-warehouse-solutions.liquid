@@ -1,0 +1,281 @@
+{% liquid
+  assign section_dom_id = section.settings.section_id | default: 'more-solutions' | handleize
+  assign slider_id = 'explore-swiper-' | append: section.id
+  assign prev_id = 'explore-prev-' | append: section.id
+  assign next_id = 'explore-next-' | append: section.id
+%}
+
+<section
+  id="{{ section_dom_id }}"
+  class="relative overflow-hidden bg-[#1493F5] py-20 text-white sm:py-28"
+  aria-label="{{ section.settings.aria_label | escape }}"
+>
+  {% if section.settings.pattern_image != blank %}
+    {{
+      section.settings.pattern_image
+      | image_url: width: 1200
+      | image_tag:
+        widths: '320, 640, 960, 1200',
+        sizes: '(min-width: 1024px) 500px, 70vw',
+        alt: '',
+        class: 'explore-bg-pattern',
+        loading: 'lazy'
+    }}
+  {% endif %}
+
+  <div class="section-wrap relative">
+    {% if section.settings.heading != blank %}
+      <h2 class="font-heading text-[46px] font-extrabold uppercase leading-[105%] text-white">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div id="{{ slider_id }}" class="swiper explore-swiper mt-12">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            {% liquid
+              assign image_alt = block.settings.image.alt | default: block.settings.title
+              assign card_class = 'explore-card group'
+              if block.settings.layout == 'feature'
+                assign card_class = card_class | append: ' explore-card-feature'
+              else
+                assign card_class = card_class | append: ' explore-card-side'
+              endif
+
+              assign heading_class = 'font-heading uppercase leading-none text-white transform-gpu transition-transform duration-500 ease-out group-hover:-translate-y-4'
+              if block.settings.layout == 'feature'
+                assign heading_class = heading_class | append: ' text-4xl sm:text-5xl'
+              else
+                assign heading_class = heading_class | append: ' text-3xl sm:text-4xl'
+              endif
+            %}
+
+            <div class="swiper-slide" {{ block.shopify_attributes }}>
+              <article class="{{ card_class }}">
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1800
+                    | image_tag:
+                      widths: '540, 720, 960, 1280, 1600, 1800',
+                      sizes: '(min-width: 1024px) 38vw, 88vw',
+                      alt: image_alt,
+                      class: 'explore-card-image',
+                      loading: 'lazy'
+                  }}
+                {% endif %}
+
+                <div class="explore-card-overlay transition duration-300 group-hover:bg-black/75"></div>
+                <div class="absolute inset-0 z-10 flex flex-col justify-end p-6 sm:p-8">
+                  <div class="w-full max-w-md">
+                    {% if block.settings.title != blank %}
+                      <h3 class="{{ heading_class }}">{{ block.settings.title }}</h3>
+                    {% endif %}
+
+                    <div class="max-h-0 translate-y-3 overflow-hidden opacity-0 transition-[max-height,opacity,transform] duration-500 ease-out group-hover:max-h-64 group-hover:translate-y-0 group-hover:opacity-100">
+                      <div class="pt-5">
+                        {% if block.settings.body != blank %}
+                          <p class="text-base leading-8 text-white/85">{{ block.settings.body }}</p>
+                        {% endif %}
+                        {% if block.settings.button_label != blank and block.settings.button_url != blank %}
+                          <a class="explore-learn-button mt-8" href="{{ block.settings.button_url }}">
+                            {{ block.settings.button_label }}
+                          </a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_navigation %}
+      <div class="mt-10 flex justify-start gap-4">
+        <button id="{{ prev_id }}" class="explore-nav-button" type="button" aria-label="{{ 'general.accessibility.previous_slide' | t | default: 'Previous slide' }}">
+          <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <button id="{{ next_id }}" class="explore-nav-button" type="button" aria-label="{{ 'general.accessibility.next_slide' | t | default: 'Next slide' }}">
+          <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% javascript %}
+  (() => {
+    const sectionId = '{{ section.id }}';
+    const sliderSelector = '#explore-swiper-' + sectionId;
+    const prevSelector = '#explore-prev-' + sectionId;
+    const nextSelector = '#explore-next-' + sectionId;
+    let swiperInstance;
+
+    const init = () => {
+      const slider = document.querySelector(sliderSelector);
+      if (!slider || typeof Swiper === 'undefined') return;
+      if (slider.dataset.swiperReady === 'true') return;
+
+      swiperInstance = new Swiper(sliderSelector, {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        navigation: {
+          prevEl: prevSelector,
+          nextEl: nextSelector
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 1.25,
+            spaceBetween: 24
+          },
+          1280: {
+            slidesPerView: 1.5,
+            spaceBetween: 28
+          }
+        }
+      });
+
+      slider.dataset.swiperReady = 'true';
+    };
+
+    const destroy = () => {
+      if (swiperInstance && typeof swiperInstance.destroy === 'function') {
+        swiperInstance.destroy(true, true);
+      }
+      const slider = document.querySelector(sliderSelector);
+      if (slider) slider.dataset.swiperReady = 'false';
+      swiperInstance = undefined;
+    };
+
+    init();
+    document.addEventListener('shopify:section:load', init);
+    document.addEventListener('shopify:section:unload', destroy);
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Warehouse More Solutions",
+  "tag": "section",
+  "class": "section-warehouse-more-solutions",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Explore more solutions"
+    },
+    {
+      "type": "text",
+      "id": "section_id",
+      "label": "Section ID (for CSS anchor links)",
+      "default": "more-solutions"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Explore More Solutions"
+    },
+    {
+      "type": "image_picker",
+      "id": "pattern_image",
+      "label": "Decorative background image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Show navigation arrows",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "solution_item",
+      "name": "Solution card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Card layout",
+          "default": "side",
+          "options": [
+            { "value": "side", "label": "Side card" },
+            { "value": "feature", "label": "Feature card" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "ASRS"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Description",
+          "default": "Automated storage and retrieval systems built to increase density, accuracy, and throughput."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Warehouse More Solutions",
+      "blocks": [
+        {
+          "type": "solution_item",
+          "settings": {
+            "layout": "side",
+            "title": "ASRS",
+            "body": "Automated storage and retrieval systems built to increase density, accuracy, and throughput.",
+            "button_label": "Learn More"
+          }
+        },
+        {
+          "type": "solution_item",
+          "settings": {
+            "layout": "feature",
+            "title": "Innovative Automated Solutions",
+            "body": "Integrated systems that reduce manual friction and support scalable fulfillment performance.",
+            "button_label": "Learn More"
+          }
+        },
+        {
+          "type": "solution_item",
+          "settings": {
+            "layout": "side",
+            "title": "Mobile Racking Systems",
+            "body": "High-density racking solutions that reduce aisle waste and maximize usable warehouse capacity.",
+            "button_label": "Learn More"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
