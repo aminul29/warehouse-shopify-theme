@@ -1,6 +1,6 @@
 {
   "name": "mhd-udemy-theme",
-  "version": "1.0.41",
+  "version": "1.0.42",
   "description": "[![Generic badge](https://img.shields.io/badge/course%20available%3F-yes-green.svg)](https://shields.io/)",
   "main": "index.js",
   "scripts": {

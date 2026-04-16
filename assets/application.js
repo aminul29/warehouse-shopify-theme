@@ -1,5 +1,266 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+const initHomepageAmbientReveals = () => {
+  const isHomepage = document.body.dataset.template === "index";
+
+  if (
+    !isHomepage ||
+    prefersReducedMotion.matches ||
+    typeof window.gsap === "undefined" ||
+    typeof window.ScrollTrigger === "undefined"
+  ) {
+    return;
+  }
+
+  window.gsap.registerPlugin(window.ScrollTrigger);
+
+  const revealCollection = (targets, trigger, options = {}) => {
+    const elements = Array.from(targets).filter(Boolean);
+
+    if (!elements.length || !trigger) {
+      return;
+    }
+
+    const y = options.y ?? 28;
+    const stagger = options.stagger ?? 0.1;
+    const duration = options.duration ?? 0.7;
+    const start = options.start ?? "top 82%";
+    const scale = options.scale ?? 1;
+
+    window.gsap.set(elements, {
+      opacity: 0,
+      y,
+      scale,
+    });
+
+    window.gsap.to(elements, {
+      duration,
+      ease: "power3.out",
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      stagger,
+      scrollTrigger: {
+        trigger,
+        start,
+        toggleActions: "play none none reverse",
+      },
+    });
+  };
+
+  document.querySelectorAll("#services .services-row").forEach((row, index) => {
+    const media = row.querySelector(".services-media-shell");
+    const copy = row.querySelector(".services-copy");
+    const direction = row.classList.contains("services-row-reverse") ? -1 : 1;
+
+    if (media) {
+      window.gsap.set(media, {
+        opacity: 0,
+        scale: 0.98,
+        x: 32 * direction,
+      });
+    }
+
+    if (copy) {
+      window.gsap.set(copy, {
+        opacity: 0,
+        x: -24 * direction,
+        y: 18,
+      });
+    }
+
+    const timeline = window.gsap.timeline({
+      defaults: {
+        ease: "power3.out",
+      },
+      scrollTrigger: {
+        trigger: row,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    if (media) {
+      timeline.to(
+        media,
+        {
+          duration: 0.9,
+          opacity: 1,
+          scale: 1,
+          x: 0,
+        },
+        index === 0 ? 0 : 0.04,
+      );
+    }
+
+    if (copy) {
+      timeline.to(
+        copy,
+        {
+          duration: 0.75,
+          opacity: 1,
+          x: 0,
+          y: 0,
+        },
+        0.12,
+      );
+    }
+  });
+
+  const servicesDivider = document.querySelector("#services .services-divider");
+  if (servicesDivider) {
+    revealCollection([servicesDivider], servicesDivider, {
+      duration: 0.8,
+      scale: 0.98,
+      y: 22,
+    });
+  }
+
+  const manufacturersCta = document.querySelector(".manufacturer-cta-shell");
+  if (manufacturersCta) {
+    revealCollection([manufacturersCta], manufacturersCta, {
+      duration: 0.85,
+      scale: 0.985,
+      y: 34,
+    });
+  }
+
+  const testimonialSection = document.querySelector("#testimonials");
+  if (testimonialSection) {
+    revealCollection(
+      [
+        testimonialSection.querySelector(".section-title"),
+        ...testimonialSection.querySelectorAll("article"),
+      ],
+      testimonialSection,
+      {
+        stagger: 0.12,
+      },
+    );
+  }
+
+  const ctaSection = document.querySelector("#cta");
+  if (ctaSection) {
+    const ctaPattern = ctaSection.querySelector(".cta-bg-pattern");
+    const ctaPanel = ctaSection.querySelector(".cta-panel");
+    const ctaContent = ctaSection.querySelectorAll(".cta-panel .relative.z-10 > *");
+
+    if (ctaPattern) {
+      window.gsap.set(ctaPattern, {
+        opacity: 0,
+        x: 40,
+      });
+
+      window.gsap.to(ctaPattern, {
+        duration: 1,
+        ease: "power3.out",
+        opacity: 1,
+        x: 0,
+        scrollTrigger: {
+          trigger: ctaSection,
+          start: "top 82%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+
+    if (ctaPanel) {
+      revealCollection([ctaPanel], ctaSection, {
+        duration: 0.85,
+        scale: 0.985,
+        y: 26,
+      });
+    }
+
+    revealCollection(ctaContent, ctaSection, {
+      stagger: 0.08,
+      duration: 0.55,
+      start: "top 78%",
+      y: 18,
+    });
+  }
+
+  const moreSolutionsSection = document.querySelector("#more-solutions");
+  if (moreSolutionsSection) {
+    revealCollection(
+      [
+        moreSolutionsSection.querySelector(".section-title"),
+        moreSolutionsSection.querySelector(".explore-swiper"),
+        ...moreSolutionsSection.querySelectorAll(".explore-nav-button"),
+      ],
+      moreSolutionsSection,
+      {
+        stagger: 0.1,
+        duration: 0.75,
+      },
+    );
+  }
+
+  const resourcesSection = document.querySelector("#resources");
+  if (resourcesSection) {
+    revealCollection(
+      [
+        resourcesSection.querySelector(".section-title"),
+        resourcesSection.querySelector("div > p"),
+        ...resourcesSection.querySelectorAll(".resources-card"),
+      ],
+      resourcesSection,
+      {
+        stagger: 0.08,
+      },
+    );
+  }
+
+  const faqSection = document.querySelector("#faqs");
+  if (faqSection) {
+    revealCollection(
+      [
+        faqSection.querySelector(".section-title"),
+        faqSection.querySelector(".section-subtitle"),
+        ...faqSection.querySelectorAll(".faq-item"),
+      ],
+      faqSection,
+      {
+        stagger: 0.07,
+      },
+    );
+  }
+
+  const contactSection = document.querySelector("#contact");
+  if (contactSection) {
+    const copyColumn = contactSection.querySelector(".contact-copy-column");
+    const imageShell = contactSection.querySelector(".contact-image-shell");
+
+    if (copyColumn) {
+      revealCollection([copyColumn], contactSection, {
+        duration: 0.85,
+        y: 30,
+      });
+    }
+
+    if (imageShell) {
+      window.gsap.set(imageShell, {
+        opacity: 0,
+        scale: 0.985,
+        x: 30,
+      });
+
+      window.gsap.to(imageShell, {
+        duration: 0.9,
+        ease: "power3.out",
+        opacity: 1,
+        scale: 1,
+        x: 0,
+        scrollTrigger: {
+          trigger: contactSection,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+  }
+};
+
 const initManufacturersCounters = () => {
   const section = document.querySelector("[data-manufacturers-section]");
   const metricBoxes = document.querySelectorAll("[data-metric-box]");
@@ -619,6 +880,7 @@ const initHeroBannerAnimation = () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  initHomepageAmbientReveals();
   initManufacturersCounters();
   initServicesTabs();
   initHeroBannerAnimation();
