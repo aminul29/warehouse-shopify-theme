@@ -1,5 +1,132 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+const initManufacturersCounters = () => {
+  const section = document.querySelector("[data-manufacturers-section]");
+  const metricBoxes = document.querySelectorAll("[data-metric-box]");
+
+  if (
+    !section ||
+    !metricBoxes.length ||
+    prefersReducedMotion.matches ||
+    typeof window.gsap === "undefined" ||
+    typeof window.ScrollTrigger === "undefined"
+  ) {
+    return;
+  }
+
+  window.gsap.registerPlugin(window.ScrollTrigger);
+
+  const parseMetricValue = (rawValue) => {
+    const trimmed = rawValue.trim();
+    const numberMatch = trimmed.match(/[\d,.]+/);
+
+    if (!numberMatch) {
+      return null;
+    }
+
+    const numericPart = numberMatch[0];
+    const startIndex = numberMatch.index ?? 0;
+    const endIndex = startIndex + numericPart.length;
+    const prefix = trimmed.slice(0, startIndex);
+    const suffix = trimmed.slice(endIndex);
+    const normalizedNumber = numericPart.replace(/,/g, "");
+    const finalValue = Number.parseFloat(normalizedNumber);
+    const decimals = normalizedNumber.includes(".") ? normalizedNumber.split(".")[1].length : 0;
+
+    if (Number.isNaN(finalValue)) {
+      return null;
+    }
+
+    return {
+      decimals,
+      finalValue,
+      prefix,
+      suffix,
+    };
+  };
+
+  metricBoxes.forEach((box, index) => {
+    const valueEl = box.querySelector("[data-metric-value]");
+    const labelEl = box.querySelector("[data-metric-label]");
+
+    if (!valueEl) {
+      return;
+    }
+
+    const parsedValue = parseMetricValue(valueEl.textContent || "");
+
+    window.gsap.set(box, {
+      opacity: 0,
+      y: 36,
+    });
+
+    if (labelEl) {
+      window.gsap.set(labelEl, {
+        opacity: 0,
+        y: 18,
+      });
+    }
+
+    const revealTimeline = window.gsap.timeline({
+      defaults: {
+        ease: "power3.out",
+      },
+      scrollTrigger: {
+        trigger: box,
+        start: "top 82%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    revealTimeline.to(
+      box,
+      {
+        duration: 0.6,
+        opacity: 1,
+        y: 0,
+      },
+      index * 0.08,
+    );
+
+    if (labelEl) {
+      revealTimeline.to(
+        labelEl,
+        {
+          duration: 0.4,
+          opacity: 1,
+          y: 0,
+        },
+        index * 0.08 + 0.1,
+      );
+    }
+
+    if (!parsedValue) {
+      return;
+    }
+
+    const counterState = { value: 0 };
+
+    revealTimeline.to(
+      counterState,
+      {
+        duration: 1.6,
+        ease: "power2.out",
+        value: parsedValue.finalValue,
+        onUpdate: () => {
+          const currentValue = parsedValue.decimals > 0 ? counterState.value.toFixed(parsedValue.decimals) : Math.round(counterState.value).toString();
+          const formattedValue = Number(currentValue).toLocaleString(undefined, {
+            minimumFractionDigits: parsedValue.decimals,
+            maximumFractionDigits: parsedValue.decimals,
+          });
+
+          valueEl.textContent = `${parsedValue.prefix}${formattedValue}${parsedValue.suffix}`;
+        },
+      },
+      index * 0.08 + 0.06,
+    );
+  });
+};
+
 const initServicesTabs = () => {
   const tabSections = document.querySelectorAll("[data-services-tabs]");
 
@@ -492,6 +619,7 @@ const initHeroBannerAnimation = () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  initManufacturersCounters();
   initServicesTabs();
   initHeroBannerAnimation();
   initHomepageScrollStory();

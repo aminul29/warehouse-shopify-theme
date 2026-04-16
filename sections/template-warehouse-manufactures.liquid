@@ -10,6 +10,7 @@
   id="manufacturers"
   class="manufacturers-section relative overflow-hidden bg-[#1493F5] py-20 sm:py-28"
   aria-label="{{ section.settings.aria_label | escape }}"
+  data-manufacturers-section
   {% if section_bg_image_url != blank %}
     style="--manufacturers-bg-image: url('{{ section_bg_image_url }}');"
   {% endif %}
@@ -26,12 +27,12 @@
     {% if section.blocks.size > 0 %}
       <div class="manufacturer-stats mt-14">
         {% for block in section.blocks %}
-          <div class="metric-box" {{ block.shopify_attributes }}>
+          <div class="metric-box" data-metric-box {{ block.shopify_attributes }}>
             {% if block.settings.value != blank %}
-              <span class="metric-value">{{ block.settings.value }}</span>
+              <span class="metric-value" data-metric-value>{{ block.settings.value }}</span>
             {% endif %}
             {% if block.settings.label != blank %}
-              <span class="metric-label">{{ block.settings.label }}</span>
+              <span class="metric-label" data-metric-label>{{ block.settings.label }}</span>
             {% endif %}
           </div>
         {% endfor %}
