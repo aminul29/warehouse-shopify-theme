@@ -1,5 +1,123 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+const initAdvantagesAnimation = () => {
+  const rows = document.querySelectorAll("[data-advantage-row]");
+
+  if (
+    !rows.length ||
+    prefersReducedMotion.matches ||
+    typeof window.gsap === "undefined" ||
+    typeof window.ScrollTrigger === "undefined"
+  ) {
+    return;
+  }
+
+  window.gsap.registerPlugin(window.ScrollTrigger);
+
+  rows.forEach((row) => {
+    const direction = row.dataset.advantageDirection === "right" ? 1 : -1;
+    const media = row.querySelector("[data-advantage-media]");
+    const accent = row.querySelector("[data-advantage-accent]");
+    const eyebrow = row.querySelector("[data-advantage-eyebrow]");
+    const title = row.querySelector("[data-advantage-title]");
+    const body = row.querySelector("[data-advantage-body]");
+    const copyParts = [eyebrow, title, body].filter(Boolean);
+
+    if (media) {
+      window.gsap.set(media, {
+        clipPath: "inset(0 0 100% 0)",
+        opacity: 0.7,
+        scale: 1.12,
+        transformOrigin: "center center",
+        x: 90 * direction,
+      });
+    }
+
+    if (accent) {
+      window.gsap.set(accent, {
+        opacity: 0,
+        rotate: 10 * direction,
+        scale: 0.85,
+        x: 50 * direction,
+        y: 36,
+      });
+    }
+
+    if (copyParts.length) {
+      window.gsap.set(copyParts, {
+        opacity: 0,
+        x: -48 * direction,
+        y: 22,
+      });
+    }
+
+    const timeline = window.gsap.timeline({
+      defaults: {
+        ease: "power3.out",
+      },
+      scrollTrigger: {
+        trigger: row,
+        start: "top 78%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    if (accent) {
+      timeline.to(
+        accent,
+        {
+          duration: 1,
+          opacity: 0.55,
+          rotate: 0,
+          scale: 1,
+          x: 0,
+          y: 0,
+        },
+        0,
+      );
+
+      window.gsap.to(accent, {
+        ease: "none",
+        rotate: -8 * direction,
+        scrollTrigger: {
+          trigger: row,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    }
+
+    if (media) {
+      timeline.to(
+        media,
+        {
+          duration: 1.15,
+          clipPath: "inset(0% 0% 0% 0%)",
+          opacity: 1,
+          scale: 1,
+          x: 0,
+        },
+        0.08,
+      );
+    }
+
+    if (copyParts.length) {
+      timeline.to(
+        copyParts,
+        {
+          duration: 0.72,
+          opacity: 1,
+          stagger: 0.12,
+          x: 0,
+          y: 0,
+        },
+        0.18,
+      );
+    }
+  });
+};
+
 const initDeliveryTruckAnimation = () => {
   const deliverySection = document.querySelector("[data-delivery-section]");
   const truck = document.querySelector("[data-delivery-truck-wrap]");
@@ -171,4 +289,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroBannerAnimation();
   initHomepageScrollStory();
   initDeliveryTruckAnimation();
+  initAdvantagesAnimation();
 });

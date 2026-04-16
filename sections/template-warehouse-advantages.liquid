@@ -1,7 +1,9 @@
 <section
   id="advantages"
   class="relative overflow-hidden bg-white py-20 sm:py-28"
-  aria-label="{{ section.settings.aria_label | escape }}">
+  aria-label="{{ section.settings.aria_label | escape }}"
+  data-advantages-section
+>
   {% if section.settings.show_top_gradient %}
     <div class="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-slate-50 to-transparent"></div>
   {% endif %}
@@ -30,12 +32,17 @@
           endcase
         %}
 
-        <article class="{{ row_classes }}" {{ block.shopify_attributes }}>
+        <article
+          class="{{ row_classes }}"
+          data-advantage-row
+          data-advantage-direction="{% if block.settings.reverse_layout %}right{% else %}left{% endif %}"
+          {{ block.shopify_attributes }}
+        >
           {% if block.settings.accent_image != blank and accent_class != blank %}
             {{
               block.settings.accent_image
               | image_url: width: 900
-              | image_tag: widths: '320, 640, 900', sizes: '(min-width: 1024px) 320px, 180px', alt: accent_alt, class: accent_class, loading: 'lazy'
+              | image_tag: widths: '320, 640, 900', sizes: '(min-width: 1024px) 320px, 180px', alt: accent_alt, class: accent_class, loading: 'lazy', data-advantage-accent: ''
             }}
           {% endif %}
 
@@ -49,32 +56,32 @@
             {{
               block.settings.media_image
               | image_url: width: 1600
-              | image_tag: widths: '540, 720, 960, 1280, 1600', sizes: '(min-width: 1024px) 40vw, 100vw', alt: media_alt, class: media_class, loading: 'lazy'
+              | image_tag: widths: '540, 720, 960, 1280, 1600', sizes: '(min-width: 1024px) 40vw, 100vw', alt: media_alt, class: media_class, loading: 'lazy', data-advantage-media: ''
             }}
           {% endif %}
 
           {% if block.settings.reverse_layout %}
-            <div class="order-2 lg:order-1">
+            <div class="order-2 lg:order-1" data-advantage-copy>
               {% if block.settings.eyebrow != blank %}
-                <p class="eyebrow">{{ block.settings.eyebrow }}</p>
+                <p class="eyebrow" data-advantage-eyebrow>{{ block.settings.eyebrow }}</p>
               {% endif %}
               {% if block.settings.title != blank %}
-                <h2 class="mt-4 text-left font-heading text-[40px] font-extrabold uppercase leading-[105%] text-[#111]">{{ block.settings.title }}</h2>
+                <h2 class="mt-4 text-left font-heading text-[40px] font-extrabold uppercase leading-[105%] text-[#111]" data-advantage-title>{{ block.settings.title }}</h2>
               {% endif %}
               {% if block.settings.body != blank %}
-                <p class="mt-6 max-w-2xl leading-8">{{ block.settings.body }}</p>
+                <p class="mt-6 max-w-2xl leading-8" data-advantage-body>{{ block.settings.body }}</p>
               {% endif %}
             </div>
           {% else %}
-            <div>
+            <div data-advantage-copy>
               {% if block.settings.eyebrow != blank %}
-                <p class="eyebrow">{{ block.settings.eyebrow }}</p>
+                <p class="eyebrow" data-advantage-eyebrow>{{ block.settings.eyebrow }}</p>
               {% endif %}
               {% if block.settings.title != blank %}
-                <h2 class="mt-4 text-left font-heading text-[40px] font-extrabold uppercase leading-[105%] text-[#111]">{{ block.settings.title }}</h2>
+                <h2 class="mt-4 text-left font-heading text-[40px] font-extrabold uppercase leading-[105%] text-[#111]" data-advantage-title>{{ block.settings.title }}</h2>
               {% endif %}
               {% if block.settings.body != blank %}
-                <p class="mt-6 max-w-2xl leading-8">{{ block.settings.body }}</p>
+                <p class="mt-6 max-w-2xl leading-8" data-advantage-body>{{ block.settings.body }}</p>
               {% endif %}
             </div>
           {% endif %}
