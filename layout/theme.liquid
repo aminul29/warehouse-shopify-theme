@@ -23,7 +23,6 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollSmoother.min.js" defer></script>
 
     <script src="{{ 'application.js' | asset_url }}" defer></script>
     <style>
@@ -33,15 +32,7 @@
   <body data-template="{{ request.page_type }}">
     {% section 'warehouse-header' %}
     <main role="main">
-      {% if request.page_type == 'index' %}
-        <div id="smooth-wrapper">
-          <div id="smooth-content">
-            {{ content_for_layout }}
-          </div>
-        </div>
-      {% else %}
-        {{ content_for_layout }}
-      {% endif %}
+      {{ content_for_layout }}
     </main>
     {% section 'footer' %}
   </body>

@@ -1,26 +1,108 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-const initHomepageSmoothScroll = () => {
-  const isHomepage = document.body.dataset.template === "index";
+const initDeliveryTruckAnimation = () => {
+  const deliverySection = document.querySelector("[data-delivery-section]");
+  const truck = document.querySelector("[data-delivery-truck-wrap]");
+  const heading = document.querySelector("[data-delivery-heading]");
 
-  if (!isHomepage || prefersReducedMotion.matches || typeof window.gsap === "undefined" || typeof window.ScrollTrigger === "undefined" || typeof window.ScrollSmoother === "undefined") {
+  if (!deliverySection || !truck || !heading || prefersReducedMotion.matches || typeof window.gsap === "undefined" || typeof window.ScrollTrigger === "undefined") {
     return;
   }
 
-  window.gsap.registerPlugin(window.ScrollTrigger, window.ScrollSmoother);
+  window.gsap.registerPlugin(window.ScrollTrigger);
 
-  const existingSmoother = window.ScrollSmoother.get();
-  if (existingSmoother) {
-    existingSmoother.kill();
+  window.gsap.set(truck, {
+    opacity: 0,
+    rotation: 5,
+    scale: 0.92,
+    transformOrigin: "center center",
+    xPercent: 45,
+    y: 24,
+  });
+
+  window.gsap.set(heading, {
+    opacity: 0,
+    x: -8,
+  });
+
+  const entranceTimeline = window.gsap.timeline({
+    defaults: {
+      ease: "power3.out",
+    },
+    scrollTrigger: {
+      trigger: deliverySection,
+      start: "top 82%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  entranceTimeline
+    .to(truck, {
+      duration: 1.2,
+      opacity: 1,
+      rotation: 0,
+      scale: 1,
+      xPercent: 0,
+      y: 0,
+    })
+    .to(
+      heading,
+      {
+        duration: 0.3,
+        opacity: 1,
+        x: 0,
+      },
+      0.1,
+    );
+};
+
+const initHomepageScrollStory = () => {
+  const isHomepage = document.body.dataset.template === "index";
+  const hero = document.querySelector("[data-hero-banner]");
+  const heroTitle = document.querySelector("[data-hero-title]");
+  const nextSection = document.querySelector("[data-next-section]");
+
+  if (!isHomepage || !hero || !heroTitle || !nextSection || prefersReducedMotion.matches || typeof window.gsap === "undefined" || typeof window.ScrollTrigger === "undefined") {
+    return;
   }
 
-  window.ScrollSmoother.create({
-    wrapper: "#smooth-wrapper",
-    content: "#smooth-content",
-    smooth: 1.8,
-    smoothTouch: 0.12,
-    effects: true,
+  window.gsap.registerPlugin(window.ScrollTrigger);
+
+  window.gsap.set(nextSection, {
+    opacity: 1,
+    scale: 1.5,
+    transformOrigin: "center top",
+    y: 140,
   });
+
+  window.gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: hero,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    })
+    .to(
+      heroTitle,
+      {
+        ease: "none",
+        opacity: 0,
+        scale: 1.65,
+      },
+      0,
+    )
+    .to(
+      nextSection,
+      {
+        ease: "none",
+        opacity: 1,
+        scale: 1,
+        y: 0,
+      },
+      0.08,
+    );
 };
 
 const initHeroBannerAnimation = () => {
@@ -86,6 +168,7 @@ const initHeroBannerAnimation = () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  initHomepageSmoothScroll();
   initHeroBannerAnimation();
+  initHomepageScrollStory();
+  initDeliveryTruckAnimation();
 });
