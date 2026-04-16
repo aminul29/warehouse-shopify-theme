@@ -484,17 +484,18 @@
   }
 
   .faq-panel {
-    @apply hidden overflow-hidden transition-all duration-300;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
-    z-index: 10;
-    background: white;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 300ms ease, opacity 220ms ease;
+  }
+
+  .faq-panel-inner {
+    min-height: 0;
   }
 
   .faq-item[data-open="true"] .faq-panel {
-    @apply block;
+    opacity: 1;
   }
 
   .faq-item[data-open="true"] .faq-icon {

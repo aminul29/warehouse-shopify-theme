@@ -47,7 +47,7 @@
               <span class="faq-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
             </button>
             <div id="{{ panel_id }}" class="faq-panel" role="region" aria-labelledby="{{ button_id }}">
-              <div class="overflow-hidden pb-5 pr-12 text-[16px] text-slate-600">
+              <div class="faq-panel-inner overflow-hidden pb-5 pr-12 text-[16px] text-slate-600">
                 {{ block.settings.answer }}
               </div>
             </div>
@@ -71,6 +71,10 @@
         item.dataset.open = isOpen ? 'true' : 'false';
         const trigger = item.querySelector('.faq-trigger');
         if (trigger) trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        const panel = item.querySelector('.faq-panel');
+        if (panel) {
+          panel.style.maxHeight = isOpen ? `${panel.scrollHeight}px` : '0px';
+        }
       };
 
       const closeSiblings = (activeItem) => {
@@ -84,10 +88,21 @@
         const trigger = item.querySelector('.faq-trigger');
         if (!trigger) return;
 
+        setOpenState(item, item.dataset.open === 'true');
+
         trigger.addEventListener('click', () => {
           const isCurrentlyOpen = item.dataset.open === 'true';
           closeSiblings(item);
           setOpenState(item, !isCurrentlyOpen);
+        });
+      });
+
+      window.addEventListener('resize', () => {
+        items.forEach((item) => {
+          if (item.dataset.open === 'true') {
+            const panel = item.querySelector('.faq-panel');
+            if (panel) panel.style.maxHeight = `${panel.scrollHeight}px`;
+          }
         });
       });
     };

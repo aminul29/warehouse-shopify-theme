@@ -1,5 +1,97 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+const initHomepageBackgroundMotion = () => {
+  const isHomepage = document.body.dataset.template === "index";
+
+  if (
+    !isHomepage ||
+    prefersReducedMotion.matches ||
+    typeof window.gsap === "undefined" ||
+    typeof window.ScrollTrigger === "undefined"
+  ) {
+    return;
+  }
+
+  window.gsap.registerPlugin(window.ScrollTrigger);
+
+  const createScrubMotion = (target, config) => {
+    if (!target) {
+      return;
+    }
+
+    window.gsap.to(target, {
+      ease: "none",
+      ...config.animation,
+      scrollTrigger: {
+        trigger: config.trigger || target,
+        start: config.start || "top bottom",
+        end: config.end || "bottom top",
+        scrub: config.scrub ?? true,
+      },
+    });
+  };
+
+  const heroBackground = document.querySelector("[data-hero-image]");
+  createScrubMotion(heroBackground, {
+    trigger: document.querySelector("[data-hero-banner]"),
+    start: "top top",
+    end: "bottom top",
+    animation: {
+      scale: 1.1,
+      yPercent: 8,
+    },
+  });
+
+  const manufacturersSection = document.querySelector(".manufacturers-section");
+  createScrubMotion(manufacturersSection, {
+    animation: {
+      backgroundPosition: "58% 50%",
+    },
+  });
+
+  const testimonialShape = document.querySelector("#testimonials .pointer-events-none.absolute");
+  createScrubMotion(testimonialShape, {
+    trigger: document.querySelector("#testimonials"),
+    animation: {
+      rotate: -8,
+      scale: 1.06,
+      xPercent: -8,
+      yPercent: -10,
+    },
+  });
+
+  const ctaPattern = document.querySelector("#cta .cta-bg-pattern");
+  createScrubMotion(ctaPattern, {
+    trigger: document.querySelector("#cta"),
+    animation: {
+      rotate: -6,
+      scale: 1.08,
+      xPercent: -10,
+      yPercent: 8,
+    },
+  });
+
+  const ctaPanelImage = document.querySelector("#cta .cta-panel-image");
+  createScrubMotion(ctaPanelImage, {
+    trigger: document.querySelector("#cta"),
+    animation: {
+      scale: 1.1,
+      yPercent: 6,
+    },
+  });
+
+  const moreSolutionsPattern = document.querySelector("#more-solutions .explore-bg-pattern");
+  createScrubMotion(moreSolutionsPattern, {
+    trigger: document.querySelector("#more-solutions"),
+    animation: {
+      rotate: 7,
+      scale: 1.08,
+      xPercent: 8,
+      yPercent: -8,
+    },
+  });
+};
+
 const initHomepageAmbientReveals = () => {
   const isHomepage = document.body.dataset.template === "index";
 
@@ -880,6 +972,7 @@ const initHeroBannerAnimation = () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  initHomepageBackgroundMotion();
   initHomepageAmbientReveals();
   initManufacturersCounters();
   initServicesTabs();
