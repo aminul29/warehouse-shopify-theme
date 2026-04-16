@@ -2,31 +2,38 @@
   assign hero_alt = section.settings.background_image.alt | default: section.settings.heading
 %}
 
-<section id="hero" class="relative isolate overflow-hidden" aria-label="{{ section.settings.aria_label | escape }}">
+<section
+  id="hero"
+  class="relative isolate overflow-hidden"
+  aria-label="{{ section.settings.aria_label | escape }}"
+  data-hero-banner
+>
   {% if section.settings.background_image != blank %}
-    {{
-      section.settings.background_image
-      | image_url: width: 2400
-      | image_tag: widths: '750, 1100, 1500, 1780, 2000, 2400', sizes: '100vw', alt: hero_alt, loading: 'eager', fetchpriority: 'high', class: 'absolute inset-0 h-full w-full object-cover'
-    }}
+    <div class="absolute inset-0 overflow-hidden" data-hero-image>
+      {{
+        section.settings.background_image
+        | image_url: width: 2400
+        | image_tag: widths: '750, 1100, 1500, 1780, 2000, 2400', sizes: '100vw', alt: hero_alt, loading: 'eager', fetchpriority: 'high', class: 'h-full w-full object-cover'
+      }}
+    </div>
   {% else %}
-    <div class="absolute inset-0 bg-slate-900"></div>
+    <div class="absolute inset-0 bg-slate-900" data-hero-image></div>
   {% endif %}
 
-  <div class="absolute inset-0 bg-slate-950/55"></div>
+  <div class="absolute inset-0 bg-slate-950/55" data-hero-overlay></div>
 
   <div class="section-wrap relative flex min-h-[78svh] items-center justify-center py-16 text-center sm:min-h-[720px]">
-    <div class="max-w-4xl">
+    <div class="max-w-4xl" data-hero-content>
       {% if section.settings.heading != blank %}
-        <h1 class="hero-title max-w-4xl">{{ section.settings.heading }}</h1>
+        <h1 class="hero-title max-w-4xl" data-hero-item>{{ section.settings.heading }}</h1>
       {% endif %}
 
       {% if section.settings.subheading != blank %}
-        <p class="hero-copy mx-auto mt-6 max-w-2xl">{{ section.settings.subheading }}</p>
+        <p class="hero-copy mx-auto mt-6 max-w-2xl" data-hero-item>{{ section.settings.subheading }}</p>
       {% endif %}
 
       {% if section.settings.primary_button_label != blank or section.settings.secondary_button_label != blank %}
-        <div class="mt-15 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <div class="mt-15 flex flex-col items-center gap-4 sm:flex-row sm:justify-center" data-hero-item>
           {% if section.settings.primary_button_label != blank and section.settings.primary_button_url != blank %}
             <a class="btn-primary" href="{{ section.settings.primary_button_url }}">
               {{ section.settings.primary_button_label }}
