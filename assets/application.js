@@ -1,5 +1,211 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+const initServicesTabs = () => {
+  const tabSections = document.querySelectorAll("[data-services-tabs]");
+
+  if (!tabSections.length) {
+    return;
+  }
+
+  tabSections.forEach((section) => {
+    const tabs = Array.from(section.querySelectorAll("[data-services-tab]"));
+    const panels = Array.from(section.querySelectorAll("[data-services-panel]"));
+    const panelsWrap = section.querySelector("[data-services-panels]");
+    const initialTabId = section.dataset.initialTab;
+
+    if (!tabs.length || !panels.length || !panelsWrap) {
+      return;
+    }
+
+    let activeTabId = initialTabId || panels[0].dataset.panelId;
+    let isAnimating = false;
+
+    const getPanelById = (id) => panels.find((panel) => panel.dataset.panelId === id);
+
+    const syncTabs = (nextId) => {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.tabTarget === nextId;
+        tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        tab.setAttribute("tabindex", isActive ? "0" : "-1");
+      });
+    };
+
+    const showPanelImmediately = (panel) => {
+      panels.forEach((item) => {
+        const isCurrent = item === panel;
+        item.hidden = !isCurrent;
+        item.setAttribute("aria-hidden", isCurrent ? "false" : "true");
+        item.style.position = isCurrent ? "relative" : "absolute";
+        item.style.inset = isCurrent ? "auto" : "0";
+        item.style.width = isCurrent ? "auto" : "100%";
+        item.style.visibility = isCurrent ? "visible" : "hidden";
+        item.style.pointerEvents = isCurrent ? "auto" : "none";
+        item.style.opacity = isCurrent ? "1" : "0";
+        item.style.transform = "none";
+      });
+      panelsWrap.style.height = `${panel.offsetHeight}px`;
+    };
+
+    const activePanel = getPanelById(activeTabId) || panels[0];
+    activeTabId = activePanel.dataset.panelId;
+    syncTabs(activeTabId);
+    showPanelImmediately(activePanel);
+
+    const animateToPanel = (nextId) => {
+      if (isAnimating || nextId === activeTabId) {
+        return;
+      }
+
+      const currentPanel = getPanelById(activeTabId);
+      const nextPanel = getPanelById(nextId);
+
+      if (!currentPanel || !nextPanel) {
+        return;
+      }
+
+      syncTabs(nextId);
+      isAnimating = true;
+
+      const currentHeight = currentPanel.offsetHeight;
+
+      nextPanel.hidden = false;
+      nextPanel.setAttribute("aria-hidden", "false");
+      nextPanel.style.position = "absolute";
+      nextPanel.style.inset = "0";
+      nextPanel.style.width = "100%";
+      nextPanel.style.visibility = "visible";
+      nextPanel.style.pointerEvents = "none";
+
+      const nextHeight = nextPanel.offsetHeight;
+      const direction = panels.indexOf(nextPanel) > panels.indexOf(currentPanel) ? 1 : -1;
+
+      panelsWrap.style.height = `${currentHeight}px`;
+
+      if (typeof window.gsap === "undefined") {
+        currentPanel.hidden = true;
+        currentPanel.setAttribute("aria-hidden", "true");
+        nextPanel.style.position = "relative";
+        nextPanel.style.inset = "auto";
+        nextPanel.style.width = "auto";
+        nextPanel.style.pointerEvents = "auto";
+        panelsWrap.style.height = `${nextHeight}px`;
+        activeTabId = nextId;
+        isAnimating = false;
+        return;
+      }
+
+      window.gsap.killTweensOf([currentPanel, nextPanel, panelsWrap]);
+
+      window.gsap.set(currentPanel, {
+        opacity: 1,
+        x: 0,
+        position: "absolute",
+        inset: 0,
+        width: "100%",
+        visibility: "visible",
+      });
+
+      window.gsap.set(nextPanel, {
+        opacity: 0,
+        x: 36 * direction,
+      });
+
+      const timeline = window.gsap.timeline({
+        defaults: {
+          ease: "power2.out",
+        },
+        onComplete: () => {
+          currentPanel.hidden = true;
+          currentPanel.setAttribute("aria-hidden", "true");
+          currentPanel.style.position = "absolute";
+          currentPanel.style.inset = "0";
+          currentPanel.style.width = "100%";
+          currentPanel.style.visibility = "hidden";
+          currentPanel.style.pointerEvents = "none";
+          currentPanel.style.opacity = "0";
+          currentPanel.style.transform = "none";
+
+          nextPanel.style.position = "relative";
+          nextPanel.style.inset = "auto";
+          nextPanel.style.width = "auto";
+          nextPanel.style.visibility = "visible";
+          nextPanel.style.pointerEvents = "auto";
+          nextPanel.style.opacity = "1";
+          nextPanel.style.transform = "none";
+
+          panelsWrap.style.height = `${nextPanel.offsetHeight}px`;
+
+          activeTabId = nextId;
+          isAnimating = false;
+        },
+      });
+
+      timeline.to(
+        panelsWrap,
+        {
+          duration: 0.42,
+          height: nextHeight,
+        },
+        0,
+      );
+
+      timeline.to(
+        currentPanel,
+        {
+          duration: 0.26,
+          opacity: 0,
+          x: -28 * direction,
+        },
+        0,
+      );
+
+      timeline.to(
+        nextPanel,
+        {
+          duration: 0.38,
+          opacity: 1,
+          x: 0,
+        },
+        0.08,
+      );
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        animateToPanel(tab.dataset.tabTarget);
+      });
+
+      tab.addEventListener("keydown", (event) => {
+        const currentIndex = tabs.indexOf(tab);
+        let nextIndex = currentIndex;
+
+        if (event.key === "ArrowRight") {
+          nextIndex = (currentIndex + 1) % tabs.length;
+        } else if (event.key === "ArrowLeft") {
+          nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+        } else if (event.key === "Home") {
+          nextIndex = 0;
+        } else if (event.key === "End") {
+          nextIndex = tabs.length - 1;
+        } else {
+          return;
+        }
+
+        event.preventDefault();
+        tabs[nextIndex].focus();
+        animateToPanel(tabs[nextIndex].dataset.tabTarget);
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      const currentPanel = getPanelById(activeTabId);
+      if (currentPanel && !isAnimating) {
+        panelsWrap.style.height = `${currentPanel.offsetHeight}px`;
+      }
+    });
+  });
+};
+
 const initAdvantagesAnimation = () => {
   const rows = document.querySelectorAll("[data-advantage-row]");
 
@@ -286,6 +492,7 @@ const initHeroBannerAnimation = () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  initServicesTabs();
   initHeroBannerAnimation();
   initHomepageScrollStory();
   initDeliveryTruckAnimation();

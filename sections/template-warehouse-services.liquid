@@ -10,8 +10,10 @@
   class="bg-paper py-20 sm:py-28"
   aria-label="{{ section.settings.aria_label | escape }}"
   {% if first_tab_id != blank %}
-    x-data="{ activeTab: '{{ first_tab_id }}' }"
-  {% endif %}>
+    data-services-tabs
+    data-initial-tab="{{ first_tab_id }}"
+  {% endif %}
+>
   <div class="section-wrap" style="--container-max: 1290px;">
     <div class="text-center">
       {% if section.settings.heading != blank %}
@@ -34,9 +36,10 @@
               class="tab-button"
               id="{{ tab_button_id }}"
               role="tab"
-              x-on:click="activeTab = '{{ block.id }}'"
-              x-bind:tabindex="activeTab === '{{ block.id }}' ? '0' : '-1'"
-              x-bind:aria-selected="activeTab === '{{ block.id }}' ? 'true' : 'false'"
+              data-services-tab
+              data-tab-target="{{ block.id }}"
+              tabindex="{% if block.id == first_tab_id %}0{% else %}-1{% endif %}"
+              aria-selected="{% if block.id == first_tab_id %}true{% else %}false{% endif %}"
               aria-controls="{{ tab_panel_id }}"
               {{ block.shopify_attributes }}>
               {{ block.settings.tab_label | default: block.settings.title }}
@@ -44,7 +47,7 @@
           {% endfor %}
         </div>
 
-        <div id="product-tab-panel-{{ section.id }}" class="w-full rounded-[28px] pt-10">
+        <div id="product-tab-panel-{{ section.id }}" class="relative w-full rounded-[28px]" data-services-panels>
           {% for block in section.blocks %}
             {% liquid
               assign tab_button_id = 'tab-' | append: section.id | append: '-' | append: block.id
@@ -55,10 +58,12 @@
               id="{{ tab_panel_id }}"
               role="tabpanel"
               aria-labelledby="{{ tab_button_id }}"
-              class="grid gap-25 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:items-stretch"
-              x-show="activeTab === '{{ block.id }}'"
-              x-transition.opacity.duration.150ms
-              x-bind:aria-hidden="activeTab === '{{ block.id }}' ? 'false' : 'true'">
+              class="grid gap-25 pt-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:items-stretch"
+              data-services-panel
+              data-panel-id="{{ block.id }}"
+              aria-hidden="{% if block.id == first_tab_id %}false{% else %}true{% endif %}"
+              {% unless block.id == first_tab_id %}hidden{% endunless %}
+            >
               <div>
                 {% if block.settings.title != blank %}
                   <h3 class="mt-4 font-heading text-2xl uppercase leading-none sm:text-2xl">
